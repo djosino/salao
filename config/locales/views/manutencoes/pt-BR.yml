@@ -1,0 +1,12 @@
+pt-BR:
+  manutencoes:    
+    form:
+      header: Dados da Manutenção
+    edit:
+      title: Editar Manutenção
+    index:
+      title: Listagem das Manutenções
+      header: Dados das Manutenções
+    new:
+      title: Nova Manutenção
+      # - %{placa}

@@ -1,0 +1,15 @@
+pt-BR:
+  activerecord:
+    attributes:
+      tipo_manutencao:
+        id: '#'
+        descricao: Descrição
+        observacao: Observação
+        created_at: "Data de Cadastro"
+        updated_at: "Data de Atualização"
+    errors:
+      models:
+        tipo_manutencao:
+          attributes:
+          validate:
+

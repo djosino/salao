@@ -1,0 +1,22 @@
+pt-BR:
+  contatos:    
+    form:
+      header: Dados do Contato
+    edit:
+      title: Editar Contato
+    index:
+      title: Listagem de Contatos
+      header_search: Dados da Consulta
+      header_list_lasted: Últimas Viagens
+      header_list_search: Listagem
+    new:
+      title: Novo Contato
+    show:
+      title: Visualizar Contato
+      header: Dados do Contato
+    calcular_valores:
+      title: Calcular Orçamento
+      header: Informações
+      confirm: Calcular
+      profissional: Documentos Desencadernados
+      manuscrito: Documentos Encadernados

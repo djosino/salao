@@ -1,0 +1,11 @@
+pt-BR:
+  equipes:    
+    form:
+      header: Dados da Equipe
+    edit:
+      title: Editar Equipe
+    index:
+      title: Listagem de Equipes
+      header: Dados das Equipes
+    new:
+      title: Nova Equipe

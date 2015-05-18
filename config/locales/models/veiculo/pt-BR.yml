@@ -1,0 +1,15 @@
+pt-BR:
+  activerecord:
+    attributes:
+      veiculo:
+        id: '#'
+        placa: Placa
+        marca_modelo: "Marca/Modelo"
+        created_at: "Data de Cadastro"
+        updated_at: "Data de Atualização"
+    errors:
+      models:
+        veiculo:
+          attributes:
+          validate:
+

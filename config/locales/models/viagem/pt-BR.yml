@@ -1,0 +1,22 @@
+pt-BR:
+  activerecord:
+    attributes:
+      viagem:
+        inicio: Início
+        termino_previsto: Previsão de Término
+        termino: Término
+        custo: Custo
+        custo_viagem: Custo Viagem
+        equipe_id: Equipe
+        cartorio_id: Cartório
+        observacao: Observação
+        kms_inicial: Quilometragem Inicial
+        kms_final: Quilometragem Final
+        created_at: "Data de Cadastro"
+        updated_at: "Data de Atualização"
+    errors:
+      models:
+        viagem:
+          attributes:
+          validate:
+

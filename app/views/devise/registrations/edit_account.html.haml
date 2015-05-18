@@ -1,0 +1,58 @@
+- model_class = Usuario
+.row-fluid
+  .span12
+    %h2.botton-border=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human.titleize
+    = flash_message(resource)
+    
+.row-fluid
+  .span8
+    = flash_message(@usuario)
+    = form_for(@usuario, :as => resource_name, :url => update_account_user_registration_path(@usuario), :html=>{ :method => :patch , class: 'form-group' }) do |f|
+      .box
+        .header
+          %img{:height => "16", :src => img_header, :width => "16"}
+          %p=t '.header', :default => model_class.model_name.human.pluralize.titleize
+        .content-form
+          .container-fluid
+            .control-group.span6
+              = f.label :nome, class: 'control-label'
+              .controls
+                = f.text_field :nome, class: 'span12', required: true
+            .control-group.span6
+              = f.label :email, class: 'control-label'
+              .controls
+                = f.email_field :email, class: 'span12', required: true
+                  
+          .container-fluid
+            .control-group.span6
+              = f.label :celular, class: 'control-label'
+              .controls
+                = f.text_field :celular, class: 'span12'
+            .control-group.span6
+              = f.label :telefone, class: 'control-label'
+              .controls
+                = f.text_field :telefone, class: 'span12'
+
+          .container-fluid
+            .control-group.span6
+              = f.label :custo_mensal, class: 'control-label'
+              .controls
+                = f.text_field :custo_mensal, class: 'span12'
+
+          .container-fluid
+            - if @usuario.empresa?
+              .control-group.span6
+                = f.label :roles, class: 'control-label'
+                - permissoes(@usuario.entidade_type).each do |role|
+                  .controls
+                    .span1 &nbsp;
+                    .span7
+                      = label_tag role[0]
+                    .span4
+                      = check_box_tag 'usuario[roles][]', role[1], @usuario.is?(role[1]), class: 'span2 checkbox'
+
+          .form-actions
+            .right
+              = f.submit t('.confirm', :default => t("helpers.submit.confirm")),  class: 'btn btn-primary btn-small'
+            .left
+              = link_to t('.back', :default => t("helpers.links.back")), @usuario.entidade, class: 'btn btn-small'

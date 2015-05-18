@@ -1,0 +1,79 @@
+pt-BR:
+  helpers:
+    form: "Formulário"
+    show: "Visualizar"
+    actions: "Ações"
+    links:
+      details: "Detalhes"
+      back: "Voltar"
+      cancel: "Cancelar"
+      show: Visualizar
+      print: Imprimir
+      suspend: "Suspender"
+      destroy: "Remover"
+      new: "Cadastrar"
+      edit: "Editar"
+      sign_out: Sair
+      admin: Administrar
+      block: Bloquear
+      lock: Bloquear
+      unlock: Desbloquear
+      reset_password: Resetar Senha
+      make_pdf: Gerar PDF
+      search: Buscar
+      reopen_process: Reabrir
+      reject: Rejeitar
+      clear: Limpar
+      image: Imagem
+      new_search: Nova Consulta
+      login_with: Logar Como
+      email_with: Logar como
+      download: Baixar
+      users: "Usuários"
+      update: Atualizar
+      download: Baixar
+      confirm: "Você tem certeza?"
+      process_confirm: "Você tem certeza que deseja cadastrar esse processo ?"
+      long_process_confirm: "Esta ação poderá demorar alguns minutos. Você deseja realizá-la ?"
+    label:
+      type_search: Tipo de Busca
+      type_status: Tipo de Status
+      initial_period: Período Inicial
+      final_period: Período Final
+      find_by: Buscar por
+      find_by_cartorio: Selecionar Cartório
+      find_by_tipo: Selecionar Tipo
+      find_by_equipe: Selecionar Equipe
+      find_by_boleto: Número Boleto
+      find_by_status: Selecionar Status
+      find_by_usuario: Selecionar Usuário
+      user: Usuário
+      password: Senha
+      layout_print: Layout de Impressao
+      current: Atual
+      month: Mês
+      year: Ano
+    submit:
+      search: Consultar
+      confirm: Confirmar
+      add: Adicionar
+      accept: Aceitar
+      loading: "Processando ..."
+    titles:
+      edit: "Editar %{model}"
+      save: "Salvar %{model}"
+      new: "Cadastrar %{model}"
+      delete: "Remover %{model}"
+      usuarios: 'Listar Usuários'
+      reports: "Relatórios de %{model}"
+    home:
+      contact_info: Informações de Contato
+      social_network: Redes Sociais
+      about_us: Quem Somos
+      phone:   'Telefone:'
+      address: 'Endereço:'
+      zipcode: 'CEP:'
+
+  submit:
+    create: "Cadastrar %{model}"
+    update: "Atualizar %{model}"

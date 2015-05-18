@@ -1,0 +1,42 @@
+.span1
+#flex.span7.visible-desktop.visible-tablet.hidden-phone
+  .flex-caption.span7
+    %h1
+      A solução
+      %br
+      que você procura!
+    %h3 Digitalização, indexação e consulta de seu acervo.
+    = link_to 'SAIBA MAIS', root_url, class: 'button', style: 'float: rigth'
+
+#email.span3{style: 'border: 1px solid #ccc; padding: 20px;'}
+  %h3 Acesso ao Sistema
+  = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+    %fieldset
+      - if alert
+        %span#name_error.error= alert
+        %br
+        %br
+      = f.label :email
+      = f.text_field :email, autofocus: true, class: 'span12 text-input'
+      = f.label :password, "Senha"
+      = f.password_field :password, class: 'span12'
+      .options(style='float: left; ')
+        = render "devise/shared/links"
+      .submit_bar(style='float: right; ')
+        = f.submit 'Entrar' , class: 'btn button'
+
+
+- msg = notice || alert || flash[:error] || flash[:notice]
+- if msg
+  #message_modal.modal.hide.fade
+    .modal-header
+      %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+      %h3 Aviso !
+    .modal-body
+      %br
+        %p=raw msg
+    .modal-footer
+      %a.btn{href: "#", :'data-dismiss' => "modal"} Fechar
+
+  :javascript
+    $('#message_modal').modal();

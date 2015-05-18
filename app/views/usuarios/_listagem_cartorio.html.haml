@@ -1,0 +1,34 @@
+- model_class = Usuario
+- @usuario = Usuario.new({entidade_id: @cartorio.id, entidade_type: @cartorio.class.to_s})
+.box
+  .header
+    %img{:height => "16", :src => img_header, :width => "16"}
+    %p=t '.header', :default => model_class.model_name.human.pluralize.titleize
+  .content
+    %table.table.table-striped
+      %thead
+        %tr
+          %th= model_class.human_attribute_name(:email)
+          %th= model_class.human_attribute_name(:email)
+          %th= model_class.human_attribute_name(:bloqueado)
+          %th{colspan:3}=t '.actions', :default => t("helpers.actions")
+      %tbody
+        - usuarios.each do |usuario|
+          %tr
+            %td= usuario.email
+            %td= usuario.try(:email)
+            %td.options= image_checkbox(usuario.locked_at ? true : nil)
+            %td.options
+              - if can? :resetar_senha, usuario
+                = link_to t('.reset_password', :default => t("helpers.links.reset_password")), resetar_senha_usuario_path(usuario), class: 'btn btn-mini'
+              - if can? :lock, usuario
+                = link_to t('.block', :default => t("helpers.links.block")), lock_unlock_usuario_path(usuario), class: 'btn btn-mini btn-info', :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }
+              - if can? :unlock, usuario
+                = link_to t('.unlock', :default => t("helpers.links.unlock")), lock_unlock_usuario_path(usuario), class: 'btn btn-mini btn-danger', :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }
+
+      - if can? :new, @usuario
+        %tfoot
+          %tr  
+            %td(colspan=99)
+              .right
+                = link_to t('.new', :default => t("helpers.links.new")), new_usuario_entidade_registration_path(@cartorio.id, "Cartorio"), class: 'btn btn-small'

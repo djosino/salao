@@ -1,0 +1,25 @@
+pt-BR:
+  activerecord:
+    models:
+      usuario: 
+        one: Usuário
+        other: Usuários
+    attributes:
+      usuario:
+        id: "#"
+        login: "Login"
+        email: "Email"
+        password: "Senha"
+        roles: Permissões
+        role: Permissão
+        custo_mensal: Custo Mensal
+        password_confirmation: "Confirmação de Senha"
+        current_password: "Senha Atual"
+        created_at: "Data de Cadastro"
+        updated_at: "Data de Atualização"
+    errors:
+      models:
+        usuario:
+          attributes:
+          validate:
+

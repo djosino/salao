@@ -1,0 +1,101 @@
+.container-fluid
+  .row-fluid
+    %aside.span3
+      #sidebar_top
+        .userinfo.span12
+          .info
+            .avatar
+              = image_tag image_path("sidebar/userinfo/avatar.png"), height: "80", width: "80"
+            /- if current_usuario.cartorio? and current_usuario.entidade.bloqueado?
+            /  - motivo = current_usuario.entidade.bloqueios.last.motivo_bloqueio
+            /  - link   = (motivo.id == 3 ? protocolos_a_registrar_dutes_path : '#' )
+            /  = link_to 'Bloqueado', link, style: "color: #820101", :'data-toggle' => "tooltip", :'data-original-title' => motivo.descricao, class: 'tooltip'
+            /- else 
+            = link_to 'Bem Vindo', '#'
+
+          %ul.links
+            
+            %li= truncate(current_usuario.nome, :length => 23)
+            %li= truncate(current_usuario.email, :length => 23)
+            %li.link_to
+              = link_to "Alterar Senha", edit_usuario_registration_path 
+          .clear
+        %hr.left{style: 'width: 100%; margin: 20px 0 '}
+        .clean
+        - if can? :create, Ponto
+          %h5 Ponto Eletrônico!
+          %p
+            %br
+            - count = 1
+            - @pontos.each do |p|
+              %b=raw exibir_ponto(p.created_at, count)
+              %br
+              - count += 1
+            %center= link_to 'Ponto', pontos_path, method: :post, class: 'btn btn-mini'
+          %hr 
+       
+    %section.span9{:style => 'padding-top: 15px'}
+      .row-fluid
+        %section.mensagens
+          %h2.botton-border Informativos
+          .clean
+          = flash_message
+          %br
+
+        - if current_usuario.cartorio?
+          #usuarios_top{style: 'height: auto'}
+            .msg_principal
+              %h2 Bem vindo ao Sistema de Digitalização
+              %br
+              %br
+              %span Consulte seu acervo.
+              %br
+              %br
+            %hr
+        - elsif current_usuario.is?('empresa_atendente') and @retornos.any?
+          - model_class = Contato
+          .box
+            .header
+              %img{:height => "16", :src => img_header, :width => "16"}
+              %p
+                =t '.header_contatos', :default => model_class.model_name.human.pluralize.titleize    
+            .content
+              %table.table.table-striped.table-bordered
+                %thead
+                  %tr
+                    %th= model_class.human_attribute_name(:id)
+                    %th= model_class.human_attribute_name(:nome)
+                    %th= model_class.human_attribute_name(:cartorio_id)
+                    %th= model_class.human_attribute_name(:retorno)
+                    %th{colspan: 5}=t '.actions', :default => t("helpers.actions")
+                %tbody
+                  - @retornos.each do |retorno|
+                    %tr
+                      %td=  retorno.id
+                      %td=  retorno.nome
+                      %td=  retorno.cartorio.try(:nome)
+                      %td=l retorno.retorno, format: :short
+                      %td.options
+                        /- if can? :show, retorno
+                        /  = link_to t('.show', :default => t("helpers.links.show")), retorno, class:  'btn btn-mini'
+                        /- if can? :edit, retorno
+                        /  = link_to t('.edit', :default => t("helpers.links.edit")), edit_contato_path(retorno), class:  'btn btn-mini'
+                        - if can? :new, retorno
+                          = link_to t('.new', :default => t("helpers.links.new")), cartorio_new_contato_path({cartorio_id: retorno.cartorio_id}), class:  'btn btn-mini'
+        - elsif current_usuario.is?('empresa_indexador') and @relatorio.any?
+          - model_class = Contato
+          .box
+            .header
+              %img{:height => "16", :src => img_header, :width => "16"}
+              %p
+                =t '.header_indexadores', :default => model_class.model_name.human.pluralize.titleize    
+            .content
+              %table.table.table-striped.table-bordered
+                %thead
+                  %tr
+                    - @relatorio.each do |data|
+                      %th= data[0]
+                %tbody
+                  %tr
+                    - @relatorio.each do |contagem|
+                      %td= contagem[1]

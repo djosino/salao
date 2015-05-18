@@ -1,0 +1,21 @@
+*, body { 
+  font-size: 9.8pt;
+}
+table, tr, td, th {  border: 1px solid #000000; border-collapse: collapse; padding: 1px 3px }
+th { font-size: 8.4pt }
+td { font-size: 8pt }
+
+#main_content.font_14 { font-size: 10pt }
+
+.table_100 { width: 100% }
+
+.grid_6  { float: left; margin-right: 2% }
+
+.grid_12 { width: 100% ; float: left}
+
+table { min-width: 46% }
+
+button, img, .button-to { display: none }
+
+.valor { width: 70px !important } 
+

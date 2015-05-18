@@ -1,0 +1,34 @@
+pt-BR:
+  cartorios:    
+    form:
+      header: Dados do Cartório
+    edit:
+      title: Editar Cartório
+    index:
+      title: Listagem de Cartórios
+      header: Dados da Consulta
+      contato: Novo Contato
+      att_valores: Atualizar Valores
+    new:
+      title: Novo Cartório
+    show:
+      title: Visualizar Cartório
+      header: Dados do Cartório
+      usuarios: Usuários
+    usuarios:
+      title: Usuários
+    indexacao:
+      title: Listagem de Cartórios para Indexação
+      header: Dados dos Cartórios 
+      lotes: Lotes
+      finaliza: Finalizar
+      new_lote: Cadastrar Lote
+    lotes:
+      title: "Listagem de Lotes do %{nome}"
+      header: Dados dos Lotes
+      docs: Reprovados
+    quantidades:
+      title: Quantidades de Documentos do Cartório
+    docs_reprovado:
+      title: "Documentos Reprovados do Cartório - %{cartorio}"
+      header: Dados dos Documentos

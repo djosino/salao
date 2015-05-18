@@ -1,0 +1,11 @@
+pt-BR:
+  tipos_documentos:    
+    form:
+      header: Dados do Tipo de Documento
+    edit:
+      title: Editar Tipo de Documento
+    index:
+      title: Listagem de Tipos de Documentos
+      header: Dados dos Tipos de Documentos
+    new:
+      title: Nova Tipo de Documento

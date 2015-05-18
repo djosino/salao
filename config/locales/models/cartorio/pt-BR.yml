@@ -1,0 +1,31 @@
+pt-BR:
+  activerecord:
+    attributes:
+      cartorio:
+        id: "#"
+        nome: Nome
+        usuario_cadastro_id: Cadastrado Por 
+        status_cartorio_id: Status
+        uf: UF
+        cidade: Cidade
+        bairro: Bairro
+        endereco: Endereço
+        numero: Número
+        telefone: Telefone
+        cep: CEP
+        estimativa_imagem: Imagens Estimadas
+        estimativa_valor: Valor Estimado
+        complemento: Complemento
+        forma_pagamento: Forma de Pagamento
+        parcelas: "N° Parcelas"
+        observacao: Observação
+        valor_parcela: "Valor da Parcela"
+        representante: "Tabelião / Responsável"
+        created_at: "Data de Cadastro"
+        updated_at: "Data de Atualização"
+    errors:
+      models:
+        cartorio:
+          attributes:
+          validate:
+

@@ -1,0 +1,42 @@
+- model_class = Usuario
+- @usuario = Usuario.new({entidade_id: @empresa.id})
+.box
+  .header
+    %img{:height => "16", :src => img_header, :width => "16"}
+    %p=t '.header', :default => model_class.model_name.human.pluralize.titleize
+  .content
+    %table.table.table-striped
+      %thead
+        %tr
+          %th= model_class.human_attribute_name(:nome)
+          %th= model_class.human_attribute_name(:email)
+          %th= model_class.human_attribute_name(:roles)
+          %th= model_class.human_attribute_name(:bloqueado)
+          %th{colspan:3}=t '.actions', :default => t("helpers.actions")
+      %tbody
+        - usuarios.each do |usuario|
+          %tr
+            %td= usuario.try(:nome)
+            %td= usuario.try(:email)
+            %td= truncate((usuario.roles * ', '), length: 70)
+            %td= image_checkbox(usuario.locked_at ? true : nil)
+            %td.options
+              - if can? :resetar_senha, usuario
+                = link_to t('.reset_password', :default => t("helpers.links.reset_password")), resetar_senha_usuario_path(usuario), class: 'btn btn-mini'
+              - if can? :edit_account, :registrations
+                = link_to t('.edit', :default => t("helpers.links.edit")), edit_account_user_registration_path(usuario), class: 'btn btn-mini'
+              - if can? :lock, usuario
+                = link_to t('.block', :default => t("helpers.links.block")), lock_unlock_usuario_path(usuario), class: 'btn btn-mini btn-info', :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }
+              - if can? :unlock, usuario
+                = link_to t('.unlock', :default => t("helpers.links.unlock")), lock_unlock_usuario_path(usuario), class: 'btn btn-mini btn-danger', :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }
+              - if can? :sign_in_with, :sessions and usuario.locked_at.nil?
+                = link_to t('.email_with', :default => t("helpers.links.email_with")), sign_in_with_usuarios_sessions_path(usuario), class: 'btn btn-mini btn-danger', :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }
+
+      %tfoot
+        %tr  
+          %td(colspan=99)
+            - if can? :new, @usuario
+              .right
+                = link_to t('.new', :default => t("helpers.links.new")), new_usuario_entidade_registration_path(@empresa.id, "Empresa"), class: 'btn btn-small'
+            .left
+              = link_to t('.back', :default => t("helpers.links.back")), path_return, class: 'btn btn-small'

@@ -1,0 +1,63 @@
+- model_class = Usuario
+.row-fluid
+  %h2.botton-border=t '.title', :default => [:'helpers.titles.edit', 'New %{model}'], :model => model_class.model_name.human.titleize
+.row-fluid
+  .span6
+    = flash_message(resource)
+    /render "devise/shared/links"
+    = form_for(resource, as: resource_name, url: registration_path(resource_name), :html => { class: 'form-group', autocomplete: :off}) do |f|
+      = f.hidden_field :entidade_id
+      = f.hidden_field :entidade_type
+      .box
+        .header
+          %img{:height => "16", :src => img_header, :width => "16"}
+          %p=t '.header', :default => model_class.model_name.human.pluralize.titleize
+        .content-form
+          .container-fluid
+            .control-group.span6
+              = f.label :nome, class: 'control-label'
+              .controls
+                = f.text_field :nome, class: 'span12', required: true
+            .control-group.span6
+              = f.label :email, class: 'control-label'
+              .controls
+                = f.email_field :email, class: 'span12', required: true
+
+          .container-fluid
+            .control-group.span6
+              = f.label :password, class: 'control-label'
+              .controls
+                = f.password_field :password, class: 'span12', required: true
+            .control-group.span6
+              = f.label :password_confirmation, class: 'control-label'
+              .controls
+                = f.password_field :password_confirmation, class: 'span12', required: true
+
+          .container-fluid
+            .control-group.span6
+              = f.label :celular, class: 'control-label'
+              .controls
+                = f.text_field :celular, class: 'span12'
+            .control-group.span6
+              = f.label :telefone, class: 'control-label'
+              .controls
+                = f.text_field :telefone, class: 'span12'
+
+          .container-fluid
+            - if resource.entidade_type == 'Empresa'
+              .control-group.span6
+                = f.label :roles, class: 'control-label'
+                - permissoes(@usuario.entidade_type).each do |role|
+                  .controls
+                    .span1 &nbsp;
+                    .span7
+                      = label_tag role[0]
+                    .span4
+                      = check_box_tag 'usuario[roles][]', role[1], @usuario.is?(role[1]), class: 'span2 checkbox'
+
+
+          .form-actions
+            .right
+              = f.submit t('.confirm', :default => t("helpers.submit.confirm")),  class: 'btn btn-primary btn-small'
+            .left
+              = link_to t('.back', :default => t("helpers.links.back")), resource.entidade, class: 'btn btn-small'

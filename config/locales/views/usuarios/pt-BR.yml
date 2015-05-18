@@ -1,0 +1,22 @@
+pt-BR:
+  usuarios:
+    list:  
+      new: Cadastrar Usuario
+      reset_password: Resetar Senha
+      change_master: Alterar Permissão (Master)
+      lock: Bloquear
+      unlock: Desloquear 
+    ferramentas:
+      title: Ferramentas
+    list_admin: 
+      login_with: "Logar Como"
+    consultar:
+      title: "Consulta de Usuários"
+      header_search: "Consultar por Login"
+    listagem _admin:
+      header: "Listagem de Usuários"
+    listagem_cartorio:
+      new: Cadastrar Usuário
+    index:
+      header_contatos: Retornos do Dia
+      header_indexadores: "Desempenho Última Semana & Mensal"

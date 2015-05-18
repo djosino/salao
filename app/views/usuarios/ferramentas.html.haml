@@ -1,0 +1,87 @@
+- model_class = Usuario
+- button = 'btn span11 btn-mini btn-menu'
+.row-fluid
+  %h2.botton-border=t '.title', :default => model_class.model_name.human.pluralize.titleize
+  = flash_message
+
+.row-fluid
+  .box
+    .header
+      %img{:height => "16", :src => img_header, :width => "16"}
+      %p=t '.header', :default => model_class.model_name.human.pluralize.titleize
+    .content{style:  'min-height: 400px'}
+      .container-fluid
+        .span4
+          .span12.margin-left-to-span
+            %h4 Consultas
+          - if can? :calcular_valores, Contato
+            = link_to "Calcular Valores", calcular_valores_contatos_path, class: button
+          - if can? :index, Ponto
+            = link_to "Consultar Ponto Eletrônico", pontos_path, class: button
+          - if can? :consultar_mapa, Agenda
+            = link_to "Visualizar Agendamentos", consultar_mapa_agendas_path, class: button
+          - if can? :indexacao, Cartorio
+            = link_to "Visualizar Cartórios para Indexação", indexacao_cartorios_path, class: button
+          = link_to "Scannear Documento", scan_usuarios_path, class: button
+          = link_to "Visualizar Mapa do Ceará", mapace_cartorios_path, class: button
+          .span12.margin-left-to-span
+            %h4 Pontos
+          - if can? :new, Atestado
+            = link_to "Cadastrar Atestado",   new_atestado_path, class: button
+          - if can? :index, Feria
+            = link_to "Listar Férias",   ferias_path, class: button
+          - if can? :mensal, Ponto
+            = link_to "Relatório de Pontos", mensal_pontos_path, class: button
+
+        .span4
+          .span12.margin-left-to-span
+            %h4 Administração
+          - if can? :index, Agenda
+            = link_to "Administrar Agendas",   agendas_path,   class: button            
+          - if can? :index, Cartorio
+            = link_to "Administrar Cartórios", cartorios_path, class: button
+          - if can? :index, Contato
+            = link_to "Administrar Contatos",  contatos_path,  class: button
+          - if can? :index, Equipe
+            = link_to "Administrar Equipes",   equipes_path,   class: button
+          - if can? :index, Empresa
+            = link_to "Administrar Empresa",   empresas_path,  class: button
+          /
+          - if can? :index, Manutencao
+            = link_to "Administrar Manutenções",          manutencoes_path,  class: button
+          - if can? :index, TipoContato
+            = link_to "Administrar Tipos de Contatos",    tipos_contatos_path, class: button
+          - if can? :index, TipoDocumento
+            = link_to "Administrar Tipos de Documentos",  tipos_documentos_path, class: button
+          - if can? :index, TipoManutencao
+            = link_to "Administrar Tipos de Manutenções", tipos_manutencoes_path, class: button
+          - if can? :index, Veiculo
+            = link_to "Administrar Veiculos", veiculos_path, class: button
+          - if can? :index, Viagem
+            = link_to "Administrar Viagens", viagens_path, class: button
+          - if can? :show, Empresa
+            = link_to "Usuários Mondrian",   empresa_path(1), class: button
+
+        .span4
+          .span12.margin-left-to-span  
+            %h4 Relatórios
+          - if can? :custo_por_indexacao, :relatorios
+            = link_to "Custo de Indexação por Mes", custo_por_indexacao_relatorios_path, class: button
+          - if can? :relatorio, Contato
+            = link_to "Relatório de Contatos", relatorio_contatos_path, class: button
+          /- if can? :relatorio, Lote
+          /  = link_to "Relatório Mensal de Lotes", relatorio_lotes_path, class: button
+          - if can? :estimativa, :relatorios
+            = link_to "Relatório de Estimativas", estimativa_relatorios_path, class: button
+          - if can? :rendimento_indexacao_diario, :relatorios
+            = link_to "Rendimento de Indexação Diário", rendimento_indexacao_diario_relatorios_path, class: button
+          - if can? :rendimento_indexacao_mensal, :relatorios
+            = link_to "Rendimento de Indexação Mensal", rendimento_indexacao_mensal_relatorios_path, class: button
+          - if can? :rendimento_mensal_usuario, :relatorios
+            = link_to "Rendimento Mensal por Usuário", rendimento_mensal_usuario_relatorios_path, class: button
+          - if can? :rendimento_por_cartorio, :relatorios
+            = link_to "Relatório por Cartório", rendimento_por_cartorio_relatorios_path, class: button
+          - if can? :total_por_cartorio, :relatorios
+            = link_to "Relatório Total por Cartório", total_por_cartorio_relatorios_path, class: button
+      %br
+      %br

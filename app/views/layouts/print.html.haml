@@ -1,0 +1,17 @@
+!!! 5
+%html(lang="en")
+  %head
+    %meta{charset: "utf-8"}
+    %meta{:'http-equiv' => "X-UA-Compatible", content: "IE=Edge,chrome=1"}
+    %meta{name: "viewport", content: "width=device-width, initial-scale=1.0"}
+    %title
+      = content_for?(:title) ? 'Digitalização - ' + yield(:title) : "Sistema de Digitalização"
+    = csrf_meta_tags
+    - if Rails.env.production?
+      = stylesheet_link_tag "print", media: "print"
+    - else
+      = stylesheet_link_tag "print", media: "all"
+  %body
+    = yield
+    :javascript
+      window.print()
