@@ -1,0 +1,21 @@
+%h1 Listing ordem_servicos
+
+%table
+  %tr
+    %th Cliente
+    %th Valor
+    %th
+    %th
+    %th
+
+  - @ordem_servicos.each do |ordem_servico|
+    %tr
+      %td= ordem_servico.cliente
+      %td= ordem_servico.valor
+      %td= link_to 'Show', ordem_servico
+      %td= link_to 'Edit', edit_ordem_servico_path(ordem_servico)
+      %td= link_to 'Destroy', ordem_servico, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Ordem servico', new_ordem_servico_path

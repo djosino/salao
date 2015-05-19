@@ -1,0 +1,6 @@
+- model_class = FormaDePagamento
+.row-fluid
+  %h2.botton-border=t '.title', :model => model_class.model_name.human.titleize
+  = flash_message(@forma_de_pagamento)
+.row-fluid
+  = render :partial => "form"

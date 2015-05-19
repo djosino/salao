@@ -3,9 +3,8 @@ class UsuariosController < ApplicationController
   before_action :authenticate_usuario!, except: :atualizar_hora
 
   def index
-    relatorio_por_permissao
-    @usuarios = Usuario.order(:email)
-    @pontos   = current_usuario.pontos.dia_atual.order(:id)
+    #relatorio_por_permissao
+    #@usuarios = Usuario.order(:email)
   end
 
   # Bloqueia ou Desbloqueia Usuario

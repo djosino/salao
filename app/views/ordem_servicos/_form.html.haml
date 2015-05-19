@@ -1,0 +1,16 @@
+= form_for @ordem_servico do |f|
+  - if @ordem_servico.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@ordem_servico.errors.count, "error")} prohibited this ordem_servico from being saved:"
+      %ul
+        - @ordem_servico.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :cliente
+    = f.text_field :cliente
+  .field
+    = f.label :valor
+    = f.text_field :valor
+  .actions
+    = f.submit 'Save'

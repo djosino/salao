@@ -1,0 +1,19 @@
+pt-BR:
+  activerecord:
+    models:
+      produto: 
+        one: Produto
+        other: Produtos
+    attributes:
+      produto:
+        id: "#"
+        descricao: Descrição
+        valor: Valor
+        created_at: "Data de Cadastro"
+        updated_at: "Data de Atualização"
+    errors:
+      models:
+        produto:
+          attributes:
+          validate:
+

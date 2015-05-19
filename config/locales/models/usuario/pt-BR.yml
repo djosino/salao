@@ -12,6 +12,7 @@ pt-BR:
         password: "Senha"
         roles: Permissões
         role: Permissão
+        data_nascimento: Data de Nasc.
         custo_mensal: Custo Mensal
         password_confirmation: "Confirmação de Senha"
         current_password: "Senha Atual"

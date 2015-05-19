@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  descricao: MyString
+  percentual: 1.5
+  valor: 1.5
+
+two:
+  descricao: MyString
+  percentual: 1.5
+  valor: 1.5

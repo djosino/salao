@@ -1,0 +1,13 @@
+= form_for @forma_de_pagamento do |f|
+  - if @forma_de_pagamento.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@forma_de_pagamento.errors.count, "error")} prohibited this forma_de_pagamento from being saved:"
+      %ul
+        - @forma_de_pagamento.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :descricao
+    = f.text_field :descricao
+  .actions
+    = f.submit 'Save'

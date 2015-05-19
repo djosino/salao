@@ -1,5 +1,15 @@
 Salao::Application.routes.draw do
 
+  resources :forma_de_pagamentos
+
+  resources :ordem_servicos
+
+  resources :clientes
+
+  resources :produtos
+
+  resources :servicos
+
   # root_url
   authenticated :usuario do
     root "usuarios#index"

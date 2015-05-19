@@ -1,0 +1,11 @@
+pt-BR:
+  forma_de_pagamentos:    
+    form:
+      header: Dados do Forma de Pagamento
+    edit:
+      title: Editar Forma de Pagamento
+    index:
+      title: Listagem dos Tipos de Manutenção
+      header: Dados dos Tipos de Manutenções
+    new:
+      title: Cadastrar Forma de Pagamento

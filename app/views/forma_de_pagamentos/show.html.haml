@@ -1,0 +1,9 @@
+%p#notice= notice
+
+%p
+  %b Descricao:
+  = @forma_de_pagamento.descricao
+
+= link_to 'Edit', edit_forma_de_pagamento_path(@forma_de_pagamento)
+\|
+= link_to 'Back', forma_de_pagamentos_path

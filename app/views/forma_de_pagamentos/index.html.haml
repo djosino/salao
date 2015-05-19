@@ -1,0 +1,19 @@
+%h1 Listing forma_de_pagamentos
+
+%table
+  %tr
+    %th Descricao
+    %th
+    %th
+    %th
+
+  - @forma_de_pagamentos.each do |forma_de_pagamento|
+    %tr
+      %td= forma_de_pagamento.descricao
+      %td= link_to 'Show', forma_de_pagamento
+      %td= link_to 'Edit', edit_forma_de_pagamento_path(forma_de_pagamento)
+      %td= link_to 'Destroy', forma_de_pagamento, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Forma de pagamento', new_forma_de_pagamento_path

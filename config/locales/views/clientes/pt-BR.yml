@@ -1,0 +1,14 @@
+pt-BR:
+  clientes:    
+    form:
+      title: Dados do Cliente
+    edit:
+      title: Editar %{model}
+    index:
+      title: Listagem de %{model}
+      header_search: Consulta
+    new:
+      title: Cadastrar %{model}
+    show:
+      title: Visualizar %{model}
+      header: Dados do Cliente

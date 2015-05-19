@@ -1,0 +1,7 @@
+- model_class = Produto
+.row-fluid
+  %h2.botton-border=t '.title', :model => model_class.model_name.human.titleize
+  = flash_message(@produto)
+.row-fluid
+  .span8
+    = render :partial => "form"

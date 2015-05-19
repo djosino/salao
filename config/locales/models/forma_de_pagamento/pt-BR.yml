@@ -1,0 +1,18 @@
+pt-BR:
+  activerecord:
+    models:
+      forma_de_pagamento: 
+        one: Forma de Pagamento
+        other: Formas de Pagamento
+    attributes:
+      forma_de_pagamento:
+        id: "#"
+        descricao: Descrição
+        created_at: "Data de Cadastro"
+        updated_at: "Data de Atualização"
+    errors:
+      models:
+        forma_de_pagamento:
+          attributes:
+          validate:
+

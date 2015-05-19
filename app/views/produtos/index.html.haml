@@ -1,0 +1,35 @@
+- model_class = Produto
+.row-fluid
+  .span12
+    %h2.botton-border=t '.title', :default => model_class.model_name.human.pluralize.titleize, model: model_class.model_name.human.pluralize.titleize
+    = flash_message
+
+.row-fluid
+  .box
+    .header
+      %img{:height => "16", :src => img_header, :width => "16"}
+      %p=t '.header_list', :default => model_class.model_name.human.pluralize.titleize
+    .content
+      %table.table.table-striped.table-bordered
+        %thead
+          %tr
+            %th= model_class.human_attribute_name(:id)         
+            %th= model_class.human_attribute_name(:descricao)   
+            %th= model_class.human_attribute_name(:valor)     
+            %th{colspan: 4}=t '.actions', :default => t("helpers.actions")
+        %tbody
+          - @produtos.each do |produto|
+            %tr
+              %td= produto.id
+              %td= produto.descricao
+              %td= produto.valor.try(:real)
+              %td
+                = link_to t('.show', :default => t("helpers.links.show")), produto, class: 'btn btn-mini'
+        %tfoot
+          %tr  
+            %td{colspan: 99, height: 29}
+              %center
+                = page_navigation_links @produtos if will_paginate @produtos
+              .left{style: (will_paginate(@produtos) ? 'margin-top: -30px' : '')}
+                = link_to t('.back', :default => t("helpers.links.back")), ferramentas_usuarios_path, class: 'btn btn-small'
+

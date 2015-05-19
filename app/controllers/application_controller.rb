@@ -33,19 +33,11 @@ class ApplicationController < ActionController::Base
 
   protected
     #   Protected
-    # Add current_usuario in versions inserts (paper_trail)
-    def info_for_paper_trail
-      if usuario_signed_in?
-        { user_last_changed_id: current_usuario.id }
-      end
-    end
-
-    #   Protected
     # Override method in devise user (forms -> create, edit_account)
     def configure_permitted_parameters
-      devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:entidade_id, :entidade_type, :email, :password, :password_confirmation, :nome, :celular, :telefone, :roles => []) }
+      devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:nome, :name, :email, :password, :password_confirmation, :percentual, :telefone2, :telefone, :roles => []) }
       if action_name == 'update_account'
-        devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:custo_mensal, :nome, :email, :celular, :telefone, :roles => []) } 
+        devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:nome, :email, :name, :percentual, :telefone2, :telefone, :roles => []) } 
       end
     end
 
@@ -71,33 +63,4 @@ class ApplicationController < ActionController::Base
         end
       end
     end
-
-   #require "#{Rails.root}/lib/get_data.rb"
-=begin
-   # Deixa "cliente_sessao" acessivel há todo o codigo
-   attr_accessor :cliente_sessao
-   # Define com qual cliente o usuario irá trabalhar
-   def setar_cliente
-      if current_usuario
-         # mondrian? = verifica se o usuario pertence a entidade id = 1 ('Mondrian')
-         if !current_usuario.mondrian? 
-            self.cliente_sessao = current_usuario.cliente 
-            #session['cliente_id'] = current_usuario.entidade_id
-         elsif current_usuario.mondrian? and !session['cliente_id'].nil? and !session['cliente_id'].blank? 
-            self.cliente_sessao = Cliente.find(session['cliente_id'])
-         end
-         begin
-            if self.cliente_sessao.nil? and controller_name != 'usuarios' and controller_name != "devise"
-               flash[:notice] = "Selecione o Cliente que deseja trabalhar"
-               redirect_to selecionar_usuarios_path
-               return
-            end
-         rescue => e
-            render :text => e.to_s
-         end
-      else
-         self.cliente_sessao = nil
-      end
-   end
-=end
 end

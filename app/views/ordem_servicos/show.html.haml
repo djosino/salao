@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Cliente:
+  = @ordem_servico.cliente
+%p
+  %b Valor:
+  = @ordem_servico.valor
+
+= link_to 'Edit', edit_ordem_servico_path(@ordem_servico)
+\|
+= link_to 'Back', ordem_servicos_path

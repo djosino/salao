@@ -1,0 +1,20 @@
+pt-BR:
+  activerecord:
+    models:
+      servico: 
+        one: Serviço
+        other: Serviços
+    attributes:
+      servico:
+        id: "#"
+        descricao: Descrição
+        valor: Valor
+        percentual: Percentual
+        created_at: "Data de Cadastro"
+        updated_at: "Data de Atualização"
+    errors:
+      models:
+        servico:
+          attributes:
+          validate:
+

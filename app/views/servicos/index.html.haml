@@ -1,0 +1,37 @@
+- model_class = Servico
+.row-fluid
+  .span12
+    %h2.botton-border=t '.title', :default => model_class.model_name.human.pluralize.titleize, model: model_class.model_name.human.pluralize.titleize
+    = flash_message
+
+.row-fluid
+  .box
+    .header
+      %img{:height => "16", :src => img_header, :width => "16"}
+      %p=t '.header_list', :default => model_class.model_name.human.pluralize.titleize
+    .content
+      %table.table.table-striped.table-bordered
+        %thead
+          %tr
+            %th= model_class.human_attribute_name(:id)         
+            %th= model_class.human_attribute_name(:descricao)   
+            %th= model_class.human_attribute_name(:valor)     
+            %th= model_class.human_attribute_name(:percentual) 
+            %th{colspan: 4}=t '.actions', :default => t("helpers.actions")
+        %tbody
+          - @servicos.each do |servico|
+            %tr
+              %td= servico.id
+              %td= servico.descricao
+              %td= servico.valor.try(:real)
+              %td= servico.percentual
+              %td
+                = link_to t('.show', :default => t("helpers.links.show")), servico, class: 'btn btn-mini'
+        %tfoot
+          %tr  
+            %td{colspan: 99, height: 29}
+              %center
+                = page_navigation_links @servicos if will_paginate @servicos
+              .left{style: (will_paginate(@servicos) ? 'margin-top: -30px' : '')}
+                = link_to t('.back', :default => t("helpers.links.back")), ferramentas_usuarios_path, class: 'btn btn-small'
+

@@ -1,0 +1,51 @@
+- model_class = Cliente
+.row-fluid
+  .span12
+    %h2.botton-border=t '.title', :default => model_class.model_name.human.pluralize.titleize, model: model_class.model_name.human.pluralize.titleize
+    = flash_message
+
+.row-fluid
+  .box
+    .header
+      %img{:height => "16", :src => img_header, :width => "16"}
+      %p=t '.header_list', :default => model_class.model_name.human.pluralize.titleize
+    .content
+      %table.table.table-striped.table-bordered
+        %thead
+          %tr
+            %th= model_class.human_attribute_name(:id)         
+            %th= model_class.human_attribute_name(:nome)   
+            %th= model_class.human_attribute_name(:cpf)     
+            %th= model_class.human_attribute_name(:cep)     
+            %th= model_class.human_attribute_name(:endereco)     
+            %th= model_class.human_attribute_name(:numero)     
+            %th= model_class.human_attribute_name(:bairro)     
+            %th= model_class.human_attribute_name(:data_nascimento)     
+            %th= model_class.human_attribute_name(:email)     
+            %th= model_class.human_attribute_name(:telefone)     
+            %th= model_class.human_attribute_name(:telefone2)     
+            %th{colspan: 4}=t '.actions', :default => t("helpers.actions")
+        %tbody
+          - @clientes.each do |cliente|
+            %tr
+              %td= cliente.id
+              %td= cliente.nome
+              %td= cliente.cpf
+              %td= cliente.cep
+              %td= cliente.endereco
+              %td= cliente.numero
+              %td= cliente.bairro
+              %td= cliente.data_nascimento
+              %td= cliente.email
+              %td= cliente.telefone
+              %td= cliente.telefone2
+              %td
+                = link_to t('.show', :default => t("helpers.links.show")), cliente, class: 'btn btn-mini'
+        %tfoot
+          %tr  
+            %td{colspan: 99, height: 29}
+              %center
+                = page_navigation_links @clientes if will_paginate @clientes
+              .left{style: (will_paginate(@clientes) ? 'margin-top: -30px' : '')}
+                = link_to t('.back', :default => t("helpers.links.back")), ferramentas_usuarios_path, class: 'btn btn-small'
+

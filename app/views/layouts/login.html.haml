@@ -4,9 +4,9 @@
     %meta{charset: "utf-8"}
     %meta{:'http-equiv' => "X-UA-Compatible", content: "IE=Edge,chrome=1"}
     %meta{name: "viewport", content: "width=device-width, initial-scale=1.0"}
-    %meta{name: "author",   content: "Mondrian Tecnologia" }
-    %meta{name: "description", content: "Sistema de Digitalização"}
-    %title= content_for?(:title) ? yield(:title) : "Sistema de Digitalização"
+    %meta{name: "author",   content: "Danilo Josino" }
+    %meta{name: "description", content: "Salão"}
+    %title= content_for?(:title) ? yield(:title) : "Salão"
     = csrf_meta_tags
     / Le HTML5 shim, for IE6-8 support of HTML elements
     /[if lt IE 9]
@@ -24,8 +24,18 @@
       .container-fluid
         .row-fluid
           #logo
-            = link_to root_url do
-              = image_tag "principal/logo_site.png"
+            LOGO
+            %br
+            LOGO
+            %br
+            LOGO
+            %br
+            LOGO
+            %br
+            LOGO
+            %br
+            /= link_to root_url do
+            /  = image_tag "principal/x.png"
           %section#navigation
             .span1
             %nav#nav-wrap.span10
@@ -33,17 +43,11 @@
                 %li.current
                   = link_to 'Inicial', root_url
                 %li
-                  %a{href: "service.html"}   Serviços
+                  = link_to 'Serviços', '#'
                 %li
-                  %a{href: "portfolio.html"} Portifólio
+                  = link_to 'Portifólio', '#'
                 %li
-                  %a{href: "contact.html"}   Contato
-                /%li
-                /  %a{href: "about.html"} About
-                /  %ul
-                /    %li
-                /      %a{href: "element.html"} Elements
-              / topnav
+                  = link_to 'Contato', '#'
               .clear
 
     .container-fluid{style: 'min-height: 463px'}
@@ -58,4 +62,4 @@
             .container
               #copyright
                 Copyright © 2014 - 
-                = link_to 'Mondrian Tecnologia', "http://www.mondriantecnologia.com"
+                = link_to 'Empresa', "http://www.site.com"

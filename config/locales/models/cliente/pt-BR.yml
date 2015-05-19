@@ -1,0 +1,28 @@
+pt-BR:
+  activerecord:
+    models:
+      cliente: 
+        one: Cliente
+        other: Clientes
+    attributes:
+      cliente:
+        id: "#"
+        nome: Nome
+        cpf: CPF
+        cep: CEP
+        uf: UF
+        cidade: Cidade
+        bairro: Bairro
+        endereco: Endereço
+        numero: Número
+        telefone: Telefone
+        telefone: Celular
+        carteira_id: "Carteira"
+        created_at: "Data de Cadastro"
+        updated_at: "Data de Atualização"
+    errors:
+      models:
+        cliente:
+          attributes:
+          validate:
+

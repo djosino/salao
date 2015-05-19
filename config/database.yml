@@ -1,15 +1,11 @@
 development:
   adapter: postgresql
-  encoding: unicode
-  database: apodi
-  pool: 5
-  username: postgres
-  password: postgres
+  database: salao
+  username: dute
+  password: dute
 
 test:
   adapter: postgresql
-  encoding: unicode
-  database: apodi
-  pool: 5
+  database: salao
   username: postgres
   password: postgres

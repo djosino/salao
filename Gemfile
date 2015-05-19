@@ -36,9 +36,9 @@ gem 'maskedinput-rails'
 # gem "soap2r"
 
 # Charts / Graficos. Read more: http://googlevisualr.herokuapp.com/
-gem "google_visualr", "~> 2.1.0"
+#gem "google_visualr", "~> 2.1.0"
 # RMagick 
-gem 'rmagick', '2.13.2'
+#gem 'rmagick', '2.13.2'
 
 # Versioned tables
 # Read more: https://github.com/airblade/paper_trail

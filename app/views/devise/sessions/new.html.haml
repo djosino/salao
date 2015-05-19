@@ -2,10 +2,10 @@
 #flex.span7.visible-desktop.visible-tablet.hidden-phone
   .flex-caption.span7
     %h1
-      A solução
+      Lorem Lorem
       %br
-      que você procura!
-    %h3 Digitalização, indexação e consulta de seu acervo.
+      LoremLoremLoremLoremLorem
+    %h3 Lorem  Lorem LoremLorem Lorem Lorem Lorem
     = link_to 'SAIBA MAIS', root_url, class: 'button', style: 'float: rigth'
 
 #email.span3{style: 'border: 1px solid #ccc; padding: 20px;'}
@@ -16,12 +16,12 @@
         %span#name_error.error= alert
         %br
         %br
-      = f.label :email
-      = f.text_field :email, autofocus: true, class: 'span12 text-input'
+      = f.label :login
+      = f.text_field :login, autofocus: true, class: 'span12 text-input'
       = f.label :password, "Senha"
       = f.password_field :password, class: 'span12'
-      .options(style='float: left; ')
-        = render "devise/shared/links"
+      /.options(style='float: left; ')
+      /  = render "devise/shared/links"
       .submit_bar(style='float: right; ')
         = f.submit 'Entrar' , class: 'btn button'
 

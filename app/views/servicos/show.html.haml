@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Descricao:
+  = @servico.descricao
+%p
+  %b Percentual:
+  = @servico.percentual
+%p
+  %b Valor:
+  = @servico.valor
+
+= link_to 'Edit', edit_servico_path(@servico)
+\|
+= link_to 'Back', servicos_path
