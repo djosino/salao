@@ -36,5 +36,62 @@
   .field
     = f.label :telefone2
     = f.text_field :telefone2
-  .actions
-    = f.submit 'Save'
+
+
+- model_class = Produto
+.box
+  .header
+    %img{:height => "16", :src => img_header, :width => "16"}
+    %p=t '.header', :default => model_class.model_name.human.pluralize.titleize
+  = form_for @produto, :html => { class: 'form-group' } do |f|
+    .content-form
+      .container-fluid
+        .control-group.span6
+          = f.label :nome, class: 'control-label'
+          .controls
+            = f.text_field :nome, class: 'span12', required: true
+        .control-group.span6
+          = f.label :cpf, class: 'control-label'
+          .controls
+            = f.text_field :cpf, class: 'span12'
+      .container-fluid
+        .control-group.span6
+          = f.label :cep, class: 'control-label'
+          .controls
+            = f.text_field :cep, class: 'span12'
+        .control-group.span6
+          = f.label :endereco, class: 'control-label'
+          .controls
+            = f.text_field :endereco, class: 'span12'
+      .container-fluid
+        .control-group.span6
+          = f.label :numero, class: 'control-label'
+          .controls
+            = f.text_field :numero, class: 'span12'
+        .control-group.span6
+          = f.label :bairro, class: 'control-label'
+          .controls
+            = f.text_field :bairro, class: 'span12'
+      .container-fluid
+        .control-group.span6
+          = f.label :data_nascimento, class: 'control-label'
+          .controls
+            = f.text_field :data_nascimento, class: 'span12'
+        .control-group.span6
+          = f.label :email, class: 'control-label'
+          .controls
+            = f.text_field :email, class: 'span12'
+      .container-fluid
+        .control-group.span6
+          = f.label :telefone, class: 'control-label'
+          .controls
+            = f.text_field :telefone, class: 'span12'
+        .control-group.span6
+          = f.label :telefone_2, class: 'control-label'
+          .controls
+            = f.text_field :telefone_2, class: 'span12'
+      .form-actions
+        .right
+          = f.submit t('.confirm', :default => t("helpers.submit.confirm")),  class: 'btn btn-small btn-primary'
+        .left
+          = link_to t('.back', :default => t("helpers.links.back")), produtos_path, class: 'btn btn-small'
