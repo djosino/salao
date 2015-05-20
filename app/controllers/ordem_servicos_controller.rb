@@ -4,7 +4,7 @@ class OrdemServicosController < ApplicationController
   # GET /ordem_servicos
   # GET /ordem_servicos.json
   def index
-    @ordem_servicos = OrdemServico.all
+    @ordem_servicos = OrdemServico.all.paginate(page: params[:page])
   end
 
   # GET /ordem_servicos/1
@@ -28,7 +28,7 @@ class OrdemServicosController < ApplicationController
 
     respond_to do |format|
       if @ordem_servico.save
-        format.html { redirect_to @ordem_servico, notice: 'Ordem servico was successfully created.' }
+        format.html { redirect_to @ordem_servico, notice: t(:created, name: 'Ordem de Serviços') }
         format.json { render action: 'show', status: :created, location: @ordem_servico }
       else
         format.html { render action: 'new' }
@@ -42,7 +42,7 @@ class OrdemServicosController < ApplicationController
   def update
     respond_to do |format|
       if @ordem_servico.update(ordem_servico_params)
-        format.html { redirect_to @ordem_servico, notice: 'Ordem servico was successfully updated.' }
+        format.html { redirect_to @ordem_servico, notice: t(:updated, name: 'Ordem de Serviços') }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
