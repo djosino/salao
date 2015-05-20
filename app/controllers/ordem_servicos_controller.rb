@@ -1,5 +1,5 @@
 class OrdemServicosController < ApplicationController
-  before_action :set_ordem_servico, only: [:show, :edit, :update, :destroy, :adicionar_servico]
+  before_action :set_ordem_servico, only: [:show, :edit, :update, :destroy, :adicionar_servico, :finalizar, :cancelar]
 
   # GET /ordem_servicos
   # GET /ordem_servicos.json
@@ -53,13 +53,14 @@ class OrdemServicosController < ApplicationController
 
   # DELETE /ordem_servicos/1
   # DELETE /ordem_servicos/1.json
-  #def destroy
-  #  @ordem_servico.destroy
-  #  respond_to do |format|
-  #    format.html { redirect_to ordem_servicos_url }
-  #    format.json { head :no_content }
-  #  end
-  #end
+  def destroy
+    @ordem_servico.remover_servico(params[:servico_id])
+
+    respond_to do |format|
+      format.html { redirect_to @ordem_servico, notice: t(:updated, 'Ordem de Serviço') }
+      format.json { head :no_content }
+    end
+  end
 
   def adicionar_servico
     if params[:servico_id].present?
@@ -70,6 +71,18 @@ class OrdemServicosController < ApplicationController
     end
     redirect_to @ordem_servico
   end
+
+  def finalizar
+    @ordem_servico.finalizar!
+    redirect_to @ordem_servico, notice: t(:updated, name: "Ordem de Serviço")
+  end
+
+  def cancelar
+    @ordem_servico.cancelar!
+    redirect_to @ordem_servico, notice: t(:updated, name: "Ordem de Serviço")
+  end  
+
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

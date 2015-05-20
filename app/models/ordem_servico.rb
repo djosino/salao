@@ -19,6 +19,21 @@ class OrdemServico < ActiveRecord::Base
     end
   end
 
+  def remover_servico(servico_id)
+    OSS.where(ordem_servico_id: self.id, servico_id: servico_id).last.destroy
+  end
+
+  def finalizar!
+    self.status = 2
+    self.valor  = self.servicos.pluck(:valor).sum.to_f
+    self.save
+  end
+
+  def cancelar!
+    self.status = 2
+    self.save
+  end
+
   private
   def set_status
     self.status = 1

@@ -1,19 +1,21 @@
 Salao::Application.routes.draw do
 
-  resources :forma_de_pagamentos
+  resources :forma_de_pagamentos, except: :destroy
 
-  resources :ordem_servicos do
+  resources :ordem_servicos, except: :destroy do
     member do
-      post :adicionar_servico, :finalizar, :cancelar
+      post :adicionar_servico
+      get :finalizar, :cancelar
     end
   end
 
+  resources :clientes, except: :destroy
 
-  resources :clientes
+  resources :produtos, except: :destroy
 
-  resources :produtos
-
-  resources :servicos
+  resources :servicos, except: :destroy do
+    resources :ordem_servicos, only: :destroy
+  end
 
   # root_url
   unauthenticated do
