@@ -1,0 +1,14 @@
+pt-BR:
+  ordem_servicos:    
+    form:
+      title: Dados do Ordem de Serviço
+    edit:
+      title: Editar %{model}
+    index:
+      title: Listagem de Ordem de Serviços
+      header_search: Consulta
+    new:
+      title: Cadastrar %{model}
+    show:
+      title: Visualizar Ordem de Serviço - %{status}
+      header: Dados do Ordem de Serviço 

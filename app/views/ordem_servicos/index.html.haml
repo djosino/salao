@@ -14,11 +14,16 @@
         %thead
           %tr
             %th= model_class.human_attribute_name(:id)         
+            %th{colspan: 2}= model_class.human_attribute_name(:cliente)         
+            %th= model_class.human_attribute_name(:valor)
             %th{colspan: 4}=t '.actions', :default => t("helpers.actions")
         %tbody
           - @ordem_servicos.each do |ordem_servico|
             %tr
               %td= ordem_servico.id
+              %td= ordem_servico.cliente.try(:cpf)
+              %td= ordem_servico.cliente.try(:nome)
+              %td= ordem_servico.servicos.pluck(:valor).try(:sum).try(:real)
               %td
                 = link_to t('.show', :default => t("helpers.links.show")), ordem_servico, class: 'btn btn-mini'
         %tfoot

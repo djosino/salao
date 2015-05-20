@@ -1,12 +1,78 @@
-%p#notice= notice
+- model_class = OrdemServico
+.row-fluid
+  .span12
+    %h2.botton-border=t '.title', :default => model_class.model_name.human.pluralize.titleize, status: @ordem_servico.descricao_status
+    = flash_message
 
-%p
-  %b Cliente:
-  = @ordem_servico.cliente
-%p
-  %b Valor:
-  = @ordem_servico.valor
+.row-fluid
+  .box.span6
+    .header
+      %img{:height => "16", :src => img_header, :width => "16"}
+      %p=t '.header_list', :default => model_class.model_name.human.pluralize.titleize
+    .content
+      %table.table.table-striped.table-bordered
+        %thead
+          %tr
+            %th= model_class.human_attribute_name(:id)         
+            %th{colspan: 2}= model_class.human_attribute_name(:cliente)         
+            %th= model_class.human_attribute_name(:valor)
+            %th= model_class.human_attribute_name(:usuario)
+        %tbody
+          %tr
+            %td= @ordem_servico.id
+            %td= cpf_cnpj_formatado(@ordem_servico.cliente.try(:cpf))
+            %td= @ordem_servico.cliente.try(:nome)
+            %td= @ordem_servico.servicos.pluck(:valor).sum.real_contabil
+            %td= @ordem_servico.usuario.try(:login)
+        %tfoot
+          %tr  
+            %td{colspan: 99}
+              .left
+                = link_to t('.back', :default => t("helpers.links.back")), ferramentas_usuarios_path, class: 'btn btn-small'
+              .right
+                = link_to t('.fechar', :default => t("helpers.links.fechar")), finalizar_ordem_servico_path(@ordem_servico), class: 'btn btn-small btn-primary'
 
-= link_to 'Edit', edit_ordem_servico_path(@ordem_servico)
-\|
-= link_to 'Back', ordem_servicos_path
+  - if @ordem_servico.servicos.any?
+    .box.span6
+      .header
+        %img{:height => "16", :src => img_header, :width => "16"}
+        %p=t '.services', :default => 'Serviços'
+      .content
+        %table.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th= model_class.human_attribute_name(:id)         
+              %th= model_class.human_attribute_name(:descricao)         
+              %th= model_class.human_attribute_name(:valor)
+              %th{colspan: 4}=t '.actions', :default => t("helpers.actions")
+          %tbody
+            - @ordem_servico.servicos.each do |servico|
+              %tr
+                %td= servico.id
+                %td= servico.descricao
+                %td= servico.valor.try(:real)
+                %td
+                  - if can? :destroy, @ordem_servico
+                    = link_to t('.destroy', :default => t("helpers.links.destroy")), ordem_servicos_path(servico), method: :delete, class: 'btn btn-mini btn-danger'
+
+.row-fluid
+  .box.span6
+    .header
+      %img{:height => "16", :src => img_header, :width => "16"}
+      %p=t '.header', :default => model_class.model_name.human.pluralize.titleize
+    = form_tag adicionar_servico_ordem_servico_path(@ordem_servico), :html => { class: 'form-group' } do 
+      .content-form
+        .container-fluid
+          .control-group.span6
+            = label_tag :servico, 'Serviço', class: 'control-label'
+            .controls
+              = select_tag :servico_id, options_for_select(servicos, params[:servico_id]), {data: { dynamic_selectable_url: dynamic_select_servicos_path(':servico_id'), dynamic_selectable_target: '#valor'}, include_blank: true, class: 'span12' }
+          .control-group.span6
+            = label_tag :valor, 'Valor do Serviço', class: 'control-label'
+            .controls
+              = text_field_tag :valor, nil, class: 'span12', readonly: true
+        .form-actions
+          .right
+            = submit_tag t('.confirm', :default => t("helpers.submit.confirm")),  class: 'btn btn-small btn-primary'
+          .left
+            = link_to t('.back', :default => t("helpers.links.back")), ordem_servicos_path, class: 'btn btn-small'

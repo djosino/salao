@@ -1,49 +1,9 @@
-= form_for @cliente do |f|
-  - if @cliente.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@cliente.errors.count, "error")} prohibited this cliente from being saved:"
-      %ul
-        - @cliente.errors.full_messages.each do |msg|
-          %li= msg
-
-  .field
-    = f.label :nome
-    = f.text_field :nome
-  .field
-    = f.label :cpf
-    = f.text_field :cpf
-  .field
-    = f.label :cep
-    = f.text_field :cep
-  .field
-    = f.label :endereco
-    = f.text_field :endereco
-  .field
-    = f.label :numero
-    = f.text_field :numero
-  .field
-    = f.label :bairro
-    = f.text_field :bairro
-  .field
-    = f.label :data_nascimento
-    = f.text_field :data_nascimento
-  .field
-    = f.label :email
-    = f.text_field :email
-  .field
-    = f.label :telefone
-    = f.text_field :telefone
-  .field
-    = f.label :telefone2
-    = f.text_field :telefone2
-
-
-- model_class = Produto
+- model_class = Cliente
 .box
   .header
     %img{:height => "16", :src => img_header, :width => "16"}
     %p=t '.header', :default => model_class.model_name.human.pluralize.titleize
-  = form_for @produto, :html => { class: 'form-group' } do |f|
+  = form_for @cliente, :html => { class: 'form-group' } do |f|
     .content-form
       .container-fluid
         .control-group.span6
@@ -87,11 +47,11 @@
           .controls
             = f.text_field :telefone, class: 'span12'
         .control-group.span6
-          = f.label :telefone_2, class: 'control-label'
+          = f.label :telefone2, class: 'control-label'
           .controls
-            = f.text_field :telefone_2, class: 'span12'
+            = f.text_field :telefone2, class: 'span12'
       .form-actions
         .right
           = f.submit t('.confirm', :default => t("helpers.submit.confirm")),  class: 'btn btn-small btn-primary'
         .left
-          = link_to t('.back', :default => t("helpers.links.back")), produtos_path, class: 'btn btn-small'
+          = link_to t('.back', :default => t("helpers.links.back")), clientes_path, class: 'btn btn-small'

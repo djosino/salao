@@ -1,16 +1,17 @@
-= form_for @ordem_servico do |f|
-  - if @ordem_servico.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@ordem_servico.errors.count, "error")} prohibited this ordem_servico from being saved:"
-      %ul
-        - @ordem_servico.errors.full_messages.each do |msg|
-          %li= msg
-
-  .field
-    = f.label :cliente
-    = f.text_field :cliente
-  .field
-    = f.label :valor
-    = f.text_field :valor
-  .actions
-    = f.submit 'Save'
+- model_class = OrdemServico
+.box.span8
+  .header
+    %img{:height => "16", :src => img_header, :width => "16"}
+    %p=t '.header', :default => model_class.model_name.human.pluralize.titleize
+  = form_for @ordem_servico, :html => { class: 'form-group' } do |f|
+    .content-form
+      .container-fluid
+        .control-group.span6
+          = f.label :cliente_id, class: 'control-label'
+          .controls
+            = f.select :cliente_id, options_for_select(Cliente.pluck(:nome, :id)), {}, class: 'span12', required: true
+      .form-actions
+        .right
+          = f.submit t('.confirm', :default => t("helpers.submit.confirm")),  class: 'btn btn-small btn-primary'
+        .left
+          = link_to t('.back', :default => t("helpers.links.back")), ordem_servicos_path, class: 'btn btn-small'

@@ -16,7 +16,7 @@ $(document).ready ->
   $("a[data-confirm]").click (ev) ->
     href = $(this).attr("href")
     method = $(this).attr("data-method")
-    $("body").append "<div id='dataConfirmModal' class='modal' role='dialog' aria-labelledby='dataConfirmLabel' aria-hidden='true'><div class='modal-header'><button type='button' class='close' data-dismiss='modal' aria-hidden='true'>×</button><h3 id='dataConfirmLabel'>Confirmação</h3></div><div class='modal-body'></div><div class='modal-footer'><button class='btn left' data-dismiss='modal' aria-hidden='true'>Cancelar</button><a class='btn btn-primary loading' id='dataConfirmOK'>Confirmar</a></div></div>"  unless $("#dataConfirmModal").length
+    $("body").append "<div id='dataConfirmModal' class='modal' role='dialog' aria-labelledby='dataConfirmLabel' aria-hidden='true'><div class='modal-header'><button type='button' class='close' data-dismiss='modal' aria-hidden='true'>×</button><h3 id='dataConfirmLabel'>Confirmação</h3></div><div class='modal-body'></div><div class='modal-footer'><button class='btn left' data-dismiss='modal' aria-hidden='true'>Cancelar</button><a class='btn btn-primary' id='dataConfirmOK'>Confirmar</a></div></div>"  unless $("#dataConfirmModal").length
     $("#dataConfirmModal").find(".modal-body").text $(this).attr("data-confirm")
     $("#dataConfirmOK").attr "href", href
     $("#dataConfirmOK").attr "data-method", method
@@ -29,15 +29,14 @@ $(document).ready ->
     $("#dataConfirmModal").find(".modal-body").text $(this).attr("data-confirm")
     false
 
+
+
 # Close Modal with ESC button
 $(document).keypress (e) ->
   if e.keyCode is 27
-    $(".bg_loading").hide()
-    $("#loading").hide()
     $("#message_modal .close").click() 
     $("#dataConfirmModal").fadeOut "slow", ->
       $("#dataConfirmModal .close").click()
 
 # JQuery Mask - Define variable 'A'
 $.mask.definitions['A'] = "[A-Z]"
-
