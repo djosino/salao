@@ -28,7 +28,7 @@ class FormaDePagamentosController < ApplicationController
 
     respond_to do |format|
       if @forma_de_pagamento.save
-        format.html { redirect_to @forma_de_pagamento, notice: t(:created, name: 'Forma de Pagamento') }
+        format.html { redirect_to forma_de_pagamentos_path, notice: t(:created, name: 'Forma de Pagamento') }
         format.json { render action: 'show', status: :created, location: @forma_de_pagamento }
       else
         format.html { render action: 'new' }
@@ -42,7 +42,7 @@ class FormaDePagamentosController < ApplicationController
   def update
     respond_to do |format|
       if @forma_de_pagamento.update(forma_de_pagamento_params)
-        format.html { redirect_to @forma_de_pagamento, notice: t(:updated, name: 'Forma de Pagamento') }
+        format.html { redirect_to forma_de_pagamentos_path, notice: t(:updated, name: 'Forma de Pagamento') }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

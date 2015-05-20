@@ -1,0 +1,19 @@
+pt-BR:
+  activerecord:
+    models:
+      ordem_servico: 
+        one: Ordem de Serviço
+        other: Ordens de Serviço
+    attributes:
+      ordem_servico:
+        id: "#"
+        descricao: Descrição
+        valor: Valor
+        created_at: "Data de Cadastro"
+        updated_at: "Data de Atualização"
+    errors:
+      models:
+        ordem_servico:
+          attributes:
+          validate:
+
