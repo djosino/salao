@@ -2,7 +2,12 @@ Salao::Application.routes.draw do
 
   resources :forma_de_pagamentos
 
-  resources :ordem_servicos
+  resources :ordem_servicos do
+    member do
+      post :adicionar_servico, :finalizar, :cancelar
+    end
+  end
+
 
   resources :clientes
 
@@ -11,14 +16,12 @@ Salao::Application.routes.draw do
   resources :servicos
 
   # root_url
-  authenticated :usuario do
-    root "usuarios#index"
-  end
   unauthenticated do
     devise_scope :usuario do
       root to: 'devise/sessions#new', :as => "unauthenticated"
     end
   end
+  root "usuarios#index"
 
   devise_for :usuarios 
   as :usuarios do
@@ -32,6 +35,11 @@ Salao::Application.routes.draw do
     patch 'usuarios/update_account/:id', to: 'devise/registrations#update_account', as: :update_account_user_registration
     get   'usuarios/:id/edit_account',   to: 'devise/registrations#edit_account',   as: :edit_account_user_registration
   end
+
+  namespace :dynamic_select do
+    get ':servico_id/servicos',       to: 'servicos#index',             as: 'servicos'
+  end
+
 
   #namespace :dynamic_select do
   #  get ':tipo_id/livros', to: 'lotes#livros', as: 'livros'

@@ -5,10 +5,10 @@ pt-BR:
     edit:
       title: Editar %{model}
     index:
-      title: Listagem de %{model}
+      title: Listagem de Ordem de Serviços
       header_search: Consulta
     new:
       title: Cadastrar %{model}
     show:
-      title: Visualizar %{model}
-      header: Dados do Ordem de Serviço
+      title: Visualizar Ordem de Serviço - %{status}
+      header: Dados do Ordem de Serviço 

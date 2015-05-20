@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150519172925) do
+ActiveRecord::Schema.define(version: 20150520164127) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,9 +42,19 @@ ActiveRecord::Schema.define(version: 20150519172925) do
     t.float    "valor"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "status"
+    t.integer  "usuario_id"
   end
 
   add_index "ordem_servicos", ["cliente_id"], name: "index_ordem_servicos_on_cliente_id", using: :btree
+
+  create_table "ordem_servicos_servicos", force: true do |t|
+    t.integer "ordem_servico_id"
+    t.integer "servico_id"
+  end
+
+  add_index "ordem_servicos_servicos", ["ordem_servico_id"], name: "index_ordem_servicos_servicos_on_ordem_servico_id", using: :btree
+  add_index "ordem_servicos_servicos", ["servico_id"], name: "index_ordem_servicos_servicos_on_servico_id", using: :btree
 
   create_table "produtos", force: true do |t|
     t.string   "descricao"

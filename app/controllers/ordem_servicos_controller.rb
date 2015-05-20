@@ -1,10 +1,10 @@
 class OrdemServicosController < ApplicationController
-  before_action :set_ordem_servico, only: [:show, :edit, :update, :destroy]
+  before_action :set_ordem_servico, only: [:show, :edit, :update, :destroy, :adicionar_servico]
 
   # GET /ordem_servicos
   # GET /ordem_servicos.json
   def index
-    @ordem_servicos = OrdemServico.all.paginate(page: params[:page])
+    @ordem_servicos = OrdemServico.includes(:servicos, :cliente).paginate(page: params[:page])
   end
 
   # GET /ordem_servicos/1
@@ -25,7 +25,7 @@ class OrdemServicosController < ApplicationController
   # POST /ordem_servicos.json
   def create
     @ordem_servico = OrdemServico.new(ordem_servico_params)
-
+    @ordem_servico.usuario_id = current_usuario.id
     respond_to do |format|
       if @ordem_servico.save
         format.html { redirect_to @ordem_servico, notice: t(:created, name: 'Ordem de Serviços') }
@@ -53,12 +53,22 @@ class OrdemServicosController < ApplicationController
 
   # DELETE /ordem_servicos/1
   # DELETE /ordem_servicos/1.json
-  def destroy
-    @ordem_servico.destroy
-    respond_to do |format|
-      format.html { redirect_to ordem_servicos_url }
-      format.json { head :no_content }
+  #def destroy
+  #  @ordem_servico.destroy
+  #  respond_to do |format|
+  #    format.html { redirect_to ordem_servicos_url }
+  #    format.json { head :no_content }
+  #  end
+  #end
+
+  def adicionar_servico
+    if params[:servico_id].present?
+      servico = Servico.find(params[:servico_id])
+      @ordem_servico.servicos << servico
+      redirect_to @ordem_servico, notice: t(:updated, name: "Ordem de Serviço")
+      return
     end
+    redirect_to @ordem_servico
   end
 
   private
