@@ -3,37 +3,41 @@
     = link_to root_path, class: "btn btn-small", style: "margin-right: 4px" do
       %i.icon.icon-home
     /
-    .btn-group
-      = link_to "Serviços", servicos_path, class: "btn btn-small"
-      = link_to '#', class: 'btn btn-small dropdown-toggle', :'data-toggle' => "dropdown" do
-        %span.caret
-      %ul.dropdown-menu
-        = link_to "Listar",    servicos_path,    class: "btn btn-small"
-        = link_to "Cadastrar", new_servico_path, class: "btn btn-small"
+    - if can? :index, Servico
+      .btn-group
+        = link_to "Serviços", servicos_path, class: "btn btn-small"
+        = link_to '#', class: 'btn btn-small dropdown-toggle', :'data-toggle' => "dropdown" do
+          %span.caret
+        %ul.dropdown-menu
+          = link_to "Listar",    servicos_path,    class: "btn btn-small"
+          = link_to "Cadastrar", new_servico_path, class: "btn btn-small"
 
-    .btn-group
-      = link_to "Produtos",       produtos_path, class: "btn btn-small"
-      = link_to '#', class: 'btn btn-small dropdown-toggle', :'data-toggle' => "dropdown" do
-        %span.caret
-      %ul.dropdown-menu
-        = link_to "Listar",    produtos_path,    class: "btn btn-small"
-        = link_to "Cadastrar", new_produto_path, class: "btn btn-small"
+    - if can? :index, Produto
+      .btn-group
+        = link_to "Produtos",       produtos_path, class: "btn btn-small"
+        = link_to '#', class: 'btn btn-small dropdown-toggle', :'data-toggle' => "dropdown" do
+          %span.caret
+        %ul.dropdown-menu
+          = link_to "Listar",    produtos_path,    class: "btn btn-small"
+          = link_to "Cadastrar", new_produto_path, class: "btn btn-small"
 
-    .btn-group
-      = link_to "Clientes", clientes_path, class: "btn btn-small"
-      = link_to '#', class: 'btn btn-small dropdown-toggle', :'data-toggle' => "dropdown" do
-        %span.caret
-      %ul.dropdown-menu
-        = link_to "Listar",    clientes_path,    class: "btn btn-small"
-        = link_to "Cadastrar", new_cliente_path, class: "btn btn-small"
+    - if can? :index, Cliente
+      .btn-group
+        = link_to "Clientes", clientes_path, class: "btn btn-small"
+        = link_to '#', class: 'btn btn-small dropdown-toggle', :'data-toggle' => "dropdown" do
+          %span.caret
+        %ul.dropdown-menu
+          = link_to "Listar",    clientes_path,    class: "btn btn-small"
+          = link_to "Cadastrar", new_cliente_path, class: "btn btn-small"
 
-    .btn-group
-      = link_to "ETC",     'taticas_path', class: "btn btn-small"
-      = link_to '#', class: 'btn btn-small dropdown-toggle', :'data-toggle' => "dropdown" do
-        %span.caret
-      %ul.dropdown-menu
-        = link_to "Listar",    'taticas_path',    class: "btn btn-small"
-        = link_to "Cadastrar", 'new_tatica_path', class: "btn btn-small"
+    - if can? :index, OrdemServico
+      .btn-group
+        = link_to "Ordem de Serviço",  ordem_servicos_path, class: "btn btn-small"
+        = link_to '#', class: 'btn btn-small dropdown-toggle', :'data-toggle' => "dropdown" do
+          %span.caret
+        %ul.dropdown-menu
+          = link_to "Listar",    ordem_servicos_path,    class: "btn btn-small"
+          = link_to "Cadastrar", new_ordem_servico_path, class: "btn btn-small"
 
     .btn-group
       = link_to "Relatórios",  'relatorios_path', class: "btn btn-small"

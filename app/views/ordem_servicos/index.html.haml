@@ -1,21 +1,31 @@
-%h1 Listing ordem_servicos
+- model_class = OrdemServico
+.row-fluid
+  .span12
+    %h2.botton-border=t '.title', :default => model_class.model_name.human.pluralize.titleize, model: model_class.model_name.human.pluralize.titleize
+    = flash_message
 
-%table
-  %tr
-    %th Cliente
-    %th Valor
-    %th
-    %th
-    %th
+.row-fluid
+  .box
+    .header
+      %img{:height => "16", :src => img_header, :width => "16"}
+      %p=t '.header_list', :default => model_class.model_name.human.pluralize.titleize
+    .content
+      %table.table.table-striped.table-bordered
+        %thead
+          %tr
+            %th= model_class.human_attribute_name(:id)         
+            %th{colspan: 4}=t '.actions', :default => t("helpers.actions")
+        %tbody
+          - @ordem_servicos.each do |ordem_servico|
+            %tr
+              %td= ordem_servico.id
+              %td
+                = link_to t('.show', :default => t("helpers.links.show")), ordem_servico, class: 'btn btn-mini'
+        %tfoot
+          %tr  
+            %td{colspan: 99, height: 29}
+              %center
+                = page_navigation_links @ordem_servicos if will_paginate @ordem_servicos
+              .left{style: (will_paginate(@ordem_servicos) ? 'margin-top: -30px' : '')}
+                = link_to t('.back', :default => t("helpers.links.back")), ferramentas_usuarios_path, class: 'btn btn-small'
 
-  - @ordem_servicos.each do |ordem_servico|
-    %tr
-      %td= ordem_servico.cliente
-      %td= ordem_servico.valor
-      %td= link_to 'Show', ordem_servico
-      %td= link_to 'Edit', edit_ordem_servico_path(ordem_servico)
-      %td= link_to 'Destroy', ordem_servico, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
-= link_to 'New Ordem servico', new_ordem_servico_path

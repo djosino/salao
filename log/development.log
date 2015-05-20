@@ -13125,3 +13125,997 @@ Started GET "/assets/twitter/bootstrap/bootstrap-affix.js?body=1" for 127.0.0.1 
 
 
 Started GET "/assets/twitter/bootstrap/glyphicons-halflings.png" for 127.0.0.1 at 2015-05-19 16:35:28 -0300
+
+
+Started GET "/" for 127.0.0.1 at 2015-05-20 09:53:53 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (23.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/sessions/new.html.haml within layouts/login (216.0ms)
+Completed 200 OK in 945ms (Views: 879.0ms | ActiveRecord: 2.8ms)
+
+
+Started GET "/assets/login.css?body=1" for 127.0.0.1 at 2015-05-20 09:53:54 -0300
+
+
+Started GET "/assets/bootstrap/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2015-05-20 09:53:54 -0300
+
+
+Started GET "/assets/login/style.css?body=1" for 127.0.0.1 at 2015-05-20 09:53:54 -0300
+
+
+Started GET "/assets/login/color.css?body=1" for 127.0.0.1 at 2015-05-20 09:53:54 -0300
+
+
+Started GET "/assets/login/layout.css?body=1" for 127.0.0.1 at 2015-05-20 09:53:54 -0300
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-05-20 09:53:54 -0300
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-05-20 09:53:54 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-alert.js?body=1" for 127.0.0.1 at 2015-05-20 09:53:54 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-modal.js?body=1" for 127.0.0.1 at 2015-05-20 09:53:54 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2015-05-20 09:53:54 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-transition.js?body=1" for 127.0.0.1 at 2015-05-20 09:53:54 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-tab.js?body=1" for 127.0.0.1 at 2015-05-20 09:53:54 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2015-05-20 09:53:54 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2015-05-20 09:53:54 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-popover.js?body=1" for 127.0.0.1 at 2015-05-20 09:53:54 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-button.js?body=1" for 127.0.0.1 at 2015-05-20 09:53:54 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2015-05-20 09:53:54 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2015-05-20 09:53:54 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-affix.js?body=1" for 127.0.0.1 at 2015-05-20 09:53:54 -0300
+
+
+Started GET "/assets/bootstraps/jquery-dynamic-selectable.js?body=1" for 127.0.0.1 at 2015-05-20 09:53:54 -0300
+
+
+Started GET "/assets/twitter/bootstrap.js?body=1" for 127.0.0.1 at 2015-05-20 09:53:54 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2015-05-20 09:53:54 -0300
+
+
+Started GET "/assets/zoom/jquery.zoom.min.js?body=1" for 127.0.0.1 at 2015-05-20 09:53:54 -0300
+
+
+Started GET "/assets/slideshow/jquery.slides.min.js?body=1" for 127.0.0.1 at 2015-05-20 09:53:54 -0300
+
+
+Started GET "/assets/bootstraps/asn.js?body=1" for 127.0.0.1 at 2015-05-20 09:53:54 -0300
+
+
+Started GET "/assets/maskedinput.js?body=1" for 127.0.0.1 at 2015-05-20 09:53:54 -0300
+
+
+Started GET "/assets/bootstraps/bootstrap-datetimepicker.min.js?body=1" for 127.0.0.1 at 2015-05-20 09:53:54 -0300
+
+
+Started GET "/assets/bootstraps/bootstrap.js?body=1" for 127.0.0.1 at 2015-05-20 09:53:54 -0300
+
+
+Started GET "/assets/bootstraps/bootstrap-checkbox.js?body=1" for 127.0.0.1 at 2015-05-20 09:53:54 -0300
+
+
+Started GET "/assets/sonic-gif/init-loading.js?body=1" for 127.0.0.1 at 2015-05-20 09:53:54 -0300
+
+
+Started GET "/assets/sonic-gif/GIFEncoder.js?body=1" for 127.0.0.1 at 2015-05-20 09:53:54 -0300
+
+
+Started GET "/assets/sonic-gif/NeuQuant.js?body=1" for 127.0.0.1 at 2015-05-20 09:53:54 -0300
+
+
+Started GET "/assets/sonic-gif/sonic.js?body=1" for 127.0.0.1 at 2015-05-20 09:53:54 -0300
+
+
+Started GET "/assets/sonic-gif/LZWEncoder.js?body=1" for 127.0.0.1 at 2015-05-20 09:53:54 -0300
+
+
+Started GET "/assets/sonic-gif/b64.js?body=1" for 127.0.0.1 at 2015-05-20 09:53:54 -0300
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-05-20 09:53:54 -0300
+
+
+Started POST "/usuarios/sign_in" for 127.0.0.1 at 2015-05-20 09:54:02 -0300
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"9K/lOriviFNr0pNfTod7UFd6e4XTj7Hmr92Nh3DCEgU=", "usuario"=>{"login"=>"teste", "password"=>"[FILTERED]"}, "commit"=>"Entrar"}
+  [1m[35mUsuario Load (131.1ms)[0m  SELECT  "usuarios".* FROM "usuarios"  WHERE (lower(login) = 'teste')  ORDER BY "usuarios"."id" ASC LIMIT 1
+Redirected to http://localhost:3000/
+Completed 302 Found in 243ms (ActiveRecord: 131.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-05-20 09:54:02 -0300
+  [1m[36mUsuario Load (0.7ms)[0m  [1mSELECT  "usuarios".* FROM "usuarios"  WHERE "usuarios"."id" = 8041  ORDER BY "usuarios"."id" ASC LIMIT 1[0m
+Processing by UsuariosController#index as HTML
+  Rendered usuarios/index.html.haml within layouts/application (1.2ms)
+  Rendered menus/_menu_principal.html.haml (6.9ms)
+Completed 200 OK in 342ms (Views: 320.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-05-20 09:54:03 -0300
+
+
+Started GET "/assets/bootstrap/bootstrap-checkbox.css?body=1" for 127.0.0.1 at 2015-05-20 09:54:03 -0300
+
+
+Started GET "/assets/bootstrap/bootstrap-datetimepicker.min.css?body=1" for 127.0.0.1 at 2015-05-20 09:54:03 -0300
+
+
+Started GET "/assets/bootstrap/bootstrap-progress-bar.css?body=1" for 127.0.0.1 at 2015-05-20 09:54:03 -0300
+
+
+Started GET "/assets/usuarios.css?body=1" for 127.0.0.1 at 2015-05-20 09:54:03 -0300
+
+
+Started GET "/assets/template.css?body=1" for 127.0.0.1 at 2015-05-20 09:54:03 -0300
+
+
+Started GET "/assets/bootstrap/bootstrap-responsive.css?body=1" for 127.0.0.1 at 2015-05-20 09:54:03 -0300
+
+
+Started GET "/assets/google/google-chart.js?body=1" for 127.0.0.1 at 2015-05-20 09:54:03 -0300
+
+
+Started GET "/assets/bootstraps/bootstrap.controllers.js?body=1" for 127.0.0.1 at 2015-05-20 09:54:03 -0300
+
+
+Started GET "/assets/usuarios.js?body=1" for 127.0.0.1 at 2015-05-20 09:54:03 -0300
+
+
+Started GET "/assets/bootstrap/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2015-05-20 09:54:03 -0300
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-05-20 09:54:03 -0300
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-05-20 09:54:03 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-transition.js?body=1" for 127.0.0.1 at 2015-05-20 09:54:03 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-modal.js?body=1" for 127.0.0.1 at 2015-05-20 09:54:03 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-alert.js?body=1" for 127.0.0.1 at 2015-05-20 09:54:03 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2015-05-20 09:54:03 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2015-05-20 09:54:03 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-tab.js?body=1" for 127.0.0.1 at 2015-05-20 09:54:03 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2015-05-20 09:54:03 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-popover.js?body=1" for 127.0.0.1 at 2015-05-20 09:54:03 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-button.js?body=1" for 127.0.0.1 at 2015-05-20 09:54:03 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2015-05-20 09:54:03 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2015-05-20 09:54:03 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2015-05-20 09:54:03 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-affix.js?body=1" for 127.0.0.1 at 2015-05-20 09:54:03 -0300
+
+
+Started GET "/assets/twitter/bootstrap.js?body=1" for 127.0.0.1 at 2015-05-20 09:54:03 -0300
+
+
+Started GET "/assets/bootstraps/jquery-dynamic-selectable.js?body=1" for 127.0.0.1 at 2015-05-20 09:54:03 -0300
+
+
+Started GET "/assets/zoom/jquery.zoom.min.js?body=1" for 127.0.0.1 at 2015-05-20 09:54:03 -0300
+
+
+Started GET "/assets/slideshow/jquery.slides.min.js?body=1" for 127.0.0.1 at 2015-05-20 09:54:03 -0300
+
+
+Started GET "/assets/maskedinput.js?body=1" for 127.0.0.1 at 2015-05-20 09:54:03 -0300
+
+
+Started GET "/assets/bootstraps/bootstrap-checkbox.js?body=1" for 127.0.0.1 at 2015-05-20 09:54:03 -0300
+
+
+Started GET "/assets/bootstraps/bootstrap-datetimepicker.min.js?body=1" for 127.0.0.1 at 2015-05-20 09:54:03 -0300
+
+
+Started GET "/assets/bootstraps/bootstrap.js?body=1" for 127.0.0.1 at 2015-05-20 09:54:03 -0300
+
+
+Started GET "/assets/bootstraps/asn.js?body=1" for 127.0.0.1 at 2015-05-20 09:54:03 -0300
+
+
+Started GET "/assets/sonic-gif/b64.js?body=1" for 127.0.0.1 at 2015-05-20 09:54:03 -0300
+
+
+Started GET "/assets/sonic-gif/GIFEncoder.js?body=1" for 127.0.0.1 at 2015-05-20 09:54:03 -0300
+
+
+Started GET "/assets/sonic-gif/LZWEncoder.js?body=1" for 127.0.0.1 at 2015-05-20 09:54:03 -0300
+
+
+Started GET "/assets/sonic-gif/NeuQuant.js?body=1" for 127.0.0.1 at 2015-05-20 09:54:03 -0300
+
+
+Started GET "/assets/sonic-gif/sonic.js?body=1" for 127.0.0.1 at 2015-05-20 09:54:03 -0300
+
+
+Started GET "/assets/sonic-gif/init-loading.js?body=1" for 127.0.0.1 at 2015-05-20 09:54:03 -0300
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-05-20 09:54:03 -0300
+
+
+Started GET "/assets/twitter/bootstrap/glyphicons-halflings.png" for 127.0.0.1 at 2015-05-20 09:54:03 -0300
+
+
+Started GET "/ordem_servicos" for 127.0.0.1 at 2015-05-20 09:54:05 -0300
+Processing by OrdemServicosController#index as HTML
+  [1m[35mUsuario Load (0.6ms)[0m  SELECT  "usuarios".* FROM "usuarios"  WHERE "usuarios"."id" = 8041  ORDER BY "usuarios"."id" ASC LIMIT 1
+Redirected to http://localhost:3000/
+Completed 302 Found in 10ms (ActiveRecord: 0.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-05-20 09:54:06 -0300
+  [1m[36mUsuario Load (0.6ms)[0m  [1mSELECT  "usuarios".* FROM "usuarios"  WHERE "usuarios"."id" = 8041  ORDER BY "usuarios"."id" ASC LIMIT 1[0m
+Processing by UsuariosController#index as HTML
+  Rendered usuarios/index.html.haml within layouts/application (0.1ms)
+  Rendered menus/_menu_principal.html.haml (2.2ms)
+Completed 200 OK in 372ms (Views: 363.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-05-20 09:54:06 -0300
+
+
+Started GET "/assets/bootstrap/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2015-05-20 09:54:06 -0300
+
+
+Started GET "/assets/bootstrap/bootstrap-checkbox.css?body=1" for 127.0.0.1 at 2015-05-20 09:54:06 -0300
+
+
+Started GET "/assets/bootstrap/bootstrap-progress-bar.css?body=1" for 127.0.0.1 at 2015-05-20 09:54:06 -0300
+
+
+Started GET "/assets/bootstrap/bootstrap-datetimepicker.min.css?body=1" for 127.0.0.1 at 2015-05-20 09:54:06 -0300
+
+
+Started GET "/assets/template.css?body=1" for 127.0.0.1 at 2015-05-20 09:54:06 -0300
+
+
+Started GET "/assets/usuarios.css?body=1" for 127.0.0.1 at 2015-05-20 09:54:06 -0300
+
+
+Started GET "/assets/bootstrap/bootstrap-responsive.css?body=1" for 127.0.0.1 at 2015-05-20 09:54:06 -0300
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-05-20 09:54:06 -0300
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-05-20 09:54:06 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-transition.js?body=1" for 127.0.0.1 at 2015-05-20 09:54:06 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-alert.js?body=1" for 127.0.0.1 at 2015-05-20 09:54:06 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-modal.js?body=1" for 127.0.0.1 at 2015-05-20 09:54:06 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2015-05-20 09:54:06 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2015-05-20 09:54:06 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-tab.js?body=1" for 127.0.0.1 at 2015-05-20 09:54:06 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2015-05-20 09:54:06 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-popover.js?body=1" for 127.0.0.1 at 2015-05-20 09:54:06 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-button.js?body=1" for 127.0.0.1 at 2015-05-20 09:54:06 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2015-05-20 09:54:06 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2015-05-20 09:54:06 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2015-05-20 09:54:06 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-affix.js?body=1" for 127.0.0.1 at 2015-05-20 09:54:06 -0300
+
+
+Started GET "/assets/twitter/bootstrap.js?body=1" for 127.0.0.1 at 2015-05-20 09:54:06 -0300
+
+
+Started GET "/assets/bootstraps/jquery-dynamic-selectable.js?body=1" for 127.0.0.1 at 2015-05-20 09:54:06 -0300
+
+
+Started GET "/assets/zoom/jquery.zoom.min.js?body=1" for 127.0.0.1 at 2015-05-20 09:54:06 -0300
+
+
+Started GET "/assets/slideshow/jquery.slides.min.js?body=1" for 127.0.0.1 at 2015-05-20 09:54:06 -0300
+
+
+Started GET "/assets/maskedinput.js?body=1" for 127.0.0.1 at 2015-05-20 09:54:06 -0300
+
+
+Started GET "/assets/bootstraps/bootstrap-checkbox.js?body=1" for 127.0.0.1 at 2015-05-20 09:54:06 -0300
+
+
+Started GET "/assets/bootstraps/bootstrap-datetimepicker.min.js?body=1" for 127.0.0.1 at 2015-05-20 09:54:06 -0300
+
+
+Started GET "/assets/bootstraps/bootstrap.js?body=1" for 127.0.0.1 at 2015-05-20 09:54:06 -0300
+
+
+Started GET "/assets/bootstraps/asn.js?body=1" for 127.0.0.1 at 2015-05-20 09:54:06 -0300
+
+
+Started GET "/assets/sonic-gif/b64.js?body=1" for 127.0.0.1 at 2015-05-20 09:54:06 -0300
+
+
+Started GET "/assets/sonic-gif/GIFEncoder.js?body=1" for 127.0.0.1 at 2015-05-20 09:54:06 -0300
+
+
+Started GET "/assets/sonic-gif/LZWEncoder.js?body=1" for 127.0.0.1 at 2015-05-20 09:54:06 -0300
+
+
+Started GET "/assets/sonic-gif/NeuQuant.js?body=1" for 127.0.0.1 at 2015-05-20 09:54:06 -0300
+
+
+Started GET "/assets/sonic-gif/sonic.js?body=1" for 127.0.0.1 at 2015-05-20 09:54:06 -0300
+
+
+Started GET "/assets/sonic-gif/init-loading.js?body=1" for 127.0.0.1 at 2015-05-20 09:54:06 -0300
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-05-20 09:54:06 -0300
+
+
+Started GET "/assets/google/google-chart.js?body=1" for 127.0.0.1 at 2015-05-20 09:54:06 -0300
+
+
+Started GET "/assets/bootstraps/bootstrap.controllers.js?body=1" for 127.0.0.1 at 2015-05-20 09:54:06 -0300
+
+
+Started GET "/assets/usuarios.js?body=1" for 127.0.0.1 at 2015-05-20 09:54:06 -0300
+
+
+Started GET "/" for 127.0.0.1 at 2015-05-20 09:55:28 -0300
+  [1m[35mUsuario Load (0.6ms)[0m  SELECT  "usuarios".* FROM "usuarios"  WHERE "usuarios"."id" = 8041  ORDER BY "usuarios"."id" ASC LIMIT 1
+Processing by UsuariosController#index as HTML
+  Rendered usuarios/index.html.haml within layouts/application (0.1ms)
+  Rendered menus/_menu_principal.html.haml (8.4ms)
+Completed 500 Internal Server Error in 206ms
+
+ActionView::Template::Error (Circular dependency detected while autoloading constant Ordem_servico):
+    30:           = link_to "Listar",    clientes_path,    class: "btn btn-small"
+    31:           = link_to "Cadastrar", new_cliente_path, class: "btn btn-small"
+    32: 
+    33:     - if can? :index, Ordem_servico
+    34:       .btn-group
+    35:         = link_to "Ordem de Serviço",  ordem_servicos_path, class: "btn btn-small"
+    36:         = link_to '#', class: 'btn btn-small dropdown-toggle', :'data-toggle' => "dropdown" do
+  app/views/menus/_menu_principal.html.haml:33:in `_app_views_menus__menu_principal_html_haml___332381448_120442810'
+  app/views/layouts/application.html.haml:30:in `_app_views_layouts_application_html_haml__652115379_102274150'
+
+
+  Rendered /home/danilo/.rvm/gems/ruby-2.0.0-p353/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.9ms)
+  Rendered /home/danilo/.rvm/gems/ruby-2.0.0-p353/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /home/danilo/.rvm/gems/ruby-2.0.0-p353/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (17.8ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-05-20 09:55:34 -0300
+  [1m[36mUsuario Load (0.9ms)[0m  [1mSELECT  "usuarios".* FROM "usuarios"  WHERE "usuarios"."id" = 8041  ORDER BY "usuarios"."id" ASC LIMIT 1[0m
+Processing by UsuariosController#index as HTML
+  Rendered usuarios/index.html.haml within layouts/application (0.1ms)
+  Rendered menus/_menu_principal.html.haml (7.7ms)
+Completed 200 OK in 421ms (Views: 417.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-05-20 09:55:35 -0300
+
+
+Started GET "/assets/bootstrap/bootstrap-checkbox.css?body=1" for 127.0.0.1 at 2015-05-20 09:55:35 -0300
+
+
+Started GET "/assets/bootstrap/bootstrap-progress-bar.css?body=1" for 127.0.0.1 at 2015-05-20 09:55:35 -0300
+
+
+Started GET "/assets/bootstrap/bootstrap-datetimepicker.min.css?body=1" for 127.0.0.1 at 2015-05-20 09:55:35 -0300
+
+
+Started GET "/assets/template.css?body=1" for 127.0.0.1 at 2015-05-20 09:55:35 -0300
+
+
+Started GET "/assets/usuarios.css?body=1" for 127.0.0.1 at 2015-05-20 09:55:35 -0300
+
+
+Started GET "/assets/bootstrap/bootstrap-responsive.css?body=1" for 127.0.0.1 at 2015-05-20 09:55:35 -0300
+
+
+Started GET "/assets/google/google-chart.js?body=1" for 127.0.0.1 at 2015-05-20 09:55:35 -0300
+
+
+Started GET "/assets/usuarios.js?body=1" for 127.0.0.1 at 2015-05-20 09:55:35 -0300
+
+
+Started GET "/assets/bootstraps/bootstrap.controllers.js?body=1" for 127.0.0.1 at 2015-05-20 09:55:35 -0300
+
+
+Started GET "/assets/bootstrap/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2015-05-20 09:55:35 -0300
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-05-20 09:55:35 -0300
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-05-20 09:55:35 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-transition.js?body=1" for 127.0.0.1 at 2015-05-20 09:55:35 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-modal.js?body=1" for 127.0.0.1 at 2015-05-20 09:55:35 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-alert.js?body=1" for 127.0.0.1 at 2015-05-20 09:55:35 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2015-05-20 09:55:35 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2015-05-20 09:55:35 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-tab.js?body=1" for 127.0.0.1 at 2015-05-20 09:55:35 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2015-05-20 09:55:35 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-popover.js?body=1" for 127.0.0.1 at 2015-05-20 09:55:35 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-button.js?body=1" for 127.0.0.1 at 2015-05-20 09:55:35 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2015-05-20 09:55:35 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2015-05-20 09:55:35 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2015-05-20 09:55:35 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-affix.js?body=1" for 127.0.0.1 at 2015-05-20 09:55:35 -0300
+
+
+Started GET "/assets/twitter/bootstrap.js?body=1" for 127.0.0.1 at 2015-05-20 09:55:35 -0300
+
+
+Started GET "/assets/bootstraps/jquery-dynamic-selectable.js?body=1" for 127.0.0.1 at 2015-05-20 09:55:35 -0300
+
+
+Started GET "/assets/zoom/jquery.zoom.min.js?body=1" for 127.0.0.1 at 2015-05-20 09:55:35 -0300
+
+
+Started GET "/assets/slideshow/jquery.slides.min.js?body=1" for 127.0.0.1 at 2015-05-20 09:55:35 -0300
+
+
+Started GET "/assets/maskedinput.js?body=1" for 127.0.0.1 at 2015-05-20 09:55:35 -0300
+
+
+Started GET "/assets/bootstraps/bootstrap-checkbox.js?body=1" for 127.0.0.1 at 2015-05-20 09:55:35 -0300
+
+
+Started GET "/assets/bootstraps/bootstrap-datetimepicker.min.js?body=1" for 127.0.0.1 at 2015-05-20 09:55:35 -0300
+
+
+Started GET "/assets/bootstraps/bootstrap.js?body=1" for 127.0.0.1 at 2015-05-20 09:55:35 -0300
+
+
+Started GET "/assets/bootstraps/asn.js?body=1" for 127.0.0.1 at 2015-05-20 09:55:35 -0300
+
+
+Started GET "/assets/sonic-gif/b64.js?body=1" for 127.0.0.1 at 2015-05-20 09:55:35 -0300
+
+
+Started GET "/assets/sonic-gif/GIFEncoder.js?body=1" for 127.0.0.1 at 2015-05-20 09:55:35 -0300
+
+
+Started GET "/assets/sonic-gif/LZWEncoder.js?body=1" for 127.0.0.1 at 2015-05-20 09:55:35 -0300
+
+
+Started GET "/assets/sonic-gif/NeuQuant.js?body=1" for 127.0.0.1 at 2015-05-20 09:55:35 -0300
+
+
+Started GET "/assets/sonic-gif/sonic.js?body=1" for 127.0.0.1 at 2015-05-20 09:55:35 -0300
+
+
+Started GET "/assets/sonic-gif/init-loading.js?body=1" for 127.0.0.1 at 2015-05-20 09:55:35 -0300
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-05-20 09:55:35 -0300
+
+
+Started GET "/assets/twitter/bootstrap/glyphicons-halflings.png" for 127.0.0.1 at 2015-05-20 09:55:36 -0300
+
+
+Started GET "/" for 127.0.0.1 at 2015-05-20 09:56:06 -0300
+  [1m[35mUsuario Load (0.7ms)[0m  SELECT  "usuarios".* FROM "usuarios"  WHERE "usuarios"."id" = 8041  ORDER BY "usuarios"."id" ASC LIMIT 1
+Processing by UsuariosController#index as HTML
+  Rendered usuarios/index.html.haml within layouts/application (0.1ms)
+  Rendered menus/_menu_principal.html.haml (2.4ms)
+Completed 200 OK in 219ms (Views: 213.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-05-20 09:56:06 -0300
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-05-20 09:56:06 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-transition.js?body=1" for 127.0.0.1 at 2015-05-20 09:56:06 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-alert.js?body=1" for 127.0.0.1 at 2015-05-20 09:56:06 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-modal.js?body=1" for 127.0.0.1 at 2015-05-20 09:56:06 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2015-05-20 09:56:06 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2015-05-20 09:56:06 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-tab.js?body=1" for 127.0.0.1 at 2015-05-20 09:56:06 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2015-05-20 09:56:06 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2015-05-20 09:56:06 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-popover.js?body=1" for 127.0.0.1 at 2015-05-20 09:56:06 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-button.js?body=1" for 127.0.0.1 at 2015-05-20 09:56:06 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2015-05-20 09:56:06 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2015-05-20 09:56:06 -0300
+
+
+Started GET "/assets/bootstraps/bootstrap-checkbox.js?body=1" for 127.0.0.1 at 2015-05-20 09:56:06 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-affix.js?body=1" for 127.0.0.1 at 2015-05-20 09:56:06 -0300
+
+
+Started GET "/assets/zoom/jquery.zoom.min.js?body=1" for 127.0.0.1 at 2015-05-20 09:56:06 -0300
+
+
+Started GET "/assets/slideshow/jquery.slides.min.js?body=1" for 127.0.0.1 at 2015-05-20 09:56:06 -0300
+
+
+Started GET "/assets/maskedinput.js?body=1" for 127.0.0.1 at 2015-05-20 09:56:06 -0300
+
+
+Started GET "/assets/bootstraps/bootstrap-datetimepicker.min.js?body=1" for 127.0.0.1 at 2015-05-20 09:56:06 -0300
+
+
+Started GET "/assets/sonic-gif/LZWEncoder.js?body=1" for 127.0.0.1 at 2015-05-20 09:56:06 -0300
+
+
+Started GET "/assets/bootstraps/bootstrap.js?body=1" for 127.0.0.1 at 2015-05-20 09:56:06 -0300
+
+
+Started GET "/assets/bootstraps/asn.js?body=1" for 127.0.0.1 at 2015-05-20 09:56:06 -0300
+
+
+Started GET "/assets/sonic-gif/b64.js?body=1" for 127.0.0.1 at 2015-05-20 09:56:06 -0300
+
+
+Started GET "/assets/sonic-gif/GIFEncoder.js?body=1" for 127.0.0.1 at 2015-05-20 09:56:06 -0300
+
+
+Started GET "/assets/sonic-gif/NeuQuant.js?body=1" for 127.0.0.1 at 2015-05-20 09:56:06 -0300
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-05-20 09:56:06 -0300
+
+
+Started GET "/assets/sonic-gif/sonic.js?body=1" for 127.0.0.1 at 2015-05-20 09:56:06 -0300
+
+
+Started GET "/assets/sonic-gif/init-loading.js?body=1" for 127.0.0.1 at 2015-05-20 09:56:06 -0300
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-05-20 09:56:06 -0300
+
+
+Started GET "/assets/bootstrap/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2015-05-20 09:56:06 -0300
+
+
+Started GET "/assets/bootstrap/bootstrap-progress-bar.css?body=1" for 127.0.0.1 at 2015-05-20 09:56:06 -0300
+
+
+Started GET "/assets/bootstrap/bootstrap-datetimepicker.min.css?body=1" for 127.0.0.1 at 2015-05-20 09:56:06 -0300
+
+
+Started GET "/assets/template.css?body=1" for 127.0.0.1 at 2015-05-20 09:56:06 -0300
+
+
+Started GET "/assets/bootstrap/bootstrap-checkbox.css?body=1" for 127.0.0.1 at 2015-05-20 09:56:06 -0300
+
+
+Started GET "/assets/usuarios.css?body=1" for 127.0.0.1 at 2015-05-20 09:56:06 -0300
+
+
+Started GET "/assets/bootstrap/bootstrap-responsive.css?body=1" for 127.0.0.1 at 2015-05-20 09:56:06 -0300
+
+
+Started GET "/assets/twitter/bootstrap.js?body=1" for 127.0.0.1 at 2015-05-20 09:56:06 -0300
+
+
+Started GET "/assets/bootstraps/jquery-dynamic-selectable.js?body=1" for 127.0.0.1 at 2015-05-20 09:56:06 -0300
+
+
+Started GET "/assets/google/google-chart.js?body=1" for 127.0.0.1 at 2015-05-20 09:56:06 -0300
+
+
+Started GET "/assets/bootstraps/bootstrap.controllers.js?body=1" for 127.0.0.1 at 2015-05-20 09:56:06 -0300
+
+
+Started GET "/assets/usuarios.js?body=1" for 127.0.0.1 at 2015-05-20 09:56:06 -0300
+
+
+Started GET "/assets/twitter/bootstrap/glyphicons-halflings.png" for 127.0.0.1 at 2015-05-20 09:56:09 -0300
+
+
+Started GET "/" for 127.0.0.1 at 2015-05-20 09:57:07 -0300
+  [1m[36mUsuario Load (1.2ms)[0m  [1mSELECT  "usuarios".* FROM "usuarios"  WHERE "usuarios"."id" = 8041  ORDER BY "usuarios"."id" ASC LIMIT 1[0m
+Processing by UsuariosController#index as HTML
+  Rendered usuarios/index.html.haml within layouts/application (0.1ms)
+  Rendered menus/_menu_principal.html.haml (2.7ms)
+Completed 200 OK in 394ms (Views: 388.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-05-20 09:57:07 -0300
+
+
+Started GET "/assets/bootstrap/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2015-05-20 09:57:07 -0300
+
+
+Started GET "/assets/bootstrap/bootstrap-checkbox.css?body=1" for 127.0.0.1 at 2015-05-20 09:57:07 -0300
+
+
+Started GET "/assets/bootstrap/bootstrap-progress-bar.css?body=1" for 127.0.0.1 at 2015-05-20 09:57:07 -0300
+
+
+Started GET "/assets/bootstrap/bootstrap-datetimepicker.min.css?body=1" for 127.0.0.1 at 2015-05-20 09:57:07 -0300
+
+
+Started GET "/assets/template.css?body=1" for 127.0.0.1 at 2015-05-20 09:57:07 -0300
+
+
+Started GET "/assets/usuarios.css?body=1" for 127.0.0.1 at 2015-05-20 09:57:07 -0300
+
+
+Started GET "/assets/bootstrap/bootstrap-responsive.css?body=1" for 127.0.0.1 at 2015-05-20 09:57:07 -0300
+
+
+Started GET "/assets/bootstraps/jquery-dynamic-selectable.js?body=1" for 127.0.0.1 at 2015-05-20 09:57:07 -0300
+
+
+Started GET "/assets/google/google-chart.js?body=1" for 127.0.0.1 at 2015-05-20 09:57:07 -0300
+
+
+Started GET "/assets/usuarios.js?body=1" for 127.0.0.1 at 2015-05-20 09:57:07 -0300
+
+
+Started GET "/assets/bootstraps/bootstrap.controllers.js?body=1" for 127.0.0.1 at 2015-05-20 09:57:07 -0300
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-05-20 09:57:07 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-transition.js?body=1" for 127.0.0.1 at 2015-05-20 09:57:07 -0300
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-05-20 09:57:07 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-alert.js?body=1" for 127.0.0.1 at 2015-05-20 09:57:07 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-modal.js?body=1" for 127.0.0.1 at 2015-05-20 09:57:07 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2015-05-20 09:57:07 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2015-05-20 09:57:08 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-tab.js?body=1" for 127.0.0.1 at 2015-05-20 09:57:08 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2015-05-20 09:57:08 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-popover.js?body=1" for 127.0.0.1 at 2015-05-20 09:57:08 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-button.js?body=1" for 127.0.0.1 at 2015-05-20 09:57:08 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2015-05-20 09:57:08 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2015-05-20 09:57:08 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2015-05-20 09:57:08 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-affix.js?body=1" for 127.0.0.1 at 2015-05-20 09:57:08 -0300
+
+
+Started GET "/assets/twitter/bootstrap.js?body=1" for 127.0.0.1 at 2015-05-20 09:57:08 -0300
+
+
+Started GET "/assets/zoom/jquery.zoom.min.js?body=1" for 127.0.0.1 at 2015-05-20 09:57:08 -0300
+
+
+Started GET "/assets/slideshow/jquery.slides.min.js?body=1" for 127.0.0.1 at 2015-05-20 09:57:08 -0300
+
+
+Started GET "/assets/maskedinput.js?body=1" for 127.0.0.1 at 2015-05-20 09:57:08 -0300
+
+
+Started GET "/assets/bootstraps/bootstrap-checkbox.js?body=1" for 127.0.0.1 at 2015-05-20 09:57:08 -0300
+
+
+Started GET "/assets/bootstraps/bootstrap-datetimepicker.min.js?body=1" for 127.0.0.1 at 2015-05-20 09:57:08 -0300
+
+
+Started GET "/assets/bootstraps/bootstrap.js?body=1" for 127.0.0.1 at 2015-05-20 09:57:08 -0300
+
+
+Started GET "/assets/bootstraps/asn.js?body=1" for 127.0.0.1 at 2015-05-20 09:57:08 -0300
+
+
+Started GET "/assets/sonic-gif/b64.js?body=1" for 127.0.0.1 at 2015-05-20 09:57:08 -0300
+
+
+Started GET "/assets/sonic-gif/GIFEncoder.js?body=1" for 127.0.0.1 at 2015-05-20 09:57:08 -0300
+
+
+Started GET "/assets/sonic-gif/LZWEncoder.js?body=1" for 127.0.0.1 at 2015-05-20 09:57:08 -0300
+
+
+Started GET "/assets/sonic-gif/NeuQuant.js?body=1" for 127.0.0.1 at 2015-05-20 09:57:08 -0300
+
+
+Started GET "/assets/sonic-gif/sonic.js?body=1" for 127.0.0.1 at 2015-05-20 09:57:08 -0300
+
+
+Started GET "/assets/sonic-gif/init-loading.js?body=1" for 127.0.0.1 at 2015-05-20 09:57:08 -0300
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-05-20 09:57:08 -0300
+
+
+Started GET "/" for 127.0.0.1 at 2015-05-20 10:00:40 -0300
+  [1m[35mUsuario Load (0.5ms)[0m  SELECT  "usuarios".* FROM "usuarios"  WHERE "usuarios"."id" = 8041  ORDER BY "usuarios"."id" ASC LIMIT 1
+Processing by UsuariosController#index as HTML
+  Rendered usuarios/index.html.haml within layouts/application (0.1ms)
+  Rendered menus/_menu_principal.html.haml (2.8ms)
+Completed 200 OK in 220ms (Views: 204.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-05-20 10:00:41 -0300
+
+
+Started GET "/assets/bootstrap/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2015-05-20 10:00:41 -0300
+
+
+Started GET "/assets/bootstrap/bootstrap-checkbox.css?body=1" for 127.0.0.1 at 2015-05-20 10:00:41 -0300
+
+
+Started GET "/assets/bootstrap/bootstrap-progress-bar.css?body=1" for 127.0.0.1 at 2015-05-20 10:00:41 -0300
+
+
+Started GET "/assets/bootstrap/bootstrap-datetimepicker.min.css?body=1" for 127.0.0.1 at 2015-05-20 10:00:41 -0300
+
+
+Started GET "/assets/template.css?body=1" for 127.0.0.1 at 2015-05-20 10:00:41 -0300
+
+
+Started GET "/assets/usuarios.css?body=1" for 127.0.0.1 at 2015-05-20 10:00:41 -0300
+
+
+Started GET "/assets/bootstrap/bootstrap-responsive.css?body=1" for 127.0.0.1 at 2015-05-20 10:00:41 -0300
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-05-20 10:00:41 -0300
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-05-20 10:00:41 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-transition.js?body=1" for 127.0.0.1 at 2015-05-20 10:00:41 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-alert.js?body=1" for 127.0.0.1 at 2015-05-20 10:00:41 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-modal.js?body=1" for 127.0.0.1 at 2015-05-20 10:00:41 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2015-05-20 10:00:41 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2015-05-20 10:00:41 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-tab.js?body=1" for 127.0.0.1 at 2015-05-20 10:00:41 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2015-05-20 10:00:41 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-popover.js?body=1" for 127.0.0.1 at 2015-05-20 10:00:41 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-button.js?body=1" for 127.0.0.1 at 2015-05-20 10:00:41 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2015-05-20 10:00:41 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2015-05-20 10:00:41 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2015-05-20 10:00:41 -0300
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-affix.js?body=1" for 127.0.0.1 at 2015-05-20 10:00:41 -0300
+
+
+Started GET "/assets/twitter/bootstrap.js?body=1" for 127.0.0.1 at 2015-05-20 10:00:41 -0300
+
+
+Started GET "/assets/bootstraps/jquery-dynamic-selectable.js?body=1" for 127.0.0.1 at 2015-05-20 10:00:41 -0300
+
+
+Started GET "/assets/zoom/jquery.zoom.min.js?body=1" for 127.0.0.1 at 2015-05-20 10:00:41 -0300
+
+
+Started GET "/assets/slideshow/jquery.slides.min.js?body=1" for 127.0.0.1 at 2015-05-20 10:00:41 -0300
+
+
+Started GET "/assets/maskedinput.js?body=1" for 127.0.0.1 at 2015-05-20 10:00:41 -0300
+
+
+Started GET "/assets/bootstraps/bootstrap-checkbox.js?body=1" for 127.0.0.1 at 2015-05-20 10:00:41 -0300
+
+
+Started GET "/assets/bootstraps/bootstrap-datetimepicker.min.js?body=1" for 127.0.0.1 at 2015-05-20 10:00:41 -0300
+
+
+Started GET "/assets/bootstraps/bootstrap.js?body=1" for 127.0.0.1 at 2015-05-20 10:00:41 -0300
+
+
+Started GET "/assets/bootstraps/asn.js?body=1" for 127.0.0.1 at 2015-05-20 10:00:41 -0300
+
+
+Started GET "/assets/sonic-gif/b64.js?body=1" for 127.0.0.1 at 2015-05-20 10:00:41 -0300
+
+
+Started GET "/assets/sonic-gif/GIFEncoder.js?body=1" for 127.0.0.1 at 2015-05-20 10:00:41 -0300
+
+
+Started GET "/assets/sonic-gif/LZWEncoder.js?body=1" for 127.0.0.1 at 2015-05-20 10:00:41 -0300
+
+
+Started GET "/assets/sonic-gif/NeuQuant.js?body=1" for 127.0.0.1 at 2015-05-20 10:00:41 -0300
+
+
+Started GET "/assets/sonic-gif/sonic.js?body=1" for 127.0.0.1 at 2015-05-20 10:00:41 -0300
+
+
+Started GET "/assets/sonic-gif/init-loading.js?body=1" for 127.0.0.1 at 2015-05-20 10:00:41 -0300
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-05-20 10:00:41 -0300
+
+
+Started GET "/assets/google/google-chart.js?body=1" for 127.0.0.1 at 2015-05-20 10:00:41 -0300
+
+
+Started GET "/assets/bootstraps/bootstrap.controllers.js?body=1" for 127.0.0.1 at 2015-05-20 10:00:41 -0300
+
+
+Started GET "/assets/usuarios.js?body=1" for 127.0.0.1 at 2015-05-20 10:00:41 -0300
+
+
+Started GET "/assets/twitter/bootstrap/glyphicons-halflings.png" for 127.0.0.1 at 2015-05-20 10:00:43 -0300
+
+
+Started GET "/ordem_servicos" for 127.0.0.1 at 2015-05-20 10:00:44 -0300
+Processing by OrdemServicosController#index as HTML
+  [1m[36mUsuario Load (2.5ms)[0m  [1mSELECT  "usuarios".* FROM "usuarios"  WHERE "usuarios"."id" = 8041  ORDER BY "usuarios"."id" ASC LIMIT 1[0m
+  [1m[35mOrdemServico Load (75.9ms)[0m  SELECT "ordem_servicos".* FROM "ordem_servicos"
+  Rendered ordem_servicos/index.html.haml within layouts/application (79.4ms)
+  Rendered menus/_menu_principal.html.haml (2.7ms)
+Completed 500 Internal Server Error in 348ms
+
+ActionView::Template::Error (Asset filtered out and will not be served: add `Rails.application.config.assets.precompile += %w( ordem_servicos.js )` to `config/initializers/assets.rb` and restart your server):
+    41:           .span6
+    42:             %span.right Tel: Telefone
+    43: 
+    44: = javascript_include_tag controller_name
+    45: :javascript
+    46:   jQuery("#body_action").first().css('min-height', (window.innerHeight - 180) + "px");
+    47:   $("#loading").append(circle.canvas);
+  app/views/layouts/application.html.haml:44:in `_app_views_layouts_application_html_haml__652115379_102274150'
+
+
+  Rendered /home/danilo/.rvm/gems/ruby-2.0.0-p353/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.6ms)
+  Rendered /home/danilo/.rvm/gems/ruby-2.0.0-p353/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /home/danilo/.rvm/gems/ruby-2.0.0-p353/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (13.2ms)

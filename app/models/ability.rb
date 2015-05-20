@@ -23,6 +23,7 @@ class Ability
     can :manage, Cliente
     can :manage, Servico
     can :manage, Produto
+    can :manage, OrdemServico
   end
 
   def gerente
