@@ -2,7 +2,7 @@ class Ability
   include CanCan::Ability
   
   def initialize(usuario)
-    alias_action :manage, to: [:read, :new, :create, :edit, :update]
+    alias_action :read, :new, :create, :edit, :update, to: :admin
     alias_action :read, :new, :create, :edit, :update, :destroy, to: :crud   
      
     @user = usuario || Usuario.new
@@ -20,10 +20,12 @@ class Ability
   end
   
   def administrador
-    can :manage, Cliente
-    can :manage, Servico
-    can :manage, Produto
-    can :manage, OrdemServico
+    can :admin, Cliente
+    can :admin, Servico
+    can :admin, Produto
+    can :admin, OrdemServico
+
+    can [:finalizar, :cancelar], OrdemServico, status: 1
   end
 
   def gerente
