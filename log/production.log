@@ -1,0 +1,135 @@
+I, [2015-05-20T08:31:43.652191 #5786]  INFO -- : Started GET "/" for 187.114.116.89 at 2015-05-20 08:31:43 -0400
+I, [2015-05-20T08:31:43.719579 #5786]  INFO -- : Processing by Devise::SessionsController#new as HTML
+I, [2015-05-20T08:31:43.856506 #5786]  INFO -- :   Rendered devise/sessions/new.html.haml within layouts/login (50.1ms)
+I, [2015-05-20T08:31:43.865785 #5786]  INFO -- : Completed 200 OK in 146ms (Views: 61.8ms | ActiveRecord: 6.6ms)
+I, [2015-05-20T08:32:49.326368 #5786]  INFO -- : Started POST "/usuarios/sign_in" for 187.114.116.89 at 2015-05-20 08:32:49 -0400
+I, [2015-05-20T08:32:49.328647 #5786]  INFO -- : Processing by Devise::SessionsController#create as HTML
+I, [2015-05-20T08:32:49.328740 #5786]  INFO -- :   Parameters: {"utf8"=>"✓", "authenticity_token"=>"YaAVjNKj/clgCcug5uGMv7+EOHQfSbrSRHTElShMdYA=", "usuario"=>{"login"=>"teste", "password"=>"[FILTERED]"}, "commit"=>"Entrar"}
+I, [2015-05-20T08:32:49.361409 #5786]  INFO -- : Completed 401 Unauthorized in 33ms
+I, [2015-05-20T08:32:49.363399 #5786]  INFO -- : Processing by Devise::SessionsController#new as HTML
+I, [2015-05-20T08:32:49.363474 #5786]  INFO -- :   Parameters: {"utf8"=>"✓", "authenticity_token"=>"YaAVjNKj/clgCcug5uGMv7+EOHQfSbrSRHTElShMdYA=", "usuario"=>{"login"=>"teste", "password"=>"[FILTERED]"}, "commit"=>"Entrar"}
+I, [2015-05-20T08:32:49.368679 #5786]  INFO -- :   Rendered devise/sessions/new.html.haml within layouts/login (2.8ms)
+I, [2015-05-20T08:32:49.370257 #5786]  INFO -- : Completed 200 OK in 7ms (Views: 4.7ms | ActiveRecord: 0.0ms)
+I, [2015-05-20T08:32:52.999172 #5786]  INFO -- : Started POST "/usuarios/sign_in" for 187.114.116.89 at 2015-05-20 08:32:52 -0400
+I, [2015-05-20T08:32:53.001012 #5786]  INFO -- : Processing by Devise::SessionsController#create as HTML
+I, [2015-05-20T08:32:53.001092 #5786]  INFO -- :   Parameters: {"utf8"=>"✓", "authenticity_token"=>"YaAVjNKj/clgCcug5uGMv7+EOHQfSbrSRHTElShMdYA=", "usuario"=>{"login"=>"teste", "password"=>"[FILTERED]"}, "commit"=>"Entrar"}
+I, [2015-05-20T08:32:53.012044 #5786]  INFO -- : Redirected to http://198.50.119.90/
+I, [2015-05-20T08:32:53.012345 #5786]  INFO -- : Completed 302 Found in 11ms (ActiveRecord: 0.6ms)
+I, [2015-05-20T08:32:53.139769 #5786]  INFO -- : Started GET "/" for 187.114.116.89 at 2015-05-20 08:32:53 -0400
+I, [2015-05-20T08:32:53.147731 #5786]  INFO -- : Processing by UsuariosController#index as HTML
+I, [2015-05-20T08:32:53.157443 #5786]  INFO -- :   Rendered usuarios/index.html.haml within layouts/application (1.3ms)
+I, [2015-05-20T08:32:53.170996 #5786]  INFO -- :   Rendered menus/_menu_principal.html.haml (6.2ms)
+I, [2015-05-20T08:32:53.172184 #5786]  INFO -- : Completed 200 OK in 24ms (Views: 18.8ms | ActiveRecord: 0.0ms)
+I, [2015-05-20T08:35:11.576801 #6064]  INFO -- : Started GET "/" for 187.114.116.89 at 2015-05-20 08:35:11 -0400
+I, [2015-05-20T08:35:11.736594 #6064]  INFO -- : Processing by UsuariosController#index as HTML
+I, [2015-05-20T08:35:11.749917 #6064]  INFO -- :   Rendered usuarios/index.html.haml within layouts/application (2.6ms)
+I, [2015-05-20T08:35:11.767080 #6064]  INFO -- :   Rendered menus/_menu_principal.html.haml (7.8ms)
+I, [2015-05-20T08:35:11.768645 #6064]  INFO -- : Completed 200 OK in 32ms (Views: 25.0ms | ActiveRecord: 0.0ms)
+I, [2015-05-20T08:35:22.753525 #6064]  INFO -- : Started GET "/" for 187.114.116.89 at 2015-05-20 08:35:22 -0400
+I, [2015-05-20T08:35:22.758501 #6064]  INFO -- : Processing by UsuariosController#index as HTML
+I, [2015-05-20T08:35:22.763292 #6064]  INFO -- :   Rendered usuarios/index.html.haml within layouts/application (0.1ms)
+I, [2015-05-20T08:35:22.766724 #6064]  INFO -- :   Rendered menus/_menu_principal.html.haml (2.0ms)
+I, [2015-05-20T08:35:22.767462 #6064]  INFO -- : Completed 200 OK in 9ms (Views: 4.6ms | ActiveRecord: 0.0ms)
+I, [2015-05-20T08:35:27.560031 #6064]  INFO -- : Started GET "/" for 187.114.116.89 at 2015-05-20 08:35:27 -0400
+I, [2015-05-20T08:35:27.564747 #6064]  INFO -- : Processing by UsuariosController#index as HTML
+I, [2015-05-20T08:35:27.569530 #6064]  INFO -- :   Rendered usuarios/index.html.haml within layouts/application (0.1ms)
+I, [2015-05-20T08:35:27.573093 #6064]  INFO -- :   Rendered menus/_menu_principal.html.haml (2.1ms)
+I, [2015-05-20T08:35:27.573899 #6064]  INFO -- : Completed 200 OK in 9ms (Views: 4.8ms | ActiveRecord: 0.0ms)
+I, [2015-05-20T08:35:30.694200 #6064]  INFO -- : Started GET "/" for 187.114.116.89 at 2015-05-20 08:35:30 -0400
+I, [2015-05-20T08:35:30.698939 #6064]  INFO -- : Processing by UsuariosController#index as HTML
+I, [2015-05-20T08:35:30.703745 #6064]  INFO -- :   Rendered usuarios/index.html.haml within layouts/application (0.1ms)
+I, [2015-05-20T08:35:30.707168 #6064]  INFO -- :   Rendered menus/_menu_principal.html.haml (2.0ms)
+I, [2015-05-20T08:35:30.707964 #6064]  INFO -- : Completed 200 OK in 9ms (Views: 4.7ms | ActiveRecord: 0.0ms)
+I, [2015-05-20T08:38:17.242223 #6064]  INFO -- : Started GET "/" for 187.114.116.89 at 2015-05-20 08:38:17 -0400
+I, [2015-05-20T08:38:17.246917 #6064]  INFO -- : Processing by UsuariosController#index as HTML
+I, [2015-05-20T08:38:17.251546 #6064]  INFO -- :   Rendered usuarios/index.html.haml within layouts/application (0.1ms)
+I, [2015-05-20T08:38:17.254952 #6064]  INFO -- :   Rendered menus/_menu_principal.html.haml (2.0ms)
+I, [2015-05-20T08:38:17.255628 #6064]  INFO -- : Completed 200 OK in 9ms (Views: 4.5ms | ActiveRecord: 0.0ms)
+I, [2015-05-20T08:38:26.029773 #6064]  INFO -- : Started GET "/" for 187.114.116.89 at 2015-05-20 08:38:26 -0400
+I, [2015-05-20T08:38:26.034807 #6064]  INFO -- : Processing by UsuariosController#index as HTML
+I, [2015-05-20T08:38:26.039487 #6064]  INFO -- :   Rendered usuarios/index.html.haml within layouts/application (0.2ms)
+I, [2015-05-20T08:38:26.042846 #6064]  INFO -- :   Rendered menus/_menu_principal.html.haml (2.0ms)
+I, [2015-05-20T08:38:26.043580 #6064]  INFO -- : Completed 200 OK in 9ms (Views: 4.6ms | ActiveRecord: 0.0ms)
+I, [2015-05-20T08:50:26.463461 #6064]  INFO -- : Started GET "/servicos" for 187.114.116.89 at 2015-05-20 08:50:26 -0400
+I, [2015-05-20T08:50:26.466207 #6064]  INFO -- : Processing by ServicosController#index as HTML
+I, [2015-05-20T08:50:26.684458 #6064]  INFO -- :   Rendered inline template (0.5ms)
+I, [2015-05-20T08:50:26.697402 #6064]  INFO -- :   Rendered servicos/index.html.haml within layouts/application (221.6ms)
+I, [2015-05-20T08:50:26.700065 #6064]  INFO -- :   Rendered menus/_menu_principal.html.haml (1.5ms)
+I, [2015-05-20T08:50:26.700804 #6064]  INFO -- : Completed 200 OK in 234ms (Views: 225.1ms | ActiveRecord: 2.9ms)
+I, [2015-05-20T08:50:29.701721 #6064]  INFO -- : Started GET "/produtos" for 187.114.116.89 at 2015-05-20 08:50:29 -0400
+I, [2015-05-20T08:50:29.704334 #6064]  INFO -- : Processing by ProdutosController#index as HTML
+I, [2015-05-20T08:50:29.719871 #6064]  INFO -- :   Rendered inline template (0.3ms)
+I, [2015-05-20T08:50:29.723125 #6064]  INFO -- :   Rendered produtos/index.html.haml within layouts/application (9.3ms)
+I, [2015-05-20T08:50:29.725717 #6064]  INFO -- :   Rendered menus/_menu_principal.html.haml (1.6ms)
+I, [2015-05-20T08:50:29.726430 #6064]  INFO -- : Completed 200 OK in 22ms (Views: 14.1ms | ActiveRecord: 1.4ms)
+I, [2015-05-20T08:50:31.238850 #6064]  INFO -- : Started GET "/clientes" for 187.114.116.89 at 2015-05-20 08:50:31 -0400
+I, [2015-05-20T08:50:31.241497 #6064]  INFO -- : Processing by ClientesController#index as HTML
+I, [2015-05-20T08:50:31.258316 #6064]  INFO -- :   Rendered inline template (0.2ms)
+I, [2015-05-20T08:50:31.262807 #6064]  INFO -- :   Rendered clientes/index.html.haml within layouts/application (12.0ms)
+I, [2015-05-20T08:50:31.265519 #6064]  INFO -- :   Rendered menus/_menu_principal.html.haml (1.7ms)
+I, [2015-05-20T08:50:31.266240 #6064]  INFO -- : Completed 200 OK in 25ms (Views: 16.8ms | ActiveRecord: 1.4ms)
+I, [2015-05-20T08:52:39.221474 #6064]  INFO -- : Started GET "/clientes" for 187.114.116.89 at 2015-05-20 08:52:39 -0400
+I, [2015-05-20T08:52:39.223078 #6064]  INFO -- : Processing by ClientesController#index as HTML
+I, [2015-05-20T08:52:39.231011 #6064]  INFO -- :   Rendered inline template (0.3ms)
+I, [2015-05-20T08:52:39.234955 #6064]  INFO -- :   Rendered clientes/index.html.haml within layouts/application (5.3ms)
+I, [2015-05-20T08:52:39.237679 #6064]  INFO -- :   Rendered menus/_menu_principal.html.haml (1.7ms)
+I, [2015-05-20T08:52:39.238390 #6064]  INFO -- : Completed 200 OK in 15ms (Views: 8.7ms | ActiveRecord: 1.0ms)
+I, [2015-05-20T08:57:03.577542 #6064]  INFO -- : Started GET "/clientes" for 187.114.116.89 at 2015-05-20 08:57:03 -0400
+I, [2015-05-20T08:57:03.579158 #6064]  INFO -- : Processing by ClientesController#index as HTML
+I, [2015-05-20T08:57:03.587071 #6064]  INFO -- :   Rendered inline template (0.3ms)
+I, [2015-05-20T08:57:03.591034 #6064]  INFO -- :   Rendered clientes/index.html.haml within layouts/application (5.3ms)
+I, [2015-05-20T08:57:03.593730 #6064]  INFO -- :   Rendered menus/_menu_principal.html.haml (1.7ms)
+I, [2015-05-20T08:57:03.594443 #6064]  INFO -- : Completed 200 OK in 15ms (Views: 8.6ms | ActiveRecord: 1.0ms)
+I, [2015-05-20T09:04:09.238159 #7854]  INFO -- : Started GET "/" for 187.114.116.89 at 2015-05-20 09:04:09 -0400
+I, [2015-05-20T09:04:09.395080 #7854]  INFO -- : Processing by UsuariosController#index as HTML
+I, [2015-05-20T09:04:09.408610 #7854]  INFO -- :   Rendered usuarios/index.html.haml within layouts/application (2.7ms)
+I, [2015-05-20T09:04:09.426814 #7854]  INFO -- :   Rendered menus/_menu_principal.html.haml (8.9ms)
+I, [2015-05-20T09:04:09.428369 #7854]  INFO -- : Completed 200 OK in 33ms (Views: 26.0ms | ActiveRecord: 0.0ms)
+I, [2015-05-20T09:04:13.592782 #7854]  INFO -- : Started GET "/ordem_servicos" for 187.114.116.89 at 2015-05-20 09:04:13 -0400
+I, [2015-05-20T09:04:13.595736 #7854]  INFO -- : Processing by OrdemServicosController#index as HTML
+I, [2015-05-20T09:04:13.794633 #7854]  INFO -- :   Rendered inline template (0.5ms)
+I, [2015-05-20T09:04:13.810598 #7854]  INFO -- :   Rendered ordem_servicos/index.html.haml within layouts/application (205.7ms)
+I, [2015-05-20T09:04:13.810878 #7854]  INFO -- : Completed 500 Internal Server Error in 215ms
+F, [2015-05-20T09:04:13.812963 #7854] FATAL -- : 
+ActionView::Template::Error (undefined method `total_pages' for #<ActiveRecord::Relation []>):
+    25:           %tr  
+    26:             %td{colspan: 99, height: 29}
+    27:               %center
+    28:                 = page_navigation_links @ordem_servicos if will_paginate @ordem_servicos
+    29:               .left{style: (will_paginate(@ordem_servicos) ? 'margin-top: -30px' : '')}
+    30:                 = link_to t('.back', :default => t("helpers.links.back")), ferramentas_usuarios_path, class: 'btn btn-small'
+  app/views/ordem_servicos/index.html.haml:28:in `_app_views_ordem_servicos_index_html_haml__1169191431561689615_70125309156640'
+
+
+I, [2015-05-20T09:04:19.829243 #7854]  INFO -- : Started GET "/ordem_servicos" for 187.114.116.89 at 2015-05-20 09:04:19 -0400
+I, [2015-05-20T09:04:19.830841 #7854]  INFO -- : Processing by OrdemServicosController#index as HTML
+I, [2015-05-20T09:04:19.838763 #7854]  INFO -- :   Rendered inline template (0.3ms)
+I, [2015-05-20T09:04:19.841726 #7854]  INFO -- :   Rendered ordem_servicos/index.html.haml within layouts/application (4.5ms)
+I, [2015-05-20T09:04:19.841930 #7854]  INFO -- : Completed 500 Internal Server Error in 11ms
+F, [2015-05-20T09:04:19.843740 #7854] FATAL -- : 
+ActionView::Template::Error (undefined method `total_pages' for #<ActiveRecord::Relation []>):
+    25:           %tr  
+    26:             %td{colspan: 99, height: 29}
+    27:               %center
+    28:                 = page_navigation_links @ordem_servicos if will_paginate @ordem_servicos
+    29:               .left{style: (will_paginate(@ordem_servicos) ? 'margin-top: -30px' : '')}
+    30:                 = link_to t('.back', :default => t("helpers.links.back")), ferramentas_usuarios_path, class: 'btn btn-small'
+  app/views/ordem_servicos/index.html.haml:28:in `_app_views_ordem_servicos_index_html_haml__1169191431561689615_70125309156640'
+
+
+I, [2015-05-20T09:04:23.985957 #7854]  INFO -- : Started GET "/ordem_servicos" for 187.114.116.89 at 2015-05-20 09:04:23 -0400
+I, [2015-05-20T09:04:23.987638 #7854]  INFO -- : Processing by OrdemServicosController#index as HTML
+I, [2015-05-20T09:04:23.995693 #7854]  INFO -- :   Rendered inline template (0.3ms)
+I, [2015-05-20T09:04:23.998772 #7854]  INFO -- :   Rendered ordem_servicos/index.html.haml within layouts/application (4.6ms)
+I, [2015-05-20T09:04:23.999015 #7854]  INFO -- : Completed 500 Internal Server Error in 11ms
+F, [2015-05-20T09:04:24.001081 #7854] FATAL -- : 
+ActionView::Template::Error (undefined method `total_pages' for #<ActiveRecord::Relation []>):
+    25:           %tr  
+    26:             %td{colspan: 99, height: 29}
+    27:               %center
+    28:                 = page_navigation_links @ordem_servicos if will_paginate @ordem_servicos
+    29:               .left{style: (will_paginate(@ordem_servicos) ? 'margin-top: -30px' : '')}
+    30:                 = link_to t('.back', :default => t("helpers.links.back")), ferramentas_usuarios_path, class: 'btn btn-small'
+  app/views/ordem_servicos/index.html.haml:28:in `_app_views_ordem_servicos_index_html_haml__1169191431561689615_70125309156640'
+
+
