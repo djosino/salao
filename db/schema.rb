@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150525170857) do
+ActiveRecord::Schema.define(version: 20150525182328) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,8 @@ ActiveRecord::Schema.define(version: 20150525170857) do
     t.string   "observacao"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "classe_id"
+    t.string   "classe_type"
   end
 
   add_index "conta_correntes", ["cliente_id"], name: "index_conta_correntes_on_cliente_id", using: :btree

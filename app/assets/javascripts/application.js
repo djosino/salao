@@ -19,6 +19,7 @@
 //= require zoom/jquery.zoom.min.js
 //= require slideshow/jquery.slides.min.js
 //= require maskedinput
+//= require mask-money/jquery.maskMoney.js
 //= require bootstraps/bootstrap-checkbox.js
 //  require bootstraps/bootstrap-datepicker.js
 //= require bootstraps/bootstrap-datetimepicker.min.js
