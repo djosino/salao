@@ -4,7 +4,7 @@ class UsuariosController < ApplicationController
 
   def index
     #relatorio_por_permissao
-    #@usuarios = Usuario.order(:email)
+    @usuarios = Usuario.order(:id)
   end
 
   # Bloqueia ou Desbloqueia Usuario

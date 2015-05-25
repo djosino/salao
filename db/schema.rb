@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150520164127) do
+ActiveRecord::Schema.define(version: 20150525170857) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,6 +84,7 @@ ActiveRecord::Schema.define(version: 20150520164127) do
     t.datetime "updated_at"
   end
 
+<<<<<<< HEAD
   create_table "contatos", force: true do |t|
     t.text     "observacao"
     t.date     "data"
@@ -157,6 +158,19 @@ ActiveRecord::Schema.define(version: 20150520164127) do
   add_index "etapas", ["lote_id"], name: "index_etapas_on_lote_id", using: :btree
   add_index "etapas", ["tipo_etapa_id"], name: "index_etapas_on_tipo_etapa_id", using: :btree
   add_index "etapas", ["updated_by"], name: "index_etapas_on_updated_by", using: :btree
+  create_table "conta_correntes", force: true do |t|
+    t.integer  "cliente_id"
+    t.integer  "funcionario_id"
+    t.integer  "tipo_lancamento_id"
+    t.float    "valor"
+    t.string   "observacao"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "conta_correntes", ["cliente_id"], name: "index_conta_correntes_on_cliente_id", using: :btree
+  add_index "conta_correntes", ["funcionario_id"], name: "index_conta_correntes_on_funcionario_id", using: :btree
+  add_index "conta_correntes", ["tipo_lancamento_id"], name: "index_conta_correntes_on_tipo_lancamento_id", using: :btree
 
   create_table "forma_de_pagamentos", force: true do |t|
     t.string   "descricao"
@@ -251,6 +265,20 @@ ActiveRecord::Schema.define(version: 20150520164127) do
     t.string   "descricao"
     t.float    "percentual"
     t.float    "valor"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "tipo_servico_id"
+  end
+
+  create_table "tipo_lancamentos", force: true do |t|
+    t.string   "descricao"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tipo_servicos", force: true do |t|
+    t.string   "descricao"
+    t.boolean  "ativo"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

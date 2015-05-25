@@ -1,3 +1,37 @@
-.container-fluid
-  .row-fluid
-    Ferramentas
+- model_class = Usuario
+.row-fluid
+  .span12
+    %h2.botton-border=t '.title', :default => model_class.model_name.human.pluralize.titleize, model: model_class.model_name.human.pluralize.titleize
+    = flash_message
+
+.row-fluid
+  .box
+    .header
+      %img{:height => "16", :src => img_header, :width => "16"}
+      %p=t '.header_list', :default => model_class.model_name.human.pluralize.titleize
+    .content
+      %table.table.table-striped.table-bordered
+        %thead
+          %tr
+            %th= model_class.human_attribute_name(:id)         
+            %th= model_class.human_attribute_name(:nome)   
+            %th= model_class.human_attribute_name(:login)     
+            %th= model_class.human_attribute_name(:login)     
+            %th{colspan: 4}=t '.actions', :default => t("helpers.actions")
+        %tbody
+          - @usuarios.each do |usuario|
+            %tr
+              %td= usuario.id
+              %td= usuario.nome
+              %td= usuario.login
+              %td= usuario.login
+              %td
+                /= link_to t('.show', :default => t("helpers.links.show")), usuario, class: 'btn btn-mini'
+        %tfoot
+          %tr  
+            %td{colspan: 99, height: 29}
+              %center
+              /  = page_navigation_links @usuarios if will_paginate @usuarios
+              /.left{style: (will_paginate(@usuarios) ? 'margin-top: -30px' : '')}
+              /  = link_to t('.back', :default => t("helpers.links.back")), ferramentas_usuarios_path, class: 'btn btn-small'
+

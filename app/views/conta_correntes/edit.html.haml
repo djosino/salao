@@ -1,0 +1,6 @@
+- model_class = ContaCorrente
+.row-fluid
+  %h2.botton-border=t '.title', :model => model_class.model_name.human.titleize
+  = flash_message(@conta_corrente)
+.row-fluid
+  = render :partial => "form"

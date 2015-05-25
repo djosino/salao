@@ -24,8 +24,12 @@ class Ability
     can :admin, Servico
     can :admin, Produto
     can :admin, OrdemServico
+    can :admin, Usuario
+    can :admin, ContaCorrente
+    can :admin, TipoServico
 
     can [:finalizar, :cancelar], OrdemServico, status: 1
+    can [:new, :create], :registrations
   end
 
   def gerente

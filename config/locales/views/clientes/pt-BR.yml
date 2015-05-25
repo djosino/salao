@@ -12,3 +12,4 @@ pt-BR:
     show:
       title: Visualizar %{model}
       header: Dados do Cliente
+      new_lancamento: Novo Lançamento

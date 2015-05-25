@@ -39,4 +39,7 @@
                 = page_navigation_links @ordem_servicos if will_paginate @ordem_servicos
               .left{style: (will_paginate(@ordem_servicos) ? 'margin-top: -30px' : '')}
                 = link_to t('.back', :default => t("helpers.links.back")), ferramentas_usuarios_path, class: 'btn btn-small'
+              - if can? :new, OrdemServico
+                .right
+                  = link_to t('.new', :default => t("helpers.links.new")), new_ordem_servico_path, class: 'btn btn-small'
 

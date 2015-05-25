@@ -33,13 +33,13 @@
 
           .container-fluid
             .control-group.span6
-              = f.label :celular, class: 'control-label'
+              = f.label :valor_fixo, class: 'control-label'
               .controls
-                = f.text_field :celular, class: 'span12'
+                = f.text_field :valor_fixo, class: 'span12'
             .control-group.span6
-              = f.label :telefone, class: 'control-label'
+              = f.label :percentual, class: 'control-label'
               .controls
-                = f.text_field :telefone, class: 'span12'
+                = f.text_field :percentual, class: 'span12'
 
           .container-fluid
             - if resource.entidade_type == 'Empresa'

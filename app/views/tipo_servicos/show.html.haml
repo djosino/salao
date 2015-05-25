@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Descricao:
+  = @tipo_servico.descricao
+%p
+  %b Ativo:
+  = @tipo_servico.ativo
+
+= link_to 'Edit', edit_tipo_servico_path(@tipo_servico)
+\|
+= link_to 'Back', tipo_servicos_path
