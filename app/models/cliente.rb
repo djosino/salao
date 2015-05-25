@@ -9,7 +9,7 @@ class Cliente < ActiveRecord::Base
     self.conta_correntes.where(tipo_lancamento_id: 2).select("sum(valor)")[0].sum.to_f
   end
 
-  def saldo(inicio, fim)
+  def saldo_periodo(inicio, fim)
   	cond = ["created_at::date between ? and ?"]
   	cond << inicio.to_date
   	cond << fim.to_date

@@ -28,6 +28,8 @@ class Ability
     can :admin, ContaCorrente
     can :admin, TipoServico
 
+    can [:adicionar_servico, :cancelar, :destroy], OrdemServico
+
     can [:finalizar, :cancelar], OrdemServico, status: 1
     can [:new, :create], :registrations
 

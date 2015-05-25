@@ -93,7 +93,7 @@
           %tbody
             - valor = 0
             - @clientes.each do |cliente|
-              - saldo = cliente.saldo(params[:data_ini], params[:data_final])
+              - saldo = cliente.saldo_periodo(params[:data_ini], params[:data_final])
               - valor += saldo
               %tr
                 %td=  cliente.id
