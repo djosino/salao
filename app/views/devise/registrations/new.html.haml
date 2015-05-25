@@ -2,7 +2,7 @@
 .row-fluid
   %h2.botton-border=t '.title', :default => [:'helpers.titles.edit', 'New %{model}'], :model => model_class.model_name.human.titleize
 .row-fluid
-  .span6
+  .span12
     = flash_message(resource)
     /render "devise/shared/links"
     = form_for(resource, as: resource_name, url: registration_path(resource_name), :html => { class: 'form-group', autocomplete: :off}) do |f|
@@ -12,25 +12,73 @@
           %p=t '.header', :default => model_class.model_name.human.pluralize.titleize
         .content-form
           .container-fluid
-            .control-group.span6
-              = f.label :nome, class: 'control-label'
+            .control-group.span3
+              = f.label :name, class: 'control-label'
               .controls
-                = f.text_field :nome, class: 'span12', required: true
-            .control-group.span6
+                = f.text_field :name, class: 'span12', required: true
+            .control-group.span3
               = f.label :email, class: 'control-label'
               .controls
-                = f.email_field :email, class: 'span12', required: true
-
+                = f.text_field :email, class: 'span12', required: true
+            .control-group.span3
+              = f.label :sexo, class: 'control-label'
+              .controls
+                = f.text_field :sexo, class: 'span12'
+            .control-group.span3
+              = f.label :profissao, class: 'control-label'
+              .controls
+                = f.text_field :profissao, class: 'span12'
           .container-fluid
-            .control-group.span6
+            .control-group.span3
+              = f.label :cep, class: 'control-label'
+              .controls
+                = f.text_field :cep, class: 'span12'
+            .control-group.span3
+              = f.label :endereco, class: 'control-label'
+              .controls
+                = f.text_field :endereco, class: 'span12'
+            .control-group.span3
+              = f.label :numero, class: 'control-label'
+              .controls
+                = f.text_field :numero, class: 'span12'
+            .control-group.span3
+              = f.label :complemento, class: 'control-label'
+              .controls
+                = f.text_field :complemento, class: 'span12'
+          .container-fluid
+            .control-group.span3
+              = f.label :bairro, class: 'control-label'
+              .controls
+                = f.text_field :bairro, class: 'span12'
+            .control-group.span3
+              = f.label :cidade, class: 'control-label'
+              .controls
+                = f.text_field :cidade, class: 'span12'
+            .control-group.span3
+              = f.label :estado, class: 'control-label'
+              .controls
+                = f.text_field :estado, class: 'span12'
+            .control-group.span3
+              = f.label :nascimento, class: 'control-label'
+              .controls
+                = f.text_field :nascimento, class: 'span12'
+          .container-fluid
+            .control-group.span3
+              = f.label :fone, class: 'control-label'
+              .controls
+                = f.text_field :fone, class: 'span12'
+            .control-group.span3
+              = f.label :fone2, class: 'control-label'
+              .controls
+                = f.text_field :fone2, class: 'span12'
+            .control-group.span3
               = f.label :password, class: 'control-label'
               .controls
                 = f.password_field :password, class: 'span12', required: true
-            .control-group.span6
+            .control-group.span3
               = f.label :password_confirmation, class: 'control-label'
               .controls
                 = f.password_field :password_confirmation, class: 'span12', required: true
-
           .container-fluid
             .control-group.span6
               = f.label :valor_fixo, class: 'control-label'

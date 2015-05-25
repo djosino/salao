@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
+ActiveRecord::Schema.define(version: 20150525190239) do
+=======
 ActiveRecord::Schema.define(version: 20150525190041) do
+>>>>>>> fa273c273a8e8a0e039913f30af5c0e96f5bb981
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -163,6 +167,18 @@ ActiveRecord::Schema.define(version: 20150525190041) do
     t.text     "roles_string",                              default: ""
     t.float    "valor_fixo"
     t.float    "percentual"
+    t.string   "sexo"
+    t.string   "profissao"
+    t.integer  "cep"
+    t.string   "endereco"
+    t.integer  "numero"
+    t.string   "complemento"
+    t.string   "bairro"
+    t.string   "cidade"
+    t.string   "estado"
+    t.string   "fone"
+    t.string   "fone2"
+    t.date     "nascimento"
   end
 
   add_index "usuarios", ["cartorio_id"], name: "index_usuarios_on_cartorio_id", using: :btree

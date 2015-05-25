@@ -45,7 +45,7 @@ class Devise::RegistrationsController < DeviseController
         if current_usuario.cartorio?
           redirect_to usuarios_cartorios_path, notice:  "Usuário cadastrado com sucesso"
         else
-          redirect_to resource.entidade, notice:  "Usuário cadastrado com sucesso"
+          redirect_to usuarios_path, notice:  "Usuário cadastrado com sucesso"
         end
       else
         set_flash_message :notice, :"signed_up_but_#{resource.inactive_message}" if is_flashing_format?

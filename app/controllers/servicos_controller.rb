@@ -69,6 +69,6 @@ class ServicosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def servico_params
-      params.require(:servico).permit(:descricao, :percentual, :valor)
+      params.require(:servico).permit(:descricao, :percentual, :valor, :tipo_servico_id)
     end
 end

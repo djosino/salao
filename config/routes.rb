@@ -32,6 +32,7 @@ Salao::Application.routes.draw do
   devise_for :usuarios 
   as :usuarios do
     get 'usuarios'                         => 'usuarios#index',               as: :usuarios
+    get 'usuarios/:id'                     => 'usuarios#show',                as: :usuario
     get 'ferramentas'                      => 'usuarios#ferramentas',         as: :ferramentas_usuarios
     get 'usuarios/:id/resetar_senha'       => 'usuarios#resetar_senha',       as: :resetar_senha_usuario      #member
     get 'usuarios/:id/lock_unlock'         => 'usuarios#lock_unlock',         as: :lock_unlock_usuario        #member

@@ -25,6 +25,7 @@
               %td= image_checkbox(tipo_servico.ativo ? true : nil)
               %td
                 = link_to t('.show', :default => t("helpers.links.show")), tipo_servico, class: 'btn btn-mini'
+                = link_to t('.edit', :default => t("helpers.links.edit")), edit_tipo_servico_path(tipo_servico), class: 'btn btn-mini'
         %tfoot
           %tr  
             %td{colspan: 99, height: 29}

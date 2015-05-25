@@ -1,12 +1,32 @@
-%p#notice= notice
+- model_class = TipoServico
+.row-fluid
+  .span12
+    %h2.botton-border=t '.title', default: model_class.model_name.human.pluralize.titleize, model: model_class.model_name.human
+    = flash_message
 
-%p
-  %b Descricao:
-  = @tipo_servico.descricao
-%p
-  %b Ativo:
-  = @tipo_servico.ativo
+.row-fluid
+  .box.span6
+    .header
+      %img{height: "16", src: img_header, width: "16"}
+      %p=t '.header_list', default: model_class.model_name.human.pluralize.titleize
+    .content
+      %table.table.table-striped.table-bordered
+        %thead
+          %tr
+            %th= model_class.human_attribute_name(:id)         
+            %th= model_class.human_attribute_name(:descricao)   
+            %th= "Quantidade de Serviços"     
+        %tbody
+          %tr
+            %td= @tipo_servico.id
+            %td= @tipo_servico.descricao
+            %td= @tipo_servico.servicos.count
+        %tfoot
+          %tr  
+            %td{colspan: 99, height: 29}
+              %center
+              .left
+                = link_to t('.back', :default => t("helpers.links.back")), tipo_servicos_path, class: 'btn btn-small'
 
-= link_to 'Edit', edit_tipo_servico_path(@tipo_servico)
-\|
-= link_to 'Back', tipo_servicos_path
+.row-fluid
+  = render partial: "servicos/listagem", locals: { servicos: @tipo_servico.servicos.order(:id)}

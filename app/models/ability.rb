@@ -30,6 +30,10 @@ class Ability
 
     can [:finalizar, :cancelar], OrdemServico, status: 1
     can [:new, :create], :registrations
+
+    can  :lock,         Usuario, locked_at: nil
+    can  :unlock,       Usuario do |u|; !u.locked_at.nil? ;  end
+    can  :lock_unlock,  Usuario
   end
 
   def gerente
