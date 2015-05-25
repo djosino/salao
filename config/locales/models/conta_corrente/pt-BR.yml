@@ -1,9 +1,9 @@
-pt-BR:
+spt-BR:
   activerecord:
     models:
       conta_corrente: 
         one: Conta Corrente
-        other: Contas Corrente
+        other: Contas Correntes
     attributes:
       conta_corrente:
         id: "#"

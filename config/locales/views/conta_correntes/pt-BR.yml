@@ -1,7 +1,7 @@
 pt-BR:
   conta_correntes:    
     form:
-      title: Dados da Conta Corrente
+      title: Dados da Contas Correntes
     edit:
       title: Editar Lançamento
     index:
@@ -13,4 +13,4 @@ pt-BR:
       title: Visualizar %{model}
       header: Dados da Conta Corrente
     listagem: 
-      title: Conta Corrente
+      title: Contas Correntes

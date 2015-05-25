@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cliente_id: 
+  valor: 1.5
+
+two:
+  cliente_id: 
+  valor: 1.5

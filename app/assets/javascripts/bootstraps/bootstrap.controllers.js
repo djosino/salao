@@ -54,42 +54,5 @@ $('.loading').click(function(){
   $("#loading").show();
 })
 
-/*$(document).ready(function() {
-  $(".bclose").click(function() {
-    $(".bg_loading").hide();
-    $("#loading").hide();
-  });
 
-  $(".close").click(function() {
-    $(".bg_loading").hide();
-    $("#loading").hide();
-  });
-});
-*/
-
-
-/*
-function create() {
-  $('#loading_image').show();
-  $.ajax({
-    type: 'POST',
-    url: 'www.google.com',
-    data: $('form').serialize(),
-    success: createSuccessHandler,
-    error: createErrorHandler,
-    complete: hideLoadingImage
-  });
-}
-
-function createSuccessHandler(data) {
-  alert("User created!")
-}
-
-function createErrorHandler(data) {
-  alert("It failed, ffs!")
-}
-
-function hideLoadingImage() {
-  $('#loading_image').hide()
-}
-*/
+jQuery("#conta_corrente_valor").maskMoney({     decimal:",", thousands:"."});

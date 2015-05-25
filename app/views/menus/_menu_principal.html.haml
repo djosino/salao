@@ -12,6 +12,15 @@
           = link_to "Listar",    clientes_path,    class: "btn btn-small"
           = link_to "Cadastrar", new_cliente_path, class: "btn btn-small"
 
+    - if can? :index, ContaCorrente
+      .btn-group
+        = link_to "Conta Corrente", conta_correntes_path, class: "btn btn-small"
+        = link_to '#', class: 'btn btn-small dropdown-toggle', :'data-toggle' => "dropdown" do
+          %span.caret
+        %ul.dropdown-menu
+          = link_to "Relatório de CC",    conta_correntes_path,    class: "btn btn-small"
+          = link_to "Cadastrar Lançamento", new_conta_corrente_path, class: "btn btn-small"
+
     - if can? :index, OrdemServico
       .btn-group
         = link_to "Ordens de Serviço",  ordem_servicos_path, class: "btn btn-small"

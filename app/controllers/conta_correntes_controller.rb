@@ -4,7 +4,11 @@ class ContaCorrentesController < ApplicationController
   # GET /conta_correntes
   # GET /conta_correntes.json
   def index
-    @conta_correntes = ContaCorrente.all
+    #@conta_correntes = ContaCorrente.all
+    @carteiras = Carteira.joins(:cliente).order("clientes.nome")
+    if params[:imprimir].present?
+      render layout: 'print'
+    end
   end
 
   # GET /conta_correntes/1
@@ -25,10 +29,16 @@ class ContaCorrentesController < ApplicationController
   # POST /conta_correntes.json
   def create
     @conta_corrente = ContaCorrente.new(conta_corrente_params)
-
+    if params[:selecione].present?
+      if params[:selecione] == 'cliente'
+        @conta_corrente.funcionario = nil
+      else
+        @conta_corrente.cliente     = nil
+      end
+    end
     respond_to do |format|
       if @conta_corrente.save
-        format.html { redirect_to @conta_corrente, notice: 'Conta corrente was successfully created.' }
+        format.html { redirect_to @conta_corrente.classe, notice: t(:created, name: 'Conta Corrente') }
         format.json { render action: 'show', status: :created, location: @conta_corrente }
       else
         format.html { render action: 'new' }
@@ -42,7 +52,7 @@ class ContaCorrentesController < ApplicationController
   def update
     respond_to do |format|
       if @conta_corrente.update(conta_corrente_params)
-        format.html { redirect_to @conta_corrente, notice: 'Conta corrente was successfully updated.' }
+        format.html { redirect_to @conta_corrente.classe, notice: t(:updated, name: 'Conta Corrente') }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -69,6 +79,9 @@ class ContaCorrentesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def conta_corrente_params
+      if params[:conta_corrente].present? and params[:conta_corrente][:valor].present?
+        params[:conta_corrente][:valor] = params[:conta_corrente][:valor].gsub('.', '').gsub(',', '.')
+      end
       params.require(:conta_corrente).permit(:cliente_id, :funcionario_id, :tipo_lancamento_id, :valor, :observacao)
     end
 end
