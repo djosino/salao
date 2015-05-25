@@ -1,21 +1,19 @@
 pt-BR:
   activerecord:
     models:
-      servico: 
-        one: Serviço
-        other: Serviços
+      tipo_servico: 
+        one: Tipo de Serviço
+        other: Tipos de Serviços
     attributes:
-      servico:
+      tipo_servico:
         id: "#"
         descricao: Descrição
-        valor: Valor
-        percentual: Percentual
-        tipo_servico_id: Tipo de Serviço
+        ativo: Ativo
         created_at: "Data de Cadastro"
         updated_at: "Data de Atualização"
     errors:
       models:
-        servico:
+        tipo_servico:
           attributes:
           validate:
 
