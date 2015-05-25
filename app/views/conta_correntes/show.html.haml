@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Cliente:
+  = @conta_corrente.cliente
+%p
+  %b Funcionario:
+  = @conta_corrente.funcionario
+%p
+  %b Tipo lancamento:
+  = @conta_corrente.tipo_lancamento
+%p
+  %b Valor:
+  = @conta_corrente.valor
+%p
+  %b Observacao:
+  = @conta_corrente.observacao
+
+= link_to 'Edit', edit_conta_corrente_path(@conta_corrente)
+\|
+= link_to 'Back', conta_correntes_path

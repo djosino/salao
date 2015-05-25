@@ -1,0 +1,37 @@
+- model_class = ContaCorrente
+.row-fluid
+  .span12
+    %h2.botton-border=t '.title', :default => model_class.model_name.human.pluralize.titleize, model: model_class.model_name.human.pluralize.titleize
+    = flash_message
+
+.row-fluid
+  .box.span12
+    .header
+      %img{:height => "16", :src => img_header, :width => "16"}
+      %p=t '.header_list', :default => model_class.model_name.human.pluralize.titleize
+    .content
+      %table.table.table-striped.table-bordered
+        %thead
+          %tr
+            %th= model_class.human_attribute_name(:id)    
+            %th= model_class.human_attribute_name(:created_at)     
+            %th= model_class.human_attribute_name(:tipo_lancamento)
+            %th= model_class.human_attribute_name(:valor)     
+            %th= model_class.human_attribute_name(:observacao)     
+            %th{colspan: 4}=t '.actions', :default => t("helpers.actions")
+        %tbody
+          - conta_correntes.each do |conta|
+            %tr
+              %td=  conta.id
+              %td=l conta.created_at, format: :short
+              %td=  conta.tipo_lancamento.descricao
+              %td=  conta.valor.real
+              %td=  conta.observacao
+              /%td
+              /  = link_to t('.show', :default => t("helpers.links.show")), :back, class: 'btn btn-mini'
+        %tfoot
+          %tr  
+            %td{colspan: 99, height: 29}
+              %center
+              .left
+                = link_to t('.back', :default => t("helpers.links.back")), :back, class: 'btn btn-small'

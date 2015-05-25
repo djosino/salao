@@ -1,0 +1,27 @@
+%h1 Listing conta_correntes
+
+%table
+  %tr
+    %th Cliente
+    %th Funcionario
+    %th Tipo lancamento
+    %th Valor
+    %th Observacao
+    %th
+    %th
+    %th
+
+  - @conta_correntes.each do |conta_corrente|
+    %tr
+      %td= conta_corrente.cliente
+      %td= conta_corrente.funcionario
+      %td= conta_corrente.tipo_lancamento
+      %td= conta_corrente.valor
+      %td= conta_corrente.observacao
+      %td= link_to 'Show', conta_corrente
+      %td= link_to 'Edit', edit_conta_corrente_path(conta_corrente)
+      %td= link_to 'Destroy', conta_corrente, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Conta corrente', new_conta_corrente_path

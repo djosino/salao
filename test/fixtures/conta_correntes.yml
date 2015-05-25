@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cliente_id: 
+  funcionario_id: 
+  tipo_lancamento_id: 
+  valor: 1.5
+  observacao: MyString
+
+two:
+  cliente_id: 
+  funcionario_id: 
+  tipo_lancamento_id: 
+  valor: 1.5
+  observacao: MyString
