@@ -16,3 +16,4 @@ td, a{ font-size: 7pt }
 /* HIDDENS */
 button, img, .button-to, span.colored, .reports-hidden, .hidden_print, .options { display: none !important;}
 h5 { font-size: 13px;}
+.right { text-align: right; font-size:11px;}

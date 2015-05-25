@@ -11,10 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150525182328) do
+ActiveRecord::Schema.define(version: 20150525190041) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "carteiras", force: true do |t|
+    t.integer  "cliente_id"
+    t.float    "valor"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "carteiras", ["cliente_id"], name: "index_carteiras_on_cliente_id", using: :btree
 
   create_table "clientes", force: true do |t|
     t.string   "nome"

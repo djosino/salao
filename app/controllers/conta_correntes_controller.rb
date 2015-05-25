@@ -4,7 +4,11 @@ class ContaCorrentesController < ApplicationController
   # GET /conta_correntes
   # GET /conta_correntes.json
   def index
-    @conta_correntes = ContaCorrente.all
+    #@conta_correntes = ContaCorrente.all
+    @carteiras = Carteira.joins(:cliente).order("clientes.nome")
+    if params[:imprimir].present?
+      render layout: 'print'
+    end
   end
 
   # GET /conta_correntes/1

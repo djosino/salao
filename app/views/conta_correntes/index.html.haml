@@ -1,27 +1,49 @@
-%h1 Listing conta_correntes
+- model_class = ContaCorrente
+- if params[:imprimir].blank?
+  .row-fluid
+    .span12
+      %h2.botton-border=t '.title', :default => model_class.model_name.human.pluralize.titleize, model: model_class.model_name.human.pluralize.titleize
+      = flash_message
 
-%table
-  %tr
-    %th Cliente
-    %th Funcionario
-    %th Tipo lancamento
-    %th Valor
-    %th Observacao
-    %th
-    %th
-    %th
+    .row-fluid
+- else
+%h3
+  %center RELATÓRIO DE CONTA CORRENTE DE CLIENTES
 
-  - @conta_correntes.each do |conta_corrente|
-    %tr
-      %td= conta_corrente.cliente
-      %td= conta_corrente.funcionario
-      %td= conta_corrente.tipo_lancamento
-      %td= conta_corrente.valor
-      %td= conta_corrente.observacao
-      %td= link_to 'Show', conta_corrente
-      %td= link_to 'Edit', edit_conta_corrente_path(conta_corrente)
-      %td= link_to 'Destroy', conta_corrente, :method => :delete, :data => { :confirm => 'Are you sure?' }
+EMISSÃO: #{l(Date.today)}
+%hr
 
-%br
-
-= link_to 'New Conta corrente', new_conta_corrente_path
+- if @carteiras
+  .row-fluid
+    .box.span12
+      .header.hidden_print
+        %img{:height => "16", :src => img_header, :width => "16"}
+        %p=t '.header_list', :default => model_class.model_name.human.pluralize.titleize
+      .content
+        %table.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th= model_class.human_attribute_name(:id)         
+              %th= model_class.human_attribute_name(:cliente_id)         
+              %th= model_class.human_attribute_name(:created_at)         
+              %th= model_class.human_attribute_name(:telefone)         
+              %th= model_class.human_attribute_name(:telefone)         
+              %th= model_class.human_attribute_name(:saldo)         
+          %tbody
+            - @carteiras.each do |carteira|
+              %tr
+                %td=  carteira.cliente.id
+                %td=  carteira.cliente.nome.upcase
+                %td=l carteira.cliente.created_at, format: :short
+                %td=  carteira.cliente.telefone
+                %td=  carteira.cliente.telefone2
+                %td
+                  .right
+                    =  carteira.valor.to_f.real_contabil
+          %tfoot
+            %tr
+              %td{colspan: 99, height: 29}
+                .right
+                  = @carteiras.pluck(:valor).sum.real_contabil
+                .left
+                  = link_to t('.print', :default => t("helpers.links.print")), conta_correntes_path(imprimir: true), class: 'btn btn-small'
