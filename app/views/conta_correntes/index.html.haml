@@ -11,7 +11,7 @@
   %center RELATÓRIO DE CONTA CORRENTE DE CLIENTES
 
 EMISSÃO: #{l(Date.today)}
-%hr
+%hr.hidden_print
 
 - if @carteiras
   .row-fluid
@@ -45,5 +45,5 @@ EMISSÃO: #{l(Date.today)}
               %td{colspan: 99, height: 29}
                 .right
                   = @carteiras.pluck(:valor).sum.real_contabil
-                .left
+                .left.hidden_print
                   = link_to t('.print', :default => t("helpers.links.print")), conta_correntes_path(imprimir: true), class: 'btn btn-small'
