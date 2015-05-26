@@ -36,6 +36,7 @@ class Ability
     can  :lock,         Usuario, locked_at: nil
     can  :unlock,       Usuario do |u|; !u.locked_at.nil? ;  end
     can  :lock_unlock,  Usuario
+    can :edit_account, :registrations
   end
 
   def gerente

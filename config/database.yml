@@ -1,8 +1,8 @@
 development:
   adapter: postgresql
   database: salao
-  username: salao
-  password: salao*&098
+  username: dute
+  password: dute
 
 test:
   adapter: postgresql

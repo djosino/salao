@@ -2,7 +2,7 @@ class OrdemServico < ActiveRecord::Base
   self.per_page = 30
   belongs_to :cliente
   belongs_to :usuario
-  
+  has_many :ordem_servicos_servicos, class_name: 'OSS'
   has_and_belongs_to_many :servicos
 
   validates_presence_of :cliente

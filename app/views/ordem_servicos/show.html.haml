@@ -50,9 +50,20 @@
             .controls
               = select_tag :servico_id, options_for_select(servicos_grupos, params[:servico_id]), {data: { dynamic_selectable_url: dynamic_select_servicos_path(':servico_id'), dynamic_selectable_target: '#valor'}, include_blank: true, class: 'span12' }
           .control-group.span6
+            = label_tag :funcionario_id, 'Valor do Serviço', class: 'control-label'
+            .controls
+              = select_tag :funcionario_id, options_for_select(funcionarios, params[:funcinarios]), class: 'span12', readonly: true
+
+        .container-fluid
+          .control-group.span6
             = label_tag :valor, 'Valor do Serviço', class: 'control-label'
             .controls
               = text_field_tag :valor, nil, class: 'span12', readonly: true
+          .control-group.span6
+            = label_tag :comissao, 'Comissão', class: 'control-label'
+            .controls
+              = text_field_tag :comissao, nil, class: 'span12', readonly: true
+
         .form-actions
           .right
             = submit_tag t('.confirm', :default => t("helpers.submit.confirm")),  class: 'btn btn-small btn-primary'
