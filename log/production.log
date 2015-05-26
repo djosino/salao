@@ -13845,3 +13845,223 @@ ActionController::RoutingError (No route matches [GET] "/myadmin/scripts/setup.p
   passenger (4.0.26) lib/phusion_passenger/request_handler.rb:441:in `block (3 levels) in start_threads'
 
 
+I, [2015-05-26T12:15:49.391526 #8834]  INFO -- : Started GET "/xpxp/xpx/xp.php" for 219.232.247.108 at 2015-05-26 12:15:49 -0400
+F, [2015-05-26T12:15:49.444574 #8834] FATAL -- : 
+ActionController::RoutingError (No route matches [GET] "/xpxp/xpx/xp.php"):
+  actionpack (4.1.6) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.6) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.6) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.6) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.6) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.6) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.6) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.3) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.3) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.6) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.3) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.6) lib/rails/engine.rb:514:in `call'
+  railties (4.1.6) lib/rails/application.rb:144:in `call'
+  passenger (4.0.26) lib/phusion_passenger/rack/thread_handler_extension.rb:77:in `process_request'
+  passenger (4.0.26) lib/phusion_passenger/request_handler/thread_handler.rb:140:in `accept_and_process_next_request'
+  passenger (4.0.26) lib/phusion_passenger/request_handler/thread_handler.rb:108:in `main_loop'
+  passenger (4.0.26) lib/phusion_passenger/request_handler.rb:441:in `block (3 levels) in start_threads'
+
+
+I, [2015-05-26T12:15:50.031776 #8834]  INFO -- : Started GET "/phpMyAdmin/scripts/setup.php" for 219.232.247.108 at 2015-05-26 12:15:50 -0400
+F, [2015-05-26T12:15:50.034074 #8834] FATAL -- : 
+ActionController::RoutingError (No route matches [GET] "/phpMyAdmin/scripts/setup.php"):
+  actionpack (4.1.6) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.6) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.6) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.6) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.6) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.6) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.6) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.3) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.3) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.6) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.3) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.6) lib/rails/engine.rb:514:in `call'
+  railties (4.1.6) lib/rails/application.rb:144:in `call'
+  passenger (4.0.26) lib/phusion_passenger/rack/thread_handler_extension.rb:77:in `process_request'
+  passenger (4.0.26) lib/phusion_passenger/request_handler/thread_handler.rb:140:in `accept_and_process_next_request'
+  passenger (4.0.26) lib/phusion_passenger/request_handler/thread_handler.rb:108:in `main_loop'
+  passenger (4.0.26) lib/phusion_passenger/request_handler.rb:441:in `block (3 levels) in start_threads'
+
+
+I, [2015-05-26T12:15:50.617755 #8834]  INFO -- : Started GET "/pma/scripts/setup.php" for 219.232.247.108 at 2015-05-26 12:15:50 -0400
+F, [2015-05-26T12:15:50.619874 #8834] FATAL -- : 
+ActionController::RoutingError (No route matches [GET] "/pma/scripts/setup.php"):
+  actionpack (4.1.6) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.6) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.6) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.6) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.6) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.6) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.6) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.3) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.3) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.6) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.3) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.6) lib/rails/engine.rb:514:in `call'
+  railties (4.1.6) lib/rails/application.rb:144:in `call'
+  passenger (4.0.26) lib/phusion_passenger/rack/thread_handler_extension.rb:77:in `process_request'
+  passenger (4.0.26) lib/phusion_passenger/request_handler/thread_handler.rb:140:in `accept_and_process_next_request'
+  passenger (4.0.26) lib/phusion_passenger/request_handler/thread_handler.rb:108:in `main_loop'
+  passenger (4.0.26) lib/phusion_passenger/request_handler.rb:441:in `block (3 levels) in start_threads'
+
+
+I, [2015-05-26T12:15:51.185998 #8834]  INFO -- : Started GET "/myadmin/scripts/setup.php" for 219.232.247.108 at 2015-05-26 12:15:51 -0400
+F, [2015-05-26T12:15:51.188070 #8834] FATAL -- : 
+ActionController::RoutingError (No route matches [GET] "/myadmin/scripts/setup.php"):
+  actionpack (4.1.6) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.6) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.6) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.6) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.6) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.6) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.6) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.3) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.3) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.6) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.3) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.6) lib/rails/engine.rb:514:in `call'
+  railties (4.1.6) lib/rails/application.rb:144:in `call'
+  passenger (4.0.26) lib/phusion_passenger/rack/thread_handler_extension.rb:77:in `process_request'
+  passenger (4.0.26) lib/phusion_passenger/request_handler/thread_handler.rb:140:in `accept_and_process_next_request'
+  passenger (4.0.26) lib/phusion_passenger/request_handler/thread_handler.rb:108:in `main_loop'
+  passenger (4.0.26) lib/phusion_passenger/request_handler.rb:441:in `block (3 levels) in start_threads'
+
+
+I, [2015-05-26T13:11:28.649737 #8834]  INFO -- : Started GET "/phpMyAdmin/scripts/setup.php" for 178.20.231.208 at 2015-05-26 13:11:28 -0400
+F, [2015-05-26T13:11:28.651572 #8834] FATAL -- : 
+ActionController::RoutingError (No route matches [GET] "/phpMyAdmin/scripts/setup.php"):
+  actionpack (4.1.6) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.6) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.6) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.6) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.6) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.6) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.6) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.3) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.3) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.6) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.3) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.6) lib/rails/engine.rb:514:in `call'
+  railties (4.1.6) lib/rails/application.rb:144:in `call'
+  passenger (4.0.26) lib/phusion_passenger/rack/thread_handler_extension.rb:77:in `process_request'
+  passenger (4.0.26) lib/phusion_passenger/request_handler/thread_handler.rb:140:in `accept_and_process_next_request'
+  passenger (4.0.26) lib/phusion_passenger/request_handler/thread_handler.rb:108:in `main_loop'
+  passenger (4.0.26) lib/phusion_passenger/request_handler.rb:441:in `block (3 levels) in start_threads'
+
+
+I, [2015-05-26T13:11:29.116613 #8834]  INFO -- : Started GET "/pma/scripts/setup.php" for 178.20.231.208 at 2015-05-26 13:11:29 -0400
+F, [2015-05-26T13:11:29.118470 #8834] FATAL -- : 
+ActionController::RoutingError (No route matches [GET] "/pma/scripts/setup.php"):
+  actionpack (4.1.6) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.6) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.6) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.6) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.6) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.6) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.6) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.3) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.3) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.6) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.3) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.6) lib/rails/engine.rb:514:in `call'
+  railties (4.1.6) lib/rails/application.rb:144:in `call'
+  passenger (4.0.26) lib/phusion_passenger/rack/thread_handler_extension.rb:77:in `process_request'
+  passenger (4.0.26) lib/phusion_passenger/request_handler/thread_handler.rb:140:in `accept_and_process_next_request'
+  passenger (4.0.26) lib/phusion_passenger/request_handler/thread_handler.rb:108:in `main_loop'
+  passenger (4.0.26) lib/phusion_passenger/request_handler.rb:441:in `block (3 levels) in start_threads'
+
+
+I, [2015-05-26T13:11:32.580688 #8834]  INFO -- : Started GET "/myadmin/scripts/setup.php" for 178.20.231.208 at 2015-05-26 13:11:32 -0400
+F, [2015-05-26T13:11:32.582475 #8834] FATAL -- : 
+ActionController::RoutingError (No route matches [GET] "/myadmin/scripts/setup.php"):
+  actionpack (4.1.6) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.6) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.6) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.6) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.6) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.6) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.6) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.3) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.3) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.6) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.3) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.6) lib/rails/engine.rb:514:in `call'
+  railties (4.1.6) lib/rails/application.rb:144:in `call'
+  passenger (4.0.26) lib/phusion_passenger/rack/thread_handler_extension.rb:77:in `process_request'
+  passenger (4.0.26) lib/phusion_passenger/request_handler/thread_handler.rb:140:in `accept_and_process_next_request'
+  passenger (4.0.26) lib/phusion_passenger/request_handler/thread_handler.rb:108:in `main_loop'
+  passenger (4.0.26) lib/phusion_passenger/request_handler.rb:441:in `block (3 levels) in start_threads'
+
+
+I, [2015-05-26T13:16:29.796711 #8834]  INFO -- : Started GET "/" for 61.120.154.80 at 2015-05-26 13:16:29 -0400
+I, [2015-05-26T13:16:29.815870 #8834]  INFO -- : Processing by Devise::SessionsController#new as HTML
+I, [2015-05-26T13:16:29.937535 #8834]  INFO -- :   Rendered devise/sessions/new.html.haml within layouts/login (35.0ms)
+I, [2015-05-26T13:16:29.949034 #8834]  INFO -- : Completed 200 OK in 133ms (Views: 48.4ms | ActiveRecord: 6.0ms)
+I, [2015-05-26T13:38:26.604763 #8834]  INFO -- : Started GET "/" for 187.114.100.42 at 2015-05-26 13:38:26 -0400
+I, [2015-05-26T13:38:26.617797 #8834]  INFO -- : Processing by UsuariosController#index as HTML
+I, [2015-05-26T13:38:26.793205 #8834]  INFO -- :   Rendered inline template (0.4ms)
+I, [2015-05-26T13:38:26.798622 #8834]  INFO -- :   Rendered usuarios/index.html.haml within layouts/application (172.5ms)
+I, [2015-05-26T13:38:26.815371 #8834]  INFO -- :   Rendered menus/_menu_principal.html.haml (10.1ms)
+I, [2015-05-26T13:38:26.816486 #8834]  INFO -- : Completed 200 OK in 199ms (Views: 192.1ms | ActiveRecord: 0.8ms)
+I, [2015-05-26T13:47:06.637758 #8834]  INFO -- : Started GET "/ordem_servicos" for 187.114.100.42 at 2015-05-26 13:47:06 -0400
+I, [2015-05-26T13:47:06.640637 #8834]  INFO -- : Processing by OrdemServicosController#index as HTML
+I, [2015-05-26T13:47:06.657804 #8834]  INFO -- :   Rendered inline template (0.3ms)
+I, [2015-05-26T13:47:06.845411 #8834]  INFO -- :   Rendered ordem_servicos/index.html.haml within layouts/application (194.8ms)
+I, [2015-05-26T13:47:06.850601 #8834]  INFO -- :   Rendered menus/_menu_principal.html.haml (4.0ms)
+I, [2015-05-26T13:47:06.851323 #8834]  INFO -- : Completed 200 OK in 211ms (Views: 192.2ms | ActiveRecord: 11.3ms)
+I, [2015-05-26T13:47:08.690654 #8834]  INFO -- : Started GET "/ordem_servicos/2" for 187.114.100.42 at 2015-05-26 13:47:08 -0400
+I, [2015-05-26T13:47:08.692557 #8834]  INFO -- : Processing by OrdemServicosController#show as HTML
+I, [2015-05-26T13:47:08.692643 #8834]  INFO -- :   Parameters: {"id"=>"2"}
+I, [2015-05-26T13:47:08.711116 #8834]  INFO -- :   Rendered inline template (0.3ms)
+I, [2015-05-26T13:47:08.727249 #8834]  INFO -- :   Rendered ordem_servicos/show.html.haml within layouts/application (26.1ms)
+I, [2015-05-26T13:47:08.732917 #8834]  INFO -- :   Rendered menus/_menu_principal.html.haml (4.4ms)
+I, [2015-05-26T13:47:08.733668 #8834]  INFO -- : Completed 200 OK in 41ms (Views: 31.5ms | ActiveRecord: 2.9ms)
+I, [2015-05-26T13:47:20.480057 #8834]  INFO -- : Started GET "/dynamic_select/2/servicos" for 187.114.100.42 at 2015-05-26 13:47:20 -0400
+I, [2015-05-26T13:47:20.482961 #8834]  INFO -- : Processing by DynamicSelect::ServicosController#index as JSON
+I, [2015-05-26T13:47:20.483041 #8834]  INFO -- :   Parameters: {"servico_id"=>"2"}
+I, [2015-05-26T13:47:20.493225 #8834]  INFO -- : Completed 200 OK in 10ms (Views: 0.3ms | ActiveRecord: 1.1ms)
+I, [2015-05-26T13:52:33.865550 #12951]  INFO -- : Started GET "/ordem_servicos/2" for 187.114.100.42 at 2015-05-26 13:52:33 -0400
+I, [2015-05-26T13:52:33.920485 #12951]  INFO -- : Processing by OrdemServicosController#show as HTML
+I, [2015-05-26T13:52:33.920674 #12951]  INFO -- :   Parameters: {"id"=>"2"}
+I, [2015-05-26T13:52:34.267942 #12951]  INFO -- :   Rendered inline template (0.5ms)
+I, [2015-05-26T13:52:34.345294 #12951]  INFO -- :   Rendered ordem_servicos/show.html.haml within layouts/application (278.7ms)
+I, [2015-05-26T13:52:34.364028 #12951]  INFO -- :   Rendered menus/_menu_principal.html.haml (10.5ms)
+I, [2015-05-26T13:52:34.365463 #12951]  INFO -- : Completed 200 OK in 445ms (Views: 293.5ms | ActiveRecord: 18.3ms)
+I, [2015-05-26T13:52:46.916264 #12951]  INFO -- : Started GET "/dynamic_select/1/servicos" for 187.114.100.42 at 2015-05-26 13:52:46 -0400
+I, [2015-05-26T13:52:46.919564 #12951]  INFO -- : Processing by DynamicSelect::ServicosController#index as JSON
+I, [2015-05-26T13:52:46.919655 #12951]  INFO -- :   Parameters: {"servico_id"=>"1"}
+I, [2015-05-26T13:52:46.930468 #12951]  INFO -- : Completed 200 OK in 11ms (Views: 0.4ms | ActiveRecord: 1.1ms)
+I, [2015-05-26T13:55:19.918848 #12951]  INFO -- : Started GET "/conta_correntes/new" for 187.114.100.42 at 2015-05-26 13:55:19 -0400
+I, [2015-05-26T13:55:19.921852 #12951]  INFO -- : Processing by ContaCorrentesController#new as HTML
+I, [2015-05-26T13:55:19.937614 #12951]  INFO -- :   Rendered inline template (0.3ms)
+I, [2015-05-26T13:55:20.048418 #12951]  INFO -- :   Rendered conta_correntes/_form.html.haml (109.9ms)
+I, [2015-05-26T13:55:20.048612 #12951]  INFO -- :   Rendered conta_correntes/new.html.haml within layouts/application (114.2ms)
+I, [2015-05-26T13:55:20.053834 #12951]  INFO -- :   Rendered menus/_menu_principal.html.haml (4.2ms)
+I, [2015-05-26T13:55:20.054555 #12951]  INFO -- : Completed 200 OK in 133ms (Views: 119.7ms | ActiveRecord: 5.1ms)

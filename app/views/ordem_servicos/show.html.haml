@@ -48,7 +48,7 @@
           .control-group.span6
             = label_tag :servico, 'Serviço', class: 'control-label'
             .controls
-              = select_tag :servico_id, options_for_select(servicos, params[:servico_id]), {data: { dynamic_selectable_url: dynamic_select_servicos_path(':servico_id'), dynamic_selectable_target: '#valor'}, include_blank: true, class: 'span12' }
+              = select_tag :servico_id, options_for_select(servicos_grupos, params[:servico_id]), {data: { dynamic_selectable_url: dynamic_select_servicos_path(':servico_id'), dynamic_selectable_target: '#valor'}, include_blank: true, class: 'span12' }
           .control-group.span6
             = label_tag :valor, 'Valor do Serviço', class: 'control-label'
             .controls
