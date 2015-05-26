@@ -35,9 +35,9 @@ class ApplicationController < ActionController::Base
     #   Protected
     # Override method in devise user (forms -> create, edit_account)
     def configure_permitted_parameters
-      devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:nome, :name, :email, :password, :password_confirmation, :percentual, :telefone2, :telefone, :roles => []) }
+      devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:nome, :name, :email, :password, :password_confirmation, :percentual, :sexo, :profissao, :cep , :endereco, :numero, :complemento, :bairro, :cidade, :estado, :fone, :fone2, :nascimento, :roles => []) }
       if action_name == 'update_account'
-        devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:nome, :email, :name, :percentual, :telefone2, :telefone, :roles => []) } 
+        devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:nome, :email, :name, :percentual, :sexo, :profissao, :cep , :endereco, :numero, :complemento, :bairro, :cidade, :estado, :fone, :fone2, :nascimento, :roles => []) } 
       end
     end
 

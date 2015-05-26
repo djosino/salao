@@ -1,0 +1,63 @@
+- model_class = ContaCorrente
+.box.span6
+  .header
+    %img{:height => "16", :src => img_header, :width => "16"}
+    %p=t '.header', :default => model_class.model_name.human.pluralize.titleize
+  = form_for @conta_corrente, :html => { class: 'form-group' } do |f|
+    .content-form
+      .container-fluid
+        .control-group.span6
+          = label_tag :selecione, nil, class: 'control-label'
+          .controls
+            = select_tag :selecione, options_for_select([["Cliente", 'cliente'], ["Funcionário", 'funcionario']], @conta_corrente.classe_type.try(:downcase)),include_blank: true, class: 'span12'
+
+      .container-fluid
+        .control-group.span6
+          = f.label :tipo_lancamento_id, class: 'control-label'
+          .controls
+            = f.select :tipo_lancamento_id, options_for_select(TipoLancamento.order(:id).pluck(:descricao, :id), @conta_corrente.tipo_lancamento_id), {}, class: 'span12'
+
+        .control-group.span6#cliente
+          - cliente    = (@conta_corrente.classe_type == 'Cliente' ? @conta_corrente.classe_id : 0)
+          - funcioario = (@conta_corrente.classe_type == 'Usuario' ? @conta_corrente.classe_id : 0)
+          = f.label :cliente_id, class: 'control-label'
+          .controls
+            = f.select :cliente_id, options_for_select(clientes, cliente), {include_blank: true}, class: 'span12'
+        .control-group.span6#funcionario
+          = f.label :funcionario_id, class: 'control-label'
+          .controls
+            = f.select :funcionario_id, options_for_select(funcionarios), {include_blank: true}, class: 'span12'
+      .container-fluid
+        .control-group.span6
+          = f.label :valor, class: 'control-label'
+          .controls
+            = f.text_field :valor, value: @conta_corrente.valor.real, class: 'span12', required: true 
+        .control-group.span6
+          = f.label :observacao, class: 'control-label'
+          .controls
+            = f.text_field :observacao, class: 'span12', required: true
+      .form-actions
+        .right
+          = f.submit t('.confirm', :default => t("helpers.submit.confirm")),  class: 'btn btn-small btn-primary'
+
+:javascript
+  jQuery("#cliente").hide();
+  jQuery("#funcionario").hide();
+
+  if (jQuery("#selecione").val() == 'cliente') {
+    jQuery("#cliente").show();
+    jQuery("#funcionario").hide();
+  } else if (jQuery("#selecione").val() == 'funcionario') {
+    jQuery("#funcionario").show();
+    jQuery("#cliente").hide();
+  }
+
+  jQuery("#selecione").bind('change', function(){
+    if (jQuery("#selecione").val() == 'cliente') {
+      jQuery("#cliente").show();
+      jQuery("#funcionario").hide();
+    } else if (jQuery("#selecione").val() == 'funcionario') {
+      jQuery("#funcionario").show();
+      jQuery("#cliente").hide();
+    }
+  });

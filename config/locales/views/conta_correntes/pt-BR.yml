@@ -1,0 +1,16 @@
+pt-BR:
+  conta_correntes:    
+    form:
+      title: Dados da Contas Correntes
+    edit:
+      title: Editar Lançamento
+    index:
+      title: Listagem de %{model}
+      header_search: Consulta
+    new:
+      title: Cadastrar Lançamento
+    show:
+      title: Visualizar %{model}
+      header: Dados da Conta Corrente
+    listagem: 
+      title: Contas Correntes

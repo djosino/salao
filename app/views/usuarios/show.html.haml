@@ -1,0 +1,83 @@
+- model_class = Usuario
+.row-fluid
+  %h2.botton-border=t '.title', :default => [:'helpers.titles.new', 'Visualizar %{model}'], :model => model_class.model_name.human.titleize
+  = flash_message
+
+.row-fluid
+  .box.span12
+    .header
+      %img{:height => "16", :src => img_header, :width => "16"}
+      %p=t '.header_usuario', :default => model_class.model_name.human.pluralize.titleize
+    .content-form
+      = form_for @usuario, :html => { class: 'form-group' } do |f|
+        .container-fluid
+          .control-group.span3
+            = f.label :login, class: 'control-label upcase'
+            .controls
+              = f.text_field :login, class: 'span12', readonly: true
+          .control-group.span3
+            = f.label :name, class: 'control-label'
+            .controls
+              = f.text_field :name, class: 'span12', readonly: true
+          .control-group.span3
+            = f.label :email, class: 'control-label'
+            .controls
+              = f.text_field :email, class: 'span12', readonly: true
+          .control-group.span3
+            = f.label :valor_fixo, class: 'control-label upcase'
+            .controls
+              = f.text_field :valor_fixo, class: 'span12', readonly: true
+        .container-fluid
+          .control-group.span3
+            = f.label :percentual, class: 'control-label'
+            .controls
+              = f.text_field :percentual, class: 'span12', readonly: true
+          .control-group.span3
+            = f.label :sexo, class: 'control-label'
+            .controls
+              = f.text_field :sexo, class: 'span12', readonly: true
+          .control-group.span3
+            = f.label :profissao, class: 'control-label upcase'
+            .controls
+              = f.text_field :profissao, class: 'span12', readonly: true
+          .control-group.span3
+            = f.label :cep, class: 'control-label'
+            .controls
+              = f.text_field :cep, class: 'span12', readonly: true
+        .container-fluid
+          .control-group.span3
+            = f.label :endereco, class: 'control-label'
+            .controls
+              = f.text_field :endereco, class: 'span12', readonly: true
+          .control-group.span3
+            = f.label :endereco, class: 'control-label upcase'
+            .controls
+              = f.text_field :endereco, class: 'span12', readonly: true
+          .control-group.span3
+            = f.label :complemento, class: 'control-label'
+            .controls
+              = f.text_field :complemento, class: 'span12', readonly: true
+          .control-group.span3
+            = f.label :bairro, class: 'control-label'
+            .controls
+              = f.text_field :bairro, class: 'span12', readonly: true
+        .container-fluid
+          .control-group.span3
+            = f.label :cidade, class: 'control-label'
+            .controls
+              = f.text_field :cidade, class: 'span12', readonly: true
+          .control-group.span3
+            = f.label :estado, class: 'control-label upcase'
+            .controls
+              = f.text_field :estado, class: 'span12', readonly: true
+          .control-group.span3
+            = f.label :fone, class: 'control-label'
+            .controls
+              = f.text_field :fone, class: 'span12', readonly: true
+          .control-group.span3
+            = f.label :fone2, class: 'control-label'
+            .controls
+              = f.text_field :fone2, class: 'span12', readonly: true
+      .form-actions
+        .left
+          = link_to t('.back', :default => t("helpers.links.back")), usuarios_path, class: 'btn btn-small'

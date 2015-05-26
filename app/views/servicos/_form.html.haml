@@ -7,14 +7,18 @@
     .content-form
       .container-fluid
         .control-group.span6
+          = f.label :tipo_servico_id, class: 'control-label'
+          .controls
+            = f.select :tipo_servico_id, options_for_select(tipo_servicos, @servico.tipo_servico_id), {include_blank: true}, class: 'span12', required: true
+        .control-group.span6
           = f.label :descricao, class: 'control-label'
           .controls
             = f.text_field :descricao, class: 'span12', required: true
+      .container-fluid
         .control-group.span6
           = f.label :valor, class: 'control-label'
           .controls
             = f.text_field :valor, class: 'span12', required: true
-      .container-fluid
         .control-group.span6
           = f.label :percentual, class: 'control-label'
           .controls

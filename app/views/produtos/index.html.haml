@@ -32,4 +32,8 @@
                 = page_navigation_links @produtos if will_paginate @produtos
               .left{style: (will_paginate(@produtos) ? 'margin-top: -30px' : '')}
                 = link_to t('.back', :default => t("helpers.links.back")), ferramentas_usuarios_path, class: 'btn btn-small'
+              - if can? :new, Produto
+                .right
+                  = link_to t('.new', :default => t("helpers.links.new")), new_produto_path, class: 'btn btn-small'
+
 

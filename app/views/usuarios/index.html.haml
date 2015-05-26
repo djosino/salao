@@ -1,3 +1,44 @@
-.container-fluid
-  .row-fluid
-    Ferramentas
+- model_class = Usuario
+.row-fluid
+  .span12
+    %h2.botton-border=t '.title', :default => model_class.model_name.human.pluralize.titleize, model: model_class.model_name.human.pluralize.titleize
+    = flash_message
+
+.row-fluid
+  .box
+    .header
+      %img{:height => "16", :src => img_header, :width => "16"}
+      %p=t '.header_list', :default => model_class.model_name.human.pluralize.titleize
+    .content
+      %table.table.table-striped.table-bordered
+        %thead
+          %tr
+            %th= model_class.human_attribute_name(:id)         
+            %th= model_class.human_attribute_name(:nome)   
+            %th= model_class.human_attribute_name(:login)     
+            %th{colspan: 4}=t '.actions', :default => t("helpers.actions")
+        %tbody
+          - @usuarios.each do |usuario|
+            %tr
+              %td= usuario.id
+              %td= usuario.nome
+              %td= usuario.login
+              %td
+                - if can? :show, usuario
+                  = link_to t('.show', :default => t("helpers.links.show")), usuario, class: 'btn btn-mini'
+                - if can? :resetar_senha, usuario
+                  = link_to t('.reset_password', :default => t("helpers.links.reset_password")), resetar_senha_usuario_path(usuario), class: 'btn btn-mini'
+                - if can? :lock, usuario
+                  = link_to t('.block', :default => t("helpers.links.block")), lock_unlock_usuario_path(usuario), class: 'btn btn-mini btn-info', :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }
+                - if can? :unlock, usuario
+                  = link_to t('.unlock', :default => t("helpers.links.unlock")), lock_unlock_usuario_path(usuario), class: 'btn btn-mini btn-danger', :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }
+                - if can? :sign_in_with, :sessions
+                  = link_to t('.login_with', :default => t("helpers.links.login_with")), sign_in_with_usuarios_sessions_path(usuario), class: 'btn btn-mini btn-danger', :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }
+        %tfoot
+          %tr  
+            %td{colspan: 99, height: 29}
+              %center
+              /  = page_navigation_links @usuarios if will_paginate @usuarios
+              /.left{style: (will_paginate(@usuarios) ? 'margin-top: -30px' : '')}
+              /  = link_to t('.back', :default => t("helpers.links.back")), ferramentas_usuarios_path, class: 'btn btn-small'
+

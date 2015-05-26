@@ -1,0 +1,33 @@
+- model_class = Servico
+.row-fluid
+  .span12
+    %h2.botton-border=t '.title', :default => model_class.model_name.human.pluralize.titleize, model: model_class.model_name.human.pluralize.titleize
+    = flash_message
+
+.row-fluid
+  .box.span12
+    .header
+      %img{:height => "16", :src => img_header, :width => "16"}
+      %p=t '.header_list', :default => model_class.model_name.human.pluralize.titleize
+    .content
+      %table.table.table-striped.table-bordered
+        %thead
+          %tr
+            %th= model_class.human_attribute_name(:id)         
+            %th= model_class.human_attribute_name(:descricao)   
+            %th= model_class.human_attribute_name(:valor)     
+            %th= model_class.human_attribute_name(:percentual)   
+        %tbody
+          - servicos.each do |servico|
+            %tr
+              %td= servico.id
+              %td= servico.descricao
+              %td= servico.valor.try(:real)
+              %td= servico.percentual
+        /
+          %tfoot
+            %tr  
+              %td{colspan: 99, height: 29}
+                %center
+                .left
+                  = link_to t('.back', :default => t("helpers.links.back")), :back, class: 'btn btn-small'

@@ -22,7 +22,9 @@ class Usuario < ActiveRecord::Base
 
   ROLES = %w(atendente gerente administrador)
 
-  validates_presence_of :email, :nome, :percentual #, :entidade_id, :entidade_type
+  validates_presence_of :email, :name, :percentual #, :entidade_id, :entidade_type
+  
+  validates :login, presence: true, uniqueness: true 
 
   def lock_unlock!
     self.locked_at.nil? ? self.lock_access! : self.unlock_access!

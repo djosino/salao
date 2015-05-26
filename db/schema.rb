@@ -11,10 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150520164127) do
+ActiveRecord::Schema.define(version: 20150525190239) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "carteiras", force: true do |t|
+    t.integer  "cliente_id"
+    t.float    "valor"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "carteiras", ["cliente_id"], name: "index_carteiras_on_cliente_id", using: :btree
 
   create_table "clientes", force: true do |t|
     t.string   "nome"
@@ -30,6 +39,22 @@ ActiveRecord::Schema.define(version: 20150520164127) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "conta_correntes", force: true do |t|
+    t.integer  "cliente_id"
+    t.integer  "funcionario_id"
+    t.integer  "tipo_lancamento_id"
+    t.float    "valor"
+    t.string   "observacao"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "classe_id"
+    t.string   "classe_type"
+  end
+
+  add_index "conta_correntes", ["cliente_id"], name: "index_conta_correntes_on_cliente_id", using: :btree
+  add_index "conta_correntes", ["funcionario_id"], name: "index_conta_correntes_on_funcionario_id", using: :btree
+  add_index "conta_correntes", ["tipo_lancamento_id"], name: "index_conta_correntes_on_tipo_lancamento_id", using: :btree
 
   create_table "forma_de_pagamentos", force: true do |t|
     t.string   "descricao"
@@ -67,6 +92,20 @@ ActiveRecord::Schema.define(version: 20150520164127) do
     t.string   "descricao"
     t.float    "percentual"
     t.float    "valor"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "tipo_servico_id"
+  end
+
+  create_table "tipo_lancamentos", force: true do |t|
+    t.string   "descricao"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tipo_servicos", force: true do |t|
+    t.string   "descricao"
+    t.boolean  "ativo"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -124,6 +163,18 @@ ActiveRecord::Schema.define(version: 20150520164127) do
     t.text     "roles_string",                              default: ""
     t.float    "valor_fixo"
     t.float    "percentual"
+    t.string   "sexo"
+    t.string   "profissao"
+    t.integer  "cep"
+    t.string   "endereco"
+    t.integer  "numero"
+    t.string   "complemento"
+    t.string   "bairro"
+    t.string   "cidade"
+    t.string   "estado"
+    t.string   "fone"
+    t.string   "fone2"
+    t.date     "nascimento"
   end
 
   add_index "usuarios", ["cartorio_id"], name: "index_usuarios_on_cartorio_id", using: :btree

@@ -1,0 +1,42 @@
+- model_class = ContaCorrente
+.row-fluid
+  .span12
+    %h2.botton-border=t '.title', :default => model_class.model_name.human.pluralize.titleize, model: model_class.model_name.human.pluralize.titleize
+    = flash_message
+
+.row-fluid
+  .box.span12
+    .header
+      %img{:height => "16", :src => img_header, :width => "16"}
+      %p=t '.header_list', :default => model_class.model_name.human.pluralize.titleize
+    .content
+      %table.table.table-striped.table-bordered
+        %thead
+          %tr
+            %th= model_class.human_attribute_name(:id)    
+            %th= model_class.human_attribute_name(:created_at)     
+            %th= model_class.human_attribute_name(:tipo_lancamento)
+            %th= model_class.human_attribute_name(:observacao)     
+            %th= model_class.human_attribute_name(:valor)     
+            %th= model_class.human_attribute_name(:saldo)     
+            %th{colspan: 4}=t '.actions', :default => t("helpers.actions")
+        %tbody
+          - saldo = 0
+          - conta_correntes.each do |conta|
+            - saldo += (conta.valor * (conta.tipo_lancamento_id == 1 ? 1 : -1))
+            %tr
+              %td=  conta.id
+              %td=l conta.created_at, format: :short
+              %td=  conta.tipo_lancamento.descricao
+              %td=  conta.observacao
+              %td=  conta.valor.real_contabil
+              %td=  saldo.real_contabil
+              %td
+                - if can? :edit, ContaCorrente
+                  = link_to t('.edit', :default => t("helpers.links.edit")), edit_conta_corrente_path(conta), class: 'btn btn-mini'
+        %tfoot
+          %tr  
+            %td{colspan: 99, height: 29}
+              %center
+              .left
+                = link_to t('.back', :default => t("helpers.links.back")), conta_correntes.first.classe, class: 'btn btn-small'

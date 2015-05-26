@@ -1,0 +1,19 @@
+pt-BR:
+  activerecord:
+    models:
+      tipo_servico: 
+        one: Tipo de Serviço
+        other: Tipos de Serviços
+    attributes:
+      tipo_servico:
+        id: "#"
+        descricao: Descrição
+        ativo: Ativo
+        created_at: "Data de Cadastro"
+        updated_at: "Data de Atualização"
+    errors:
+      models:
+        tipo_servico:
+          attributes:
+          validate:
+

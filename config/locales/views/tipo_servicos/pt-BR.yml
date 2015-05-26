@@ -1,0 +1,14 @@
+pt-BR:
+  tipo_servicos:    
+    form:
+      title: Dados do Tipo de Serviço
+    edit:
+      title: Editar %{model}
+    index:
+      title: "Listagem dos Tipos de Serviços"
+      header_search: Consulta
+    new:
+      title: "Cadastrar %{model}"
+    show:
+      title: "Visualizar Tipo de Serviço"
+      header: Dados do Tipo de Serviço

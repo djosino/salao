@@ -1,0 +1,39 @@
+- model_class = TipoServico
+.row-fluid
+  .span12
+    %h2.botton-border=t '.title', :default => model_class.model_name.human.pluralize.titleize, model: model_class.model_name.human.pluralize
+    = flash_message
+
+.row-fluid
+  .box
+    .header
+      %img{:height => "16", :src => img_header, :width => "16"}
+      %p=t '.header_list', :default => model_class.model_name.human.pluralize.titleize
+    .content
+      %table.table.table-striped.table-bordered
+        %thead
+          %tr
+            %th= model_class.human_attribute_name(:id)         
+            %th= model_class.human_attribute_name(:descricao)   
+            %th= model_class.human_attribute_name(:ativo)     
+            %th{colspan: 4}=t '.actions', :default => t("helpers.actions")
+        %tbody
+          - @tipo_servicos.each do |tipo_servico|
+            %tr
+              %td= tipo_servico.id
+              %td= tipo_servico.descricao
+              %td= image_checkbox(tipo_servico.ativo ? true : nil)
+              %td
+                = link_to t('.show', :default => t("helpers.links.show")), tipo_servico, class: 'btn btn-mini'
+                = link_to t('.edit', :default => t("helpers.links.edit")), edit_tipo_servico_path(tipo_servico), class: 'btn btn-mini'
+        %tfoot
+          %tr  
+            %td{colspan: 99, height: 29}
+              %center
+                = page_navigation_links @tipo_servicos if will_paginate @tipo_servicos
+              .left{style: (will_paginate(@tipo_servicos) ? 'margin-top: -30px' : '')}
+                = link_to t('.back', :default => t("helpers.links.back")), ferramentas_usuarios_path, class: 'btn btn-small'
+              - if can? :new, TipoServico
+                .right
+                  = link_to t('.new', :default => t("helpers.links.new")), new_tipo_servico_path, class: 'btn btn-small'
+

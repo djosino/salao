@@ -1,10 +1,10 @@
 class UsuariosController < ApplicationController
-  before_action :set_usuario, only: [:lock_unlock, :resetar_senha]
+  before_action :set_usuario, only: [:lock_unlock, :resetar_senha, :show]
   before_action :authenticate_usuario!, except: :atualizar_hora
 
   def index
     #relatorio_por_permissao
-    #@usuarios = Usuario.order(:email)
+    @usuarios = Usuario.order(:id)
   end
 
   # Bloqueia ou Desbloqueia Usuario
@@ -24,6 +24,9 @@ class UsuariosController < ApplicationController
   def ferramentas
   end
 
+  def show
+  end
+ 
   def selecionar 
     if current_usuario.mondrian?
        @clientes = Cliente.all.collect{|c| [c.nome, c.id]}
@@ -153,7 +156,7 @@ class UsuariosController < ApplicationController
     end
 
     def usuario_params
-      params.require(:usuario).permit(:email, :celular, :telefone, :nome, :custo_mensal, :roles => [])
+      params.require(:usuario).permit(:email, :celular, :telefone, :nome, :custo_mensal, :sexo, :profissao, :cep , :endereco, :numero, :complemento, :bairro, :cidade, :estado, :fone, :fone2, :nascimento, :roles => [])
     end
 
     def relatorio_por_permissao

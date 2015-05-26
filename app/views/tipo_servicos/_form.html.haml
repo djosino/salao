@@ -1,0 +1,21 @@
+- model_class = TipoServico
+.box
+  .header
+    %img{:height => "16", :src => img_header, :width => "16"}
+    %p=t '.header', :default => model_class.model_name.human.pluralize.titleize
+  = form_for @tipo_servico, :html => { class: 'form-group' } do |f|
+    .content-form
+      .container-fluid
+        .control-group.span6
+          = f.label :descricao, class: 'control-label'
+          .controls
+            = f.text_field :descricao, class: 'span12', required: true
+        .control-group.span6
+          = f.label :ativo, class: 'control-label'
+          .controls
+            = f.check_box :ativo, class: 'span12 checkbox'
+      .form-actions
+        .right
+          = f.submit t('.confirm', :default => t("helpers.submit.confirm")),  class: 'btn btn-small btn-primary'
+        .left
+          = link_to t('.back', :default => t("helpers.links.back")), tipo_servicos_path, class: 'btn btn-small'

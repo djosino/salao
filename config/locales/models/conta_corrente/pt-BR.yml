@@ -1,0 +1,24 @@
+spt-BR:
+  activerecord:
+    models:
+      conta_corrente: 
+        one: Conta Corrente
+        other: Contas Correntes
+    attributes:
+      conta_corrente:
+        id: "#"
+        valor: Valor
+        funcionario: Funcionário
+        funcionario_id: Funcionário
+        cliente_id: Cliente
+        cliente: Cliente
+        tipo_lancamento: Tipo de Lançamento
+        observacao: Observação
+        created_at: "Data de Cadastro"
+        updated_at: "Data de Atualização"
+    errors:
+      models:
+        conta_corrente:
+          attributes:
+          validate:
+

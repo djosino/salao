@@ -10,6 +10,7 @@ pt-BR:
         descricao: Descrição
         valor: Valor
         percentual: Percentual
+        tipo_servico_id: Tipo de Serviço
         created_at: "Data de Cadastro"
         updated_at: "Data de Atualização"
     errors:
