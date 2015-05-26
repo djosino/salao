@@ -14,7 +14,7 @@ class Ability
     end
     
     # TODO
-    can :index,       Usuario
+    can :index,         Usuario
     can [:ferramentas], Usuario
     can [:edit, :update], :registrations
   end
@@ -28,7 +28,7 @@ class Ability
     can :admin, ContaCorrente
     can :admin, TipoServico
 
-    can [:adicionar_servico, :cancelar, :destroy], OrdemServico
+    can [:adicionar_servico, :cancelar, :destroy], OrdemServico, status: 1
 
     can [:finalizar, :cancelar], OrdemServico, status: 1
     can [:new, :create], :registrations
