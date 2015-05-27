@@ -2,7 +2,10 @@ class OrdemServico < ActiveRecord::Base
   self.per_page = 30
   belongs_to :cliente
   belongs_to :usuario
+
+  has_many :pagamentos, class_name: 'ContaCorrente'
   has_many :ordem_servicos_servicos, class_name: 'OSS'
+  
   has_and_belongs_to_many :servicos
 
   validates_presence_of :cliente
@@ -14,6 +17,7 @@ class OrdemServico < ActiveRecord::Base
       when 1 then 'Aberta'
       when 2 then 'Fechada'
       when 3 then 'Cancelada'
+      when 4 then 'Finalizada (Paga)'
       else
         'Indefinida'
     end
@@ -34,9 +38,12 @@ class OrdemServico < ActiveRecord::Base
     self.save
   end
 
-  private
-  def set_status
-    self.status = 1
+  def pendente_de_pagamento?
+    (self.valor - self.pagamentos.pluck(:valor).sum) > 0
   end
 
+  private
+    def set_status
+      self.status = 1
+    end
 end

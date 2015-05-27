@@ -2,7 +2,7 @@
 .row-fluid
   .span12
     %h2.botton-border=t '.title', :default => model_class.model_name.human.pluralize.titleize, status: @ordem_servico.descricao_status
-    = flash_message
+    = flash_message(@ordem_servico)
 
 .row-fluid
   .box.span12
@@ -14,18 +14,21 @@
         %thead
           %tr
             %th= model_class.human_attribute_name(:id)         
-            %th= model_class.human_attribute_name(:created_at)
-            %th{colspan: 2}= model_class.human_attribute_name(:cliente)         
-            %th= model_class.human_attribute_name(:valor)
             %th= model_class.human_attribute_name(:usuario)
+            %th= model_class.human_attribute_name(:created_at)
+            %th= model_class.human_attribute_name(:cliente)         
+            %th= model_class.human_attribute_name(:carteira)
+            %th= model_class.human_attribute_name(:valor_oss)
         %tbody
           %tr
             %td= @ordem_servico.id.to_s.rjust(6,'0')
-            %td=l @ordem_servico.created_at, format: :short
-            %td= cpf_cnpj_formatado(@ordem_servico.cliente.try(:cpf))
-            %td= @ordem_servico.cliente.try(:nome)
-            %td= @ordem_servico.servicos.pluck(:valor).sum.real_contabil
             %td= @ordem_servico.usuario.try(:nome)
+            %td=l @ordem_servico.created_at, format: :short
+            %td
+              = cpf_cnpj_formatado(@ordem_servico.cliente.try(:cpf))
+              = ' - ' + @ordem_servico.cliente.try(:nome)
+            %td= @ordem_servico.cliente.carteira.valor.real_contabil
+            %td= @ordem_servico.servicos.pluck(:valor).sum.real_contabil
         %tfoot
           %tr  
             %td{colspan: 99}
@@ -36,6 +39,8 @@
               .right
                 - if can? :finalizar, @ordem_servico
                   = link_to t('.finalizar', :default => t("helpers.links.finalizar")), finalizar_ordem_servico_path(@ordem_servico), class: 'btn btn-small btn-primary'
+                - if can? :pagamento, @ordem_servico
+                  = link_to t('.pagamento', :default => t("helpers.links.pagamento")), pagamento_ordem_servico_path(@ordem_servico), class: 'btn btn-small btn-primary'
 
 .row-fluid
   - if @ordem_servico.status == 1
@@ -43,7 +48,7 @@
       .header
         %img{:height => "16", :src => img_header, :width => "16"}
         %p=t '.header', :default => model_class.model_name.human.pluralize.titleize
-      = form_tag adicionar_servico_ordem_servico_path(@ordem_servico), :html => { class: 'form-group' } do 
+      = form_tag adicionar_servico_ordem_servico_path(@ordem_servico), class: 'form-group' do 
         .content-form
           .container-fluid
             .control-group.span6
@@ -51,9 +56,9 @@
               .controls
                 = select_tag :servico_id, options_for_select(servicos_grupos, params[:servico_id]), {data: { dynamic_selectable_url: dynamic_select_servicos_path(':servico_id'), dynamic_selectable_target: '#valor'}, include_blank: true, class: 'span12' }
             .control-group.span6
-              = label_tag :funcionario_id, 'Valor do Serviço', class: 'control-label'
+              = label_tag :funcionario_id, 'Funcionário', class: 'control-label'
               .controls
-                = select_tag :funcionario_id, options_for_select(funcionarios, params[:funcinarios]), class: 'span12', required: true
+                = select_tag :funcionario_id, options_for_select(funcionarios, params[:funcinarios]), {data: { dynamic_selectable_url: dynamic_select_usuarios_path(':funcionario_id'), dynamic_selectable_target: '#comissao'}, include_blank: true, class: 'span12' }
 
           .container-fluid
             .control-group.span6
@@ -61,7 +66,7 @@
               .controls
                 = text_field_tag :valor, nil, class: 'span12', required: true
             .control-group.span6
-              = label_tag :comissao, 'Comissão', class: 'control-label'
+              = label_tag :comissao, 'Comissão (%)', class: 'control-label'
               .controls
                 = text_field_tag :comissao, nil, class: 'span12'
 
@@ -84,7 +89,9 @@
               %th= model_class.human_attribute_name(:descricao)         
               %th= model_class.human_attribute_name(:valor)
               %th= model_class.human_attribute_name(:comissao)
-              %th{colspan: 4}=t '.actions', :default => t("helpers.actions")
+              %th= model_class.human_attribute_name(:funcionario)
+              - if @ordem_servico.status == 0
+                %th{colspan: 4}=t '.actions', :default => t("helpers.actions")
           %tbody
             - @ordem_servico.ordem_servicos_servicos.each do |oss|
               %tr
@@ -92,8 +99,10 @@
                 %td= oss.servico.descricao
                 %td= oss.valor.try(:real_contabil)
                 %td
-                  = oss.comissao > 0 ? oss.comissao.to_i : ''
+                  = oss.comissao.to_f > 0 ? oss.comissao.to_i : oss.funcionario.percentual.to_i 
                   & %
-                %td
-                  - if can? :destroy, @ordem_servico
-                    = link_to t('.destroy', :default => t("helpers.links.destroy")), servico_ordem_servico_path(oss.servico, @ordem_servico), method: :delete, class: 'btn btn-mini btn-danger',  :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }
+                %td= oss.funcionario.nome
+                - if @ordem_servico.status == 0
+                  %td
+                    - if can? :destroy, @ordem_servico
+                      = link_to t('.destroy', :default => t("helpers.links.destroy")), ordem_servico_path(oss.id), method: :delete, class: 'btn btn-mini btn-danger',  :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }

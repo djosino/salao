@@ -12,3 +12,7 @@ pt-BR:
     show:
       title: Visualizar Ordem de Serviço - %{status}
       header: Dados do Ordem de Serviço 
+    pagamento:
+      title: Lançar Pagamentos
+      carteira: Carteira
+      servicos: 'Listagem de Serviços'
