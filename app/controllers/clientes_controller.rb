@@ -4,7 +4,20 @@ class ClientesController < ApplicationController
   # GET /clientes
   # GET /clientes.json
   def index
-    @clientes = Cliente.all.paginate(page: params[:page])
+    if params[:type_search].present? and params[:find_by].present?
+      type_search  = params[:type_search]
+      string       = params[:find_by].strip
+      num          = params[:find_by].gsub(/[^0-9]/,'')
+      cond = case type_search
+        when '1' then { cpf:   num }
+        when '2' then "upper(nome) like '%#{string.upcase}%'"
+        else { id: 0 }
+      end
+      @clientes = Cliente.where(cond).paginate(page: params[:page])
+      flash[:error] = t(:not_found, name: "Cliente") if @clientes.blank?
+    else
+      @clientes = Cliente.all.paginate(page: params[:page])
+    end
   end
 
   # GET /clientes/1

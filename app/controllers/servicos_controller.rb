@@ -4,7 +4,18 @@ class ServicosController < ApplicationController
   # GET /servicos
   # GET /servicos.json
   def index
-    @servicos = Servico.all.paginate(page: params[:page])
+    if params[:type_search].present? and params[:find_by].present?
+      type_search  = params[:type_search]
+      num          = params[:find_by].gsub(/[^0-9]/,'').to_i
+      cond = case type_search
+        when '1' then { tipo_servico_id:   num }
+        else { id: 0 }
+      end
+      @servicos = Servico.where(cond).paginate(page: params[:page])
+      flash[:error] = t(:not_found, name: "Serviços") if @servicos.blank?
+    else
+      @servicos = Servico.all.paginate(page: params[:page])
+    end
   end
 
   # GET /servicos/1

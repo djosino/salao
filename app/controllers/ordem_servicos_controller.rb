@@ -4,7 +4,18 @@ class OrdemServicosController < ApplicationController
   # GET /ordem_servicos
   # GET /ordem_servicos.json
   def index
-    @ordem_servicos = OrdemServico.includes(:servicos, :cliente).paginate(page: params[:page])
+    if params[:type_search].present? and params[:find_by].present?
+      type_search  = params[:type_search]
+      num          = params[:find_by].gsub(/[^0-9]/,'').to_i
+      cond = case type_search
+        when '1' then { id: num }
+        else { id: 0 }
+      end
+      @ordem_servicos = OrdemServico.includes(:servicos, :cliente).where(cond).order(id: :desc).paginate(page: params[:page])
+      flash[:error] = t(:not_found, name: "Ordem de Serviços") if @ordem_servicos.blank?
+    else
+      @ordem_servicos = OrdemServico.includes(:servicos, :cliente).order(id: :desc).paginate(page: params[:page])
+    end
   end
 
   # GET /ordem_servicos/1
