@@ -14,4 +14,8 @@ module ServicosHelper
     end
     return ret
   end
+
+  def tipos_consulta_servico
+    [['Tipo de Serviço',  1]]
+  end
 end

@@ -3,6 +3,33 @@
   .span12
     %h2.botton-border=t '.title', :default => model_class.model_name.human.pluralize.titleize, model: model_class.model_name.human.pluralize.titleize
     = flash_message
+
+.row-fluid
+  .box.span6
+    .header
+      %img{:height => "16", :src => img_header, :width => "16"}
+      %p=t '.header_search', :default => model_class.model_name.human.pluralize.titleize
+    .content-form
+      = form_tag clientes_path, class: 'form-group no-margin', method: :get do
+        .container-fluid
+          .span4
+            .control-group
+              = label_tag :type_search, t('helpers.label.type_search'), class: 'control-label'
+              .controls
+                = select_tag :type_search, options_for_select(tipos_consulta_cliente, params[:type_search]), include_blanck: ' --- Selecione --- ', class: 'span12', required: true
+          .span8
+            .control-group
+              = label_tag :find_by, t('helpers.label.find_by'),  class: 'control-label'
+              .controls
+                = text_field_tag :find_by, params[:find_by], class: 'span12', required: true
+        .form-actions
+          .right  
+            = submit_tag t('.confirm', :default => t("helpers.submit.confirm")),  class: 'btn btn-primary btn-small'
+          .left
+            = link_to t('.back', :default => t("helpers.links.back")), ferramentas_usuarios_path, class: 'btn btn-small'
+          .left
+            = link_to t('.clear', :default => t("helpers.links.clear")), clientes_path, class: 'btn btn-info btn-small'
+
 .row-fluid
   .box
     .header
