@@ -10,13 +10,6 @@
           = label_tag :selecione, nil, class: 'control-label'
           .controls
             = select_tag :selecione, options_for_select([["Cliente", 'cliente'], ["Funcionário", 'funcionario']], @conta_corrente.classe_type.try(:downcase)),include_blank: true, class: 'span12'
-
-      .container-fluid
-        .control-group.span6
-          = f.label :tipo_lancamento_id, class: 'control-label'
-          .controls
-            = f.select :tipo_lancamento_id, options_for_select(TipoLancamento.order(:id).pluck(:descricao, :id), @conta_corrente.tipo_lancamento_id), {}, class: 'span12'
-
         .control-group.span6#cliente
           - cliente    = (@conta_corrente.classe_type == 'Cliente' ? @conta_corrente.classe_id : 0)
           - funcioario = (@conta_corrente.classe_type == 'Usuario' ? @conta_corrente.classe_id : 0)
@@ -27,6 +20,20 @@
           = f.label :funcionario_id, class: 'control-label'
           .controls
             = f.select :funcionario_id, options_for_select(funcionarios), {include_blank: true}, class: 'span12'
+
+      .container-fluid
+        .control-group.span6
+          = f.label :tipo_lancamento_id, class: 'control-label'
+          .controls
+            = f.select :tipo_lancamento_id, options_for_select(TipoLancamento.order(:id).pluck(:descricao, :id), @conta_corrente.tipo_lancamento_id), {}, class: 'span12'
+            
+            = f.select :uf, options_for_select(estados, @dute.uf), include_blank, data: { dynamic_selectable_url: dynamic_select_informar_dados_path(':uf'), dynamic_selectable_target: '#dute_codmunic'}, class: 'span12', required: true
+        .control-group.span6
+          = f.label :forma_de_pagamento_id, class: 'control-label'
+          .controls
+            = f.select :forma_de_pagamento_id, options_from_collection_for_select(@cidades || [], :cod, :nome, @dute.codmunic.try(:to_s)), include_blank, class: 'span12', required: true
+
+
       .container-fluid
         .control-group.span6
           = f.label :valor, class: 'control-label'

@@ -74,7 +74,7 @@ class Devise::RegistrationsController < DeviseController
     params[:usuario]         ||= {}
     params[:usuario][:roles] ||= []
     if @usuario.update(account_update_params)
-      redirect_to @usuario.entidade, notice: t(:updated, name: "Usuário")
+      redirect_to usuarios_path, notice: t(:updated, name: "Usuário")
     else
       render :edit_account
     end

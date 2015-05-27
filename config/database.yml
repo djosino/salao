@@ -9,3 +9,10 @@ test:
   database: salao2
   username: postgres
   password: postgres
+
+production:
+  adapter: postgresql
+  database: salao
+  username: salao
+  password: salao*&098
+

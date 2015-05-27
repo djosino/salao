@@ -1,7 +1,7 @@
 pt-BR:
   usuarios:
     list:  
-      new: Cadastrar Usuario
+      new: Cadastrar Funcionário
       reset_password: Resetar Senha
       change_master: Alterar Permissão (Master)
       lock: Bloquear
@@ -11,12 +11,12 @@ pt-BR:
     list_admin: 
       login_with: "Logar Como"
     consultar:
-      title: "Consulta de Usuários"
+      title: "Consulta de Funcionário"
       header_search: "Consultar por Login"
     listagem _admin:
-      header: "Listagem de Usuários"
+      header: "Listagem de Funcionários"
     listagem_cartorio:
-      new: Cadastrar Usuário
+      new: Cadastrar Funcionário
     index:
-      header_contatos: Retornos do Dia
-      header_indexadores: "Desempenho Última Semana & Mensal"
+      title: Listagem de Funcionários
+      header_list: Funcionários

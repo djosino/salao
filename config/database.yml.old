@@ -1,0 +1,18 @@
+development:
+  adapter: postgresql
+  database: salao
+  username: dute
+  password: dute
+
+test:
+  adapter: postgresql
+  database: salao
+  username: postgres
+  password: postgres
+
+production:
+  adapter: postgresql
+  database: salao
+  username: salao
+  password: salao*&098
+

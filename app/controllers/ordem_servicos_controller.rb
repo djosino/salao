@@ -65,11 +65,13 @@ class OrdemServicosController < ApplicationController
   def adicionar_servico
     if params[:servico_id].present?
       servico = Servico.find(params[:servico_id])
-      @ordem_servico.servicos << servico
-      redirect_to @ordem_servico, notice: t(:updated, name: "Ordem de Serviço")
-      return
+      valor   = params[:valor].gsub('.','').gsub(',','.').to_f
+      if OSS.create(ordem_servico_id: @ordem_servico.id, servico_id: servico.id, valor: valor, comissao: params[:comissao])
+        redirect_to @ordem_servico, notice: t(:updated, name: "Ordem de Serviço")
+        return
+      end
     end
-    redirect_to @ordem_servico
+    redirect_to @ordem_servico, flash: { error: "Não foi possível cadastrar serviço."}
   end
 
   def finalizar

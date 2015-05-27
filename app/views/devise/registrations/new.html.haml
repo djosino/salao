@@ -88,20 +88,6 @@
               = f.label :percentual, class: 'control-label'
               .controls
                 = f.text_field :percentual, class: 'span12'
-
-          .container-fluid
-            - if resource.entidade_type == 'Empresa'
-              .control-group.span6
-                = f.label :roles, class: 'control-label'
-                - permissoes(@usuario.entidade_type).each do |role|
-                  .controls
-                    .span1 &nbsp;
-                    .span7
-                      = label_tag role[0]
-                    .span4
-                      = check_box_tag 'usuario[roles][]', role[1], @usuario.is?(role[1]), class: 'span2 checkbox'
-
-
           .form-actions
             .right
               = f.submit t('.confirm', :default => t("helpers.submit.confirm")),  class: 'btn btn-primary btn-small'

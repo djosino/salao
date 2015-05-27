@@ -5,7 +5,7 @@
     = flash_message(resource)
     
 .row-fluid
-  .span8
+  .span12
     = flash_message(@usuario)
     = form_for(@usuario, :as => resource_name, :url => update_account_user_registration_path(@usuario), :html=>{ :method => :patch , class: 'form-group' }) do |f|
       .box
@@ -14,43 +14,73 @@
           %p=t '.header', :default => model_class.model_name.human.pluralize.titleize
         .content-form
           .container-fluid
-            .control-group.span6
-              = f.label :nome, class: 'control-label'
+            .control-group.span3
+              = f.label :name, class: 'control-label'
               .controls
-                = f.text_field :nome, class: 'span12', required: true
-            .control-group.span6
+                = f.text_field :name, class: 'span12', required: true
+            .control-group.span3
               = f.label :email, class: 'control-label'
               .controls
-                = f.email_field :email, class: 'span12', required: true
-                  
-          .container-fluid
-            .control-group.span6
-              = f.label :celular, class: 'control-label'
+                = f.text_field :email, class: 'span12', required: true
+            .control-group.span3
+              = f.label :sexo, class: 'control-label'
               .controls
-                = f.text_field :celular, class: 'span12'
-            .control-group.span6
-              = f.label :telefone, class: 'control-label'
+                = f.text_field :sexo, class: 'span12'
+            .control-group.span3
+              = f.label :profissao, class: 'control-label'
               .controls
-                = f.text_field :telefone, class: 'span12'
-
+                = f.text_field :profissao, class: 'span12'
           .container-fluid
-            .control-group.span6
-              = f.label :custo_mensal, class: 'control-label'
+            .control-group.span3
+              = f.label :cep, class: 'control-label'
               .controls
-                = f.text_field :custo_mensal, class: 'span12'
-
+                = f.text_field :cep, class: 'span12'
+            .control-group.span3
+              = f.label :endereco, class: 'control-label'
+              .controls
+                = f.text_field :endereco, class: 'span12'
+            .control-group.span3
+              = f.label :numero, class: 'control-label'
+              .controls
+                = f.text_field :numero, class: 'span12'
+            .control-group.span3
+              = f.label :complemento, class: 'control-label'
+              .controls
+                = f.text_field :complemento, class: 'span12'
           .container-fluid
-            - if @usuario.empresa?
-              .control-group.span6
-                = f.label :roles, class: 'control-label'
-                - permissoes(@usuario.entidade_type).each do |role|
-                  .controls
-                    .span1 &nbsp;
-                    .span7
-                      = label_tag role[0]
-                    .span4
-                      = check_box_tag 'usuario[roles][]', role[1], @usuario.is?(role[1]), class: 'span2 checkbox'
-
+            .control-group.span3
+              = f.label :bairro, class: 'control-label'
+              .controls
+                = f.text_field :bairro, class: 'span12'
+            .control-group.span3
+              = f.label :cidade, class: 'control-label'
+              .controls
+                = f.text_field :cidade, class: 'span12'
+            .control-group.span3
+              = f.label :estado, class: 'control-label'
+              .controls
+                = f.text_field :estado, class: 'span12'
+            .control-group.span3
+              = f.label :nascimento, class: 'control-label'
+              .controls
+                = f.text_field :nascimento, class: 'span12'
+          .container-fluid
+            .control-group.span3
+              = f.label :fone, class: 'control-label'
+              .controls
+                = f.text_field :fone, class: 'span12'
+            .control-group.span3
+              = f.label :fone2, class: 'control-label'
+              .controls
+                = f.text_field :fone2, class: 'span12'
+            .control-group.span3
+              = f.label :valor_fixo, class: 'control-label'
+              .controls
+                = f.text_field :valor_fixo, class: 'span12'
+            .control-group.span3
+              = f.label :percentual, class: 'control-label'
+              .controls
+                = f.text_field :percentual, class: 'span12'
           .form-actions
             .right
               = f.submit t('.confirm', :default => t("helpers.submit.confirm")),  class: 'btn btn-primary btn-small'

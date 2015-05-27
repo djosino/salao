@@ -21,6 +21,14 @@ Salao::Application.routes.draw do
     resources :ordem_servicos, only: :destroy
   end
 
+  resources :relatorios, only: :index do 
+    collection do
+      get  :movimento_de_caixa
+      post :movimento_de_caixa
+    end
+  end
+
+
   # root_url
   unauthenticated do
     devise_scope :usuario do
@@ -43,8 +51,9 @@ Salao::Application.routes.draw do
     get   'usuarios/:id/edit_account',   to: 'devise/registrations#edit_account',   as: :edit_account_user_registration
   end
 
-  namespace :dynamic_select do
-    get ':servico_id/servicos',       to: 'servicos#index',             as: 'servicos'
+  namespace :dynamic_select do 
+    get ':servico_id/servicos',                    to: 'servicos#index',             as: 'servicos'
+    get ':tipo_lancamento_id/forma_de_pagamentos', to: 'forma_de_pagamentos#index',  as: 'forma_de_pagamentos'
   end
 
 

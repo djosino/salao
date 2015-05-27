@@ -1,14 +1,14 @@
 - model_class = Servico
 .row-fluid
   .span12
-    %h2.botton-border=t '.title', :default => model_class.model_name.human.pluralize.titleize, model: model_class.model_name.human.pluralize.titleize
+    %h2.botton-border=t '.title', :default => model_class.model_name.human, model: model_class.model_name.human
     = flash_message
 
 .row-fluid
   .box
     .header
       %img{:height => "16", :src => img_header, :width => "16"}
-      %p=t '.header_list', :default => model_class.model_name.human.pluralize.titleize
+      %p=t '.header_list', :default => model_class.model_name.human
     .content
       %table.table.table-striped.table-bordered
         %thead
@@ -28,7 +28,7 @@
               %td= servico.valor.try(:real)
               %td= servico.percentual
               %td
-                = link_to t('.show', :default => t("helpers.links.show")), servico, class: 'btn btn-mini'
+                = link_to t('.edit', :default => t("helpers.links.edit")), edit_servico_path(servico), class: 'btn btn-mini'
         %tfoot
           %tr  
             %td{colspan: 99, height: 29}

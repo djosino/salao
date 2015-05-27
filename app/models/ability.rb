@@ -14,9 +14,10 @@ class Ability
     end
     
     # TODO
-    can :index,       Usuario
+    can :index,         Usuario
     can [:ferramentas], Usuario
-    can [:edit, :update], :registrations
+    can [:edit, :update],                 :registrations
+    can [:edit_account, :update_account], :registrations
   end
   
   def administrador
@@ -28,12 +29,15 @@ class Ability
     can :admin, ContaCorrente
     can :admin, TipoServico
 
+    can [:adicionar_servico, :cancelar, :destroy], OrdemServico, status: 1
+
     can [:finalizar, :cancelar], OrdemServico, status: 1
     can [:new, :create], :registrations
 
     can  :lock,         Usuario, locked_at: nil
     can  :unlock,       Usuario do |u|; !u.locked_at.nil? ;  end
     can  :lock_unlock,  Usuario
+    can [:edit_account, :update_account], :registrations
   end
 
   def gerente
