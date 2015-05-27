@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150527184045) do
+ActiveRecord::Schema.define(version: 20150527190302) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,11 +50,8 @@ ActiveRecord::Schema.define(version: 20150527184045) do
     t.datetime "updated_at"
     t.integer  "classe_id"
     t.string   "classe_type"
-<<<<<<< HEAD
-    t.integer  "forma_de_pagamento_id"
-=======
     t.integer  "ordem_servico_id"
->>>>>>> e9b3cb994a4661e49984d56c280a615331f8882f
+    t.integer  "forma_de_pagamento_id"
   end
 
   add_index "conta_correntes", ["cliente_id"], name: "index_conta_correntes_on_cliente_id", using: :btree
@@ -65,6 +62,7 @@ ActiveRecord::Schema.define(version: 20150527184045) do
     t.string   "descricao"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "tipo_lancamento_id"
   end
 
   create_table "ordem_servicos", force: true do |t|
