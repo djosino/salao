@@ -1,0 +1,93 @@
+- model_class = OrdemServico
+.row-fluid
+  .span12
+    %h2.botton-border=t '.title', :default => model_class.model_name.human.pluralize.titleize, status: @ordem_servico.descricao_status
+    = flash_message
+
+.row-fluid
+  .box.span7
+    .header
+      %img{:height => "16", :src => img_header, :width => "16"}
+      %p=t '.servicos', :default => 'Serviços'
+    .content
+      %table.table.table-striped.table-bordered
+        %thead
+          %tr
+            %th= model_class.human_attribute_name(:id)         
+            %th= model_class.human_attribute_name(:tipo_servico)         
+            %th= model_class.human_attribute_name(:descricao)         
+            %th= model_class.human_attribute_name(:valor)
+        %tbody
+          - total = 0
+          - @ordem_servico.ordem_servicos_servicos.each do |oss|
+            - total += oss.valor
+            %tr
+              %td= oss.servico_id.to_s.rjust(6,'0')
+              %td= oss.servico.tipo_servico.descricao
+              %td= oss.servico.descricao
+              %td= oss.valor.try(:real_contabil)
+              /%td= oss.comissao > 0 ? oss.comissao.to_s + ' %' : oss.servico.comissao.to_s + ' %'
+        %tfoot
+          %tr
+            %th{colspan: 3} Total
+            %th= total.to_f.real_contabil
+          %tr
+            %td{colspan: 99}= link_to t('helpers.links.back'), @ordem_servico, class: 'btn btn-small'
+
+  .box.span5
+    .header
+      %img{:height => "16", :src => img_header, :width => "16"}
+      %p=t '.carteira', :default => 'Serviços'
+    .content
+      %table.table.table-striped.table-bordered
+        %thead
+          %tr
+            %th= Cliente.human_attribute_name(:id)         
+            %th= Cliente.human_attribute_name(:cpf)         
+            %th= Cliente.human_attribute_name(:nome)         
+            %th= Cliente.human_attribute_name(:carteira)
+        %tbody
+          - cliente = @ordem_servico.cliente
+          %tr
+            %td= cliente.id
+            %td= cpf_cnpj_formatado(cliente.cpf)
+            %td= cliente.nome
+            %td= cliente.carteira.valor.real_contabil
+
+.row-fluid
+  - if @ordem_servico.pagamentos.any?
+    .box.span6
+      .header.hidden_print
+        %img{:height => "16", :src => img_header, :width => "16"}
+        %p=t '.header_list', :default => model_class.model_name.human.pluralize.titleize
+      .content
+        %table.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th= model_class.human_attribute_name(:id)         
+              %th= model_class.human_attribute_name(:cliente_id)         
+              %th= model_class.human_attribute_name(:created_at)         
+              %th= model_class.human_attribute_name(:telefone)         
+              %th= model_class.human_attribute_name(:telefone)         
+              %th= model_class.human_attribute_name(:saldo)         
+          %tbody
+            - @@ordem_servico.pagamentos.each do |pagamento|
+              %tr
+                %td= pagamento.id.to_s.rjust(6,'0')
+                %td= pagamento
+                %td= pagamento
+                %td= pagamento
+                %td= pagamento
+                %td
+                  .right
+                    = pagamento.valor.to_f.real_contabil
+          %tfoot
+            %tr
+              %td{colspan: 99, height: 29}
+                .right
+                  = @carteiras.pluck(:valor).sum.real_contabil
+                .left
+                  = link_to t('.print', :default => t("helpers.links.print")), conta_correntes_path(imprimir: true), class: 'btn btn-small'
+
+  
+  = render partial: 'conta_correntes/forma_ordem_servico'

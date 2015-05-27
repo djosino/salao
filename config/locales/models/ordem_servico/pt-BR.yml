@@ -9,6 +9,8 @@ pt-BR:
         id: "#"
         descricao: Descrição
         valor: Valor
+        carteira: Carteira
+        valor_oss: Valor da OSS
         created_at: "Data de Cadastro"
         updated_at: "Data de Atualização"
     errors:

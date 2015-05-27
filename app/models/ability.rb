@@ -29,7 +29,8 @@ class Ability
     can :admin, TipoServico
 
     can [:adicionar_servico, :cancelar, :destroy], OrdemServico, status: 1
-
+    can :pagamento, OrdemServico, status: 2
+    
     can [:finalizar, :cancelar], OrdemServico, status: 1
     can [:new, :create], :registrations
 

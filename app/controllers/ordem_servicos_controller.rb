@@ -1,5 +1,6 @@
 class OrdemServicosController < ApplicationController
-  before_action :set_ordem_servico, only: [:show, :edit, :update, :destroy, :adicionar_servico, :finalizar, :cancelar]
+  before_action :set_ordem_servico, only: [ :show, :edit, :update, :destroy, :adicionar_servico, 
+                                            :pagamento, :finalizar, :cancelar]
 
   # GET /ordem_servicos
   # GET /ordem_servicos.json
@@ -74,11 +75,23 @@ class OrdemServicosController < ApplicationController
   end
 
   def adicionar_servico
-    if params[:servico_id].present?
-      servico = Servico.find(params[:servico_id])
+    if request.post? 
+      servico = Servico.where(id: params[:servico_id]).first
       valor   = params[:valor].gsub('.','').gsub(',','.').to_f
-      if OSS.create(ordem_servico_id: @ordem_servico.id, servico_id: servico.id, valor: valor, comissao: params[:comissao])
+      # parametros do new
+      parametros = {  ordem_servico_id: @ordem_servico.id, 
+                      servico_id: servico.try(:id), 
+                      valor: valor, 
+                      comissao: params[:comissao], 
+                      funcionario_id: params[:funcionario_id] 
+                    }
+
+      oss = OSS.new(parametros)
+      if oss.save
         redirect_to @ordem_servico, notice: t(:updated, name: "Ordem de Serviço")
+        return
+      else
+        redirect_to @ordem_servico, flash: { error: oss.errors.full_messages.join(' ') }
         return
       end
     end
@@ -95,7 +108,9 @@ class OrdemServicosController < ApplicationController
     redirect_to @ordem_servico, notice: t(:updated, name: "Ordem de Serviço")
   end  
 
-
+  def pagamento
+    @conta_corrente = ContaCorrente.new(ordem_servico_id: @ordem_servico.id)
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

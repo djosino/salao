@@ -9,6 +9,8 @@ pt-BR:
         id: "#"
         descricao: Descrição
         ativo: Ativo
+        tipo_servico: Tipo de Serviço
+        tipo_servico_id: Tipo de Serviço
         created_at: "Data de Cadastro"
         updated_at: "Data de Atualização"
     errors:

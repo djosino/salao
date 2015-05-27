@@ -8,8 +8,8 @@ Salao::Application.routes.draw do
 
   resources :ordem_servicos, except: :destroy do
     member do
-      post :adicionar_servico
-      get :finalizar, :cancelar
+      post :adicionar_servico,   :pagamento
+      get :finalizar, :cancelar, :pagamento
     end
   end
 
@@ -45,6 +45,7 @@ Salao::Application.routes.draw do
 
   namespace :dynamic_select do
     get ':servico_id/servicos',       to: 'servicos#index',             as: 'servicos'
+    get ':funcionario_id/usuarios',   to: 'usuarios#index',             as: 'usuarios'
   end
 
 
