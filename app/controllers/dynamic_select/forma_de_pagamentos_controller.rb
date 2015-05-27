@@ -3,9 +3,9 @@ module DynamicSelect
     respond_to :json
     skip_authorize_resource
     def index
-      @servico   = Servico.where(id: params[:servico_id]).collect{|s| {name: s.valor.to_f.real.to_s, id: s.id, column: 'name', textfield: true} }
-      @servico ||= [{name: '0,00', id: 0, column: 'name', textfield: true}]   if @servico.blank?
-      respond_with(@servico)
+      tipo_lancamento    = TipoLancamento.where(id: params[:tipo_lancamento_id]).last.forma_de_pagamentos
+      @tipo_lancamento   = tipo_lancamento.collect{|c| { name: c.descricao, id: c.id, column: 'name'}}
+      respond_with(@tipo_lancamento)
     end
   end
 end

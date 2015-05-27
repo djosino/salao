@@ -6,7 +6,7 @@ class ContaCorrente < ActiveRecord::Base
 
   belongs_to :classe, :polymorphic => true 
 
-  validates_presence_of :valor, :observacao, :tipo_lancamento
+  validates_presence_of :valor, :observacao, :tipo_lancamento, :forma_de_pagamento
   validate :cliente_ou_funcionario
   after_save :set_carteira
 
