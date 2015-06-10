@@ -1,4 +1,4 @@
-assets = ["login.css", "print.css"]
+assets = ["login.css", "print.css", "print4.css"]
 dir = Rails.root.join('app/assets/javascripts/', '*.{coffee}')
 
 Dir[dir].each do |d|

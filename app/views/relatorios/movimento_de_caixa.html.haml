@@ -1,108 +1,65 @@
-- model_class = FormaDePagamento
-- model_class_2 = ContaCorrente
-
 - if request.post?
-  - if params[:imprimir].present?
-    %h3
-      %center MOVIMENTO DO CAIXA
-
-    %h5 
-      EMISSÃO: #{params[:data]}
-      %br
-      OPERADOR: #{current_usuario.login}
-    %hr.hidden_print
-  - else
-    .row-fluid
-      .span12
-        %h2.botton-border=t '.title_list', data: params[:data], operador: current_usuario.login
-        = flash_message
-  
-  .row-fluid
-    .box.span12
-      .header.hidden_print
-        %img{height: "16", src: img_header, width: "16"}
-        %p=t '.header_history'
-      .content
-        %table.table.table-striped.table-bordered
-          %thead
-            %tr
-              %th= model_class_2.human_attribute_name(:id)         
-              %th= model_class_2.human_attribute_name(:hora)         
-              %th= model_class_2.human_attribute_name(:observacao)         
-              %th= model_class_2.human_attribute_name(:valor)         
-              %th= model_class_2.human_attribute_name(:saldo)         
-          %tbody
-            - saldo = 0.0
-            - @despesas.each do |despesa|
-              - saldo = saldo - despesa.valor
-              %tr
-                %td= despesa.id
-                %td= data_hora(despesa.created_at)
-                %td= despesa.observacao
-                %td= despesa.valor.real_contabil
-                %td= saldo.round(2)
-  .row-fluid
-    .box.span6
-      .header.hidden_print
-        %img{height: "16", src: img_header, width: "16"}
-        %p=t '.header_input'
-      .content
-        %table.table.table-striped.table-bordered
-          %thead
-            %tr
-              %th= model_class.human_attribute_name(:id)         
-              %th= model_class.human_attribute_name(:descricao)         
-              %th= "VALOR"         
-          %tbody
-            - for i in 'creditos_01'..'creditos_06'
-              %tr
-                %td= i.gsub(/\D/, "") 
-                %td= FormaDePagamento.find( i.gsub(/\D/, "") ).descricao
-                %td= @dados[i.to_sym].real_contabil
-            %tr
-              %th= "99" 
-              %th= "TOTAL"
-              %th= @dados[:creditos_99].real_contabil
-    .box.span6
-      .header.hidden_print
-        %img{height: "16", src: img_header, width: "16"}
-        %p=t '.header_output'
-      .content
-        %table.table.table-striped.table-bordered
-          %thead
-            %tr
-              %th= model_class.human_attribute_name(:id)         
-              %th= model_class.human_attribute_name(:descricao)         
-              %th= "VALOR"         
-          %tbody
-            - for i in 'debitos_07'..'debitos_09'
-              %tr
-                %td= i.gsub(/\D/, "") 
-                %td= FormaDePagamento.find( i.gsub(/\D/, "") ).descricao
-                %td= @dados[i.to_sym].real_contabil
-            %tr
-              %th= "99" 
-              %th= "TOTAL"
-              %th= @dados[:debitos_99].real_contabil
-  .row-fluid
-    .box.span12
-      .header.hidden_print
-        %img{height: "16", src: img_header, width: "16"}
-        %p=t '.header_final'
-      .content
-        %table.table.table-striped.table-bordered
-          %thead
-            %tr
-              %th= "SALDO LIQUIDO NESTA DATA"         
-              %th= (@dados[:creditos_99] - @dados[:debitos_99]).real_contabil
-            %tr
-              %th= "PEDE"         
-              %th= (@dados[:creditos_01] - @dados[:debitos_99]).real_contabil
-          %tfoot.hidden_print
-            %tr
-              %td{colspan: 99, height: 29}
-                .left
-                  = link_to t('.back', :default => t("helpers.links.back")), :back, class: 'btn btn-small'
+  %h3{style: "letter-spacing: 6px;"}
+    %center * MOVIMENTO DO CAIXA *
+  %p
+  %h5 
+    DATA.................: #{l(Time.now).upcase}
+    %br
+    CÓDIGO DO OPERADOR...: #{current_usuario.login.upcase}
+  %p
+  %table
+    %thead
+      %tr
+        %th.span2 DOCUMENTO
+        %th.span2 HORA
+        %th.span5 HISTORICO
+        %th.span2 SAIDAS
+        %th.span2 SALDO
+    %tbody
+      - saldo = 0.0
+      - @despesas.each do |despesa|
+        - saldo = saldo - despesa.valor
+        %tr
+          %td= despesa.id
+          %td= data_hora(despesa.created_at)
+          %td= despesa.observacao
+          %td= despesa.valor.real_contabil
+          %td= saldo.round(2)
+  %p
+  %table
+    %tbody
+      %td.span2{rowspan: 8}
+        .vertical
+          E N T R A D A S
+      - for i in 'creditos_01'..'creditos_06'
+        %tr
+          %td.span8= i.gsub(/\D/, "")  + ' - ' + FormaDePagamento.find( i.gsub(/\D/, "") ).descricao
+          %td= @dados[i.to_sym].real_contabil
+      %tr
+        %th.span2= "99 - TOTAL"
+        %th= @dados[:creditos_99].real_contabil
+  %p
+  %table
+    %tbody
+      %td.span2{rowspan: 8}
+        .vertical
+          S A I D A S      
+      - for i in 'debitos_07'..'debitos_09'
+        %tr
+          %td.span8= i.gsub(/\D/, "")  + ' - ' + FormaDePagamento.find( i.gsub(/\D/, "") ).descricao
+          %td= @dados[i.to_sym].real_contabil
+      %tr
+        %th.span2= "99 - TOTAL"
+        %th= @dados[:debitos_99].real_contabil
+  %p
+  %table
+    %thead
+      %tr
+        %th.span10= "SALDO LIQUIDO NESTA DATA"         
+        %th.span2= (@dados[:creditos_99] - @dados[:debitos_99]).real_contabil
+      %tr
+        %th.span10= "PEDE"         
+        %th.span2= (@dados[:creditos_01] - @dados[:debitos_99]).real_contabil
 
 - else
   .row-fluid
