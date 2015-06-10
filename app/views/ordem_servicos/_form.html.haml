@@ -1,15 +1,15 @@
 - model_class = OrdemServico
-.box.span8
+.box.span6
   .header
     %img{:height => "16", :src => img_header, :width => "16"}
     %p=t '.header', :default => model_class.model_name.human.pluralize.titleize
   = form_for @ordem_servico, :html => { class: 'form-group' } do |f|
     .content-form
       .container-fluid
-        .control-group.span6
+        .control-group
           = f.label :cliente_id, class: 'control-label'
           .controls
-            = f.select :cliente_id, options_for_select(Cliente.pluck(:nome, :id)), {}, class: 'span12', required: true
+            = f.select :cliente_id, options_for_select(Cliente.pluck(:nome, :id)), {}, class: 'span8', required: true
       .form-actions
         .right
           = f.submit t('.confirm', :default => t("helpers.submit.confirm")),  class: 'btn btn-small btn-primary'

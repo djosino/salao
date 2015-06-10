@@ -86,6 +86,6 @@ class ContaCorrentesController < ApplicationController
       if params[:conta_corrente].present? and params[:conta_corrente][:valor].present?
         params[:conta_corrente][:valor] = params[:conta_corrente][:valor].gsub('.', '').gsub(',', '.')
       end
-      params.require(:conta_corrente).permit(:cliente_id, :funcionario_id, :tipo_lancamento_id, :valor, :observacao, :forma_de_pagamento_id)
+      params.require(:conta_corrente).permit(:cliente_id, :funcionario_id, :tipo_lancamento_id, :valor, :observacao, :forma_de_pagamento_id, :ordem_servico_id)
     end
 end

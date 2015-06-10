@@ -93,7 +93,9 @@
               - if @ordem_servico.status == 0
                 %th{colspan: 4}=t '.actions', :default => t("helpers.actions")
           %tbody
+            - total = 0
             - @ordem_servico.ordem_servicos_servicos.each do |oss|
+              - total += oss.valor
               %tr
                 %td= oss.servico_id.to_s.rjust(6,'0')
                 %td= oss.servico.descricao
@@ -106,3 +108,8 @@
                   %td
                     - if can? :destroy, @ordem_servico
                       = link_to t('.destroy', :default => t("helpers.links.destroy")), ordem_servico_path(oss.id), method: :delete, class: 'btn btn-mini btn-danger',  :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }
+          %tfoot
+            %tr
+              %th{colspan: 2} Total
+              %th{colspan: 1}= total
+              %th{colspan: 2} 

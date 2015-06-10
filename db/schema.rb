@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150608130430) do
+ActiveRecord::Schema.define(version: 20150610173724) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(version: 20150608130430) do
     t.datetime "updated_at"
     t.integer  "status"
     t.integer  "usuario_id"
+    t.float    "valor_comissao"
   end
 
   add_index "ordem_servicos", ["cliente_id"], name: "index_ordem_servicos_on_cliente_id", using: :btree

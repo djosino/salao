@@ -4,13 +4,16 @@
     %img{:height => "16", :src => img_header, :width => "16"}
     %p=t '.header', :default => model_class.model_name.human.pluralize.titleize
   = form_for @conta_corrente, :html => { class: 'form-group' } do |f|
-    = f.hidden_field :usuario_id, value: @ordem_servico.cliente_id
+    = f.hidden_field :ordem_servico_id,   value: @ordem_servico.id
+    = f.hidden_field :classe_type,        value: "Cliente"
+    = f.hidden_field :cliente_id,         value: @ordem_servico.cliente_id
+    = f.hidden_field :tipo_lancamento_id, value: 2
     .content-form
       .container-fluid
         .control-group.span6
           = f.label :forma_de_pagamento_id, class: 'control-label'
           .controls
-            = f.select :forma_de_pagamento_id, options_for_select(FormaDePagamento.order(:id).pluck(:descricao, :id), @conta_corrente.forma_de_pagamento_id), {}, class: 'span12'
+            = f.select :forma_de_pagamento_id, options_for_select(formas_pagamento_debito, @conta_corrente.forma_de_pagamento_id), {}, class: 'span12'
       .container-fluid
         .control-group.span6
           = f.label :valor, class: 'control-label'
