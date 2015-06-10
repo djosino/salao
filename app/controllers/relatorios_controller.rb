@@ -19,11 +19,19 @@ class RelatoriosController < ApplicationController
       @dados.merge!( creditos_05:  ContaCorrente.dia(params[:data]).where(forma_de_pagamento_id: 5).pluck(:valor).sum )
       @dados.merge!( creditos_06:  ContaCorrente.dia(params[:data]).where(forma_de_pagamento_id: 6).pluck(:valor).sum )
       @dados.merge!( creditos_99:  ContaCorrente.dia(params[:data]).creditos.pluck(:valor).sum )
-      
+
       @dados.merge!( debitos_07:   ContaCorrente.dia(params[:data]).where(forma_de_pagamento_id: 7).pluck(:valor).sum )
       @dados.merge!( debitos_08:   ContaCorrente.dia(params[:data]).where(forma_de_pagamento_id: 8).pluck(:valor).sum )
       @dados.merge!( debitos_09:   ContaCorrente.dia(params[:data]).where(forma_de_pagamento_id: 9).pluck(:valor).sum )
       @dados.merge!( debitos_99:   @despesas.pluck(:valor).sum )
+    end
+    if params[:imprimir].present?
+      render layout: 'print'
+    end
+  end
+
+  def extrato_por_funcionario
+    if request.post?
     end
     if params[:imprimir].present?
       render layout: 'print'

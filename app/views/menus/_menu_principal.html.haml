@@ -65,7 +65,8 @@
       = link_to '#', class: 'btn btn-small dropdown-toggle', :'data-toggle' => "dropdown" do
         %span.caret
       %ul.dropdown-menu
-        = link_to "Caixa por Dia",  movimento_de_caixa_relatorios_path,    class: "btn btn-small"
+        = link_to "Caixa por Dia",  movimento_de_caixa_relatorios_path,      class: "btn btn-small"
+        = link_to "Extrato dos Funcionário",  extrato_por_funcionario_relatorios_path, class: "btn btn-small"
 
     = link_to "Minha Conta", edit_usuario_password_path, class: "btn btn-small", style: "margin-left: 4px"
     = link_to "Sair", destroy_usuario_session_path, method: :delete, class: "btn btn-small btn-danger", style: "margin-left: 4px"
