@@ -42,7 +42,7 @@ class ContaCorrentesController < ApplicationController
     end
     respond_to do |format|
       if @conta_corrente.save
-        format.html { redirect_to @conta_corrente.classe, notice: t(:created, name: 'Conta Corrente') }
+        format.html { redirect_to :back, notice: t(:created, name: 'Lançamento') }
         format.json { render action: 'show', status: :created, location: @conta_corrente }
       else
         format.html { render action: 'new' }

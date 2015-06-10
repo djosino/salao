@@ -54,8 +54,8 @@
             %td= cliente.nome
             %td= cliente.carteira.valor.real_contabil
 
-.row-fluid
-  - if @ordem_servico.pagamentos.any?
+- if @ordem_servico.pagamentos.any?
+  .row-fluid
     .box.span6
       .header.hidden_print
         %img{:height => "16", :src => img_header, :width => "16"}
@@ -71,7 +71,7 @@
               %th= model_class.human_attribute_name(:telefone)         
               %th= model_class.human_attribute_name(:saldo)         
           %tbody
-            - @@ordem_servico.pagamentos.each do |pagamento|
+            - @ordem_servico.pagamentos.each do |pagamento|
               %tr
                 %td= pagamento.id.to_s.rjust(6,'0')
                 %td= pagamento
@@ -88,6 +88,37 @@
                   = @carteiras.pluck(:valor).sum.real_contabil
                 .left
                   = link_to t('.print', :default => t("helpers.links.print")), conta_correntes_path(imprimir: true), class: 'btn btn-small'
+.row-fluid
+  .span7
+    = render partial: 'conta_correntes/forma_ordem_servico'
 
-  
-  = render partial: 'conta_correntes/forma_ordem_servico'
+
+  - valor_maximo = (total <= cliente.carteira.valor.to_f ? total.to_f.real : cliente.carteira.valor.to_f.real)
+  - model_class = ContaCorrente
+  .box.span5
+    .header
+      %img{:height => "16", :src => img_header, :width => "16"}
+      %p=t '.header', :default => model_class.model_name.human.pluralize.titleize
+    = form_for @conta_corrente, :html => { class: 'form-group' } do |f|
+      = f.hidden_field :cliente_id,         value: @ordem_servico.cliente_id
+      = f.hidden_field :tipo_lancamento_id, value: 2
+      = hidden_field_tag :selecione, 'cliente'
+      .content-form
+        .container-fluid
+          .control-group.span6
+            = f.label :forma_de_pagamento_id, class: 'control-label'
+            .controls
+              = f.select :forma_de_pagamento_id, options_for_select([['Carteira', 1]], @conta_corrente.forma_de_pagamento_id), {}, class: 'span12'
+        .container-fluid
+          .control-group.span6#valor
+            = f.label :valor, class: 'control-label'
+            .controls
+              = f.text_field :valor, value: valor_maximo, class: 'span12', required: true, max: valor_maximo
+          .control-group.span6
+            = f.label :observacao, class: 'control-label'
+            .controls
+              = f.text_field :observacao, value: "Débito de Carteira da OSS #{@ordem_servico.id.to_s.rjust(6,'0')}", class: 'span12', required: true
+        .form-actions
+          .right
+            = f.submit t('.confirm', :default => t("helpers.submit.confirm")),  class: 'btn btn-small btn-primary'
+

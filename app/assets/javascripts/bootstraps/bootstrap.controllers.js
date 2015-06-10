@@ -56,5 +56,6 @@ $('.loading').click(function(){
 
 
 jQuery("#conta_corrente_valor").maskMoney({     decimal:",", thousands:"."});
+jQuery("#valor #conta_corrente_valor").maskMoney({     decimal:",", thousands:"."});
 jQuery("#servico_valor").maskMoney({     decimal:",", thousands:"."});
 jQuery("#valor").maskMoney({     decimal:",", thousands:"."});
