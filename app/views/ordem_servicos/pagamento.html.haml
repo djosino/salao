@@ -100,7 +100,9 @@
       %img{:height => "16", :src => img_header, :width => "16"}
       %p=t '.header', :default => model_class.model_name.human.pluralize.titleize
     = form_for @conta_corrente, :html => { class: 'form-group' } do |f|
-      = f.hidden_field :usuario_id, value: @ordem_servico.cliente_id
+      = f.hidden_field :cliente_id,         value: @ordem_servico.cliente_id
+      = f.hidden_field :tipo_lancamento_id, value: 2
+      = hidden_field_tag :selecione, 'cliente'
       .content-form
         .container-fluid
           .control-group.span6

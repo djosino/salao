@@ -42,7 +42,7 @@ class ContaCorrentesController < ApplicationController
     end
     respond_to do |format|
       if @conta_corrente.save
-        format.html { redirect_to @conta_corrente.classe, notice: t(:created, name: 'Conta Corrente') }
+        format.html { redirect_to :back, notice: t(:created, name: 'Lançamento') }
         format.json { render action: 'show', status: :created, location: @conta_corrente }
       else
         format.html { render action: 'new' }
@@ -86,6 +86,6 @@ class ContaCorrentesController < ApplicationController
       if params[:conta_corrente].present? and params[:conta_corrente][:valor].present?
         params[:conta_corrente][:valor] = params[:conta_corrente][:valor].gsub('.', '').gsub(',', '.')
       end
-      params.require(:conta_corrente).permit(:cliente_id, :funcionario_id, :tipo_lancamento_id, :valor, :observacao)
+      params.require(:conta_corrente).permit(:cliente_id, :funcionario_id, :tipo_lancamento_id, :valor, :observacao, :forma_de_pagamento_id)
     end
 end

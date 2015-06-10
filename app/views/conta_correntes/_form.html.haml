@@ -25,14 +25,11 @@
         .control-group.span6
           = f.label :tipo_lancamento_id, class: 'control-label'
           .controls
-            = f.select :tipo_lancamento_id, options_for_select(TipoLancamento.order(:id).pluck(:descricao, :id), @conta_corrente.tipo_lancamento_id), {}, class: 'span12'
-            
-            = f.select :uf, options_for_select(estados, @dute.uf), include_blank, data: { dynamic_selectable_url: dynamic_select_informar_dados_path(':uf'), dynamic_selectable_target: '#dute_codmunic'}, class: 'span12', required: true
+            = f.select :tipo_lancamento_id, options_for_select(TipoLancamento.order(:id).pluck(:descricao, :id), @conta_corrente.tipo_lancamento_id), {include_blank: true}, data: { dynamic_selectable_url: dynamic_select_forma_de_pagamentos_path(':tipo_lancamento_id'), dynamic_selectable_target: '#conta_corrente_forma_de_pagamento_id'}, class: 'span12', required: true
         .control-group.span6
           = f.label :forma_de_pagamento_id, class: 'control-label'
           .controls
-            = f.select :forma_de_pagamento_id, options_from_collection_for_select(@cidades || [], :cod, :nome, @dute.codmunic.try(:to_s)), include_blank, class: 'span12', required: true
-
+            = f.select :forma_de_pagamento_id, options_from_collection_for_select(@tipo_lancamento || [], :id, :name), {include_blank: true}, class: 'span12', required: true
 
       .container-fluid
         .control-group.span6
