@@ -1,10 +1,13 @@
 pt-BR:
   relatorios:    
     movimento_de_caixa:
-      title_search: Relatório do Movimento do Caixa
+      title: Relatório do Movimento do Caixa
       title_list: "MOVIMENTO DO CAIXA - DATA: %{data} - OPERADOR: %{operador}"
       header_search: Dados da Consulta
       header_input: Resumo do Caixa - ENTRADAS
       header_output: Resumo do Caixa - SAÍDAS
       header_final: Resumo Final
       header_history: Detalhamento de Despesas
+    extrato_por_funcionario:
+      title: Extrato dos Funcionários
+      header_search: Dados da Consulta

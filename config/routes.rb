@@ -23,8 +23,8 @@ Salao::Application.routes.draw do
 
   resources :relatorios, only: :index do 
     collection do
-      get  :movimento_de_caixa
-      post :movimento_de_caixa
+      get  :movimento_de_caixa, :extrato_por_funcionario
+      post :movimento_de_caixa, :extrato_por_funcionario
     end
   end
 
