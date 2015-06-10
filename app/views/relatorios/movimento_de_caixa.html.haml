@@ -1,0 +1,132 @@
+- model_class = FormaDePagamento
+- model_class_2 = ContaCorrente
+
+- if request.post?
+  - if params[:imprimir].present?
+    %h3
+      %center MOVIMENTO DO CAIXA
+
+    %h5 
+      EMISSÃO: #{params[:data]}
+      %br
+      OPERADOR: #{current_usuario.login}
+    %hr.hidden_print
+  - else
+    .row-fluid
+      .span12
+        %h2.botton-border=t '.title_list', data: params[:data], operador: current_usuario.login
+        = flash_message
+  
+  .row-fluid
+    .box.span12
+      .header.hidden_print
+        %img{height: "16", src: img_header, width: "16"}
+        %p=t '.header_history'
+      .content
+        %table.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th= model_class_2.human_attribute_name(:id)         
+              %th= model_class_2.human_attribute_name(:hora)         
+              %th= model_class_2.human_attribute_name(:observacao)         
+              %th= model_class_2.human_attribute_name(:valor)         
+              %th= model_class_2.human_attribute_name(:saldo)         
+          %tbody
+            - saldo = 0.0
+            - @despesas.each do |despesa|
+              - saldo = saldo - despesa.valor
+              %tr
+                %td= despesa.id
+                %td= data_hora(despesa.created_at)
+                %td= despesa.observacao
+                %td= despesa.valor.real_contabil
+                %td= saldo.round(2)
+  .row-fluid
+    .box.span6
+      .header.hidden_print
+        %img{height: "16", src: img_header, width: "16"}
+        %p=t '.header_input'
+      .content
+        %table.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th= model_class.human_attribute_name(:id)         
+              %th= model_class.human_attribute_name(:descricao)         
+              %th= "VALOR"         
+          %tbody
+            - for i in 'creditos_01'..'creditos_06'
+              %tr
+                %td= i.gsub(/\D/, "") 
+                %td= FormaDePagamento.find( i.gsub(/\D/, "") ).descricao
+                %td= @dados[i.to_sym].real_contabil
+            %tr
+              %th= "99" 
+              %th= "TOTAL"
+              %th= @dados[:creditos_99].real_contabil
+    .box.span6
+      .header.hidden_print
+        %img{height: "16", src: img_header, width: "16"}
+        %p=t '.header_output'
+      .content
+        %table.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th= model_class.human_attribute_name(:id)         
+              %th= model_class.human_attribute_name(:descricao)         
+              %th= "VALOR"         
+          %tbody
+            - for i in 'debitos_07'..'debitos_09'
+              %tr
+                %td= i.gsub(/\D/, "") 
+                %td= FormaDePagamento.find( i.gsub(/\D/, "") ).descricao
+                %td= @dados[i.to_sym].real_contabil
+            %tr
+              %th= "99" 
+              %th= "TOTAL"
+              %th= @dados[:debitos_99].real_contabil
+  .row-fluid
+    .box.span12
+      .header.hidden_print
+        %img{height: "16", src: img_header, width: "16"}
+        %p=t '.header_final'
+      .content
+        %table.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th= "SALDO LIQUIDO NESTA DATA"         
+              %th= (@dados[:creditos_99] - @dados[:debitos_99]).real_contabil
+            %tr
+              %th= "PEDE"         
+              %th= (@dados[:creditos_01] - @dados[:debitos_99]).real_contabil
+          %tfoot.hidden_print
+            %tr
+              %td{colspan: 99, height: 29}
+                .left
+                  = link_to t('.back', :default => t("helpers.links.back")), :back, class: 'btn btn-small'
+
+- else
+  .row-fluid
+    .span12
+      %h2.botton-border=t '.title_search'
+      = flash_message
+  .row-fluid
+    .box.span6
+      .header
+        %img{:height => "16", src: img_header, :width => "16"}
+        %p=t '.header_search'
+      .content-form
+        = form_tag movimento_de_caixa_relatorios_path, class: 'form-group no-margin', method: :post do
+          .container-fluid
+            .control-group.span8#datepicker2.input-append
+              = label_tag :data, 'Data', class: 'control-label'
+              .controls
+                = text_field_tag :data, params[:data] || l(Date.today), class: 'span11', required: true
+                %span.add-on
+                  %i{"data-date-icon" => "icon-calendar"}
+            .control-group.span4
+              = label_tag :imprimir, t('helpers.label.layout_print'), class: 'control-label'
+              .controls
+                = check_box_tag 'imprimir', 1
+          .form-actions
+            .right  
+              = submit_tag t('.confirm', :default => t("helpers.submit.confirm")),  class: 'btn btn-primary btn-small'

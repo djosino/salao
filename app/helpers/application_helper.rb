@@ -146,6 +146,10 @@ module ApplicationHelper
     end
   end
 
+  def data_hora(time)
+    return time.hour.to_s + ':' + time.min.to_s
+  end
+
   def image_checkbox(mark = nil)
     if mark
       check_box_tag :show, mark, mark, class: 'checkbox', disabled: true

@@ -10,19 +10,22 @@ class RelatoriosController < ApplicationController
 
   def movimento_de_caixa
     if request.post?
+      @despesas = ContaCorrente.dia(params[:data]).debitos.order(:created_at)
       @dados = {}
-      @dados.merge!( debitos_01:  ContaCorrente.debitos.dia(params[:data])  )
-      @dados.merge!( debitos_02:  ContaCorrente.debitos.dia(params[:data])  )
-      @dados.merge!( debitos_03:  ContaCorrente.debitos.dia(params[:data])  )
-      @dados.merge!( debitos_04:  ContaCorrente.debitos.dia(params[:data])  )
-      @dados.merge!( debitos_05:  ContaCorrente.debitos.dia(params[:data])  )
-      @dados.merge!( debitos_06:  ContaCorrente.debitos.dia(params[:data])  )
-      @dados.merge!( debitos_07:  ContaCorrente.debitos.dia(params[:data])  )
-      @dados.merge!( debitos_99:  ContaCorrente.debitos.dia(params[:data])  )
-      @dados.merge!( creditos_01: ContaCorrente.creditos.dia(params[:data]) )
-      @dados.merge!( creditos_02: ContaCorrente.creditos.dia(params[:data]) )
-      @dados.merge!( creditos_03: ContaCorrente.creditos.dia(params[:data]) )
-      @dados.merge!( creditos_99: ContaCorrente.creditos.dia(params[:data]) )
+      @dados.merge!( creditos_01:  ContaCorrente.dia(params[:data]).where(forma_de_pagamento_id: 1).pluck(:valor).sum )
+      @dados.merge!( creditos_02:  ContaCorrente.dia(params[:data]).where(forma_de_pagamento_id: 2).pluck(:valor).sum )
+      @dados.merge!( creditos_03:  ContaCorrente.dia(params[:data]).where(forma_de_pagamento_id: 3).pluck(:valor).sum )
+      @dados.merge!( creditos_04:  ContaCorrente.dia(params[:data]).where(forma_de_pagamento_id: 4).pluck(:valor).sum )
+      @dados.merge!( creditos_05:  ContaCorrente.dia(params[:data]).where(forma_de_pagamento_id: 5).pluck(:valor).sum )
+      @dados.merge!( creditos_06:  ContaCorrente.dia(params[:data]).where(forma_de_pagamento_id: 6).pluck(:valor).sum )
+      @dados.merge!( creditos_99:  ContaCorrente.dia(params[:data]).creditos.pluck(:valor).sum )
+      @dados.merge!( debitos_07:   ContaCorrente.dia(params[:data]).where(forma_de_pagamento_id: 7).pluck(:valor).sum )
+      @dados.merge!( debitos_08:   ContaCorrente.dia(params[:data]).where(forma_de_pagamento_id: 8).pluck(:valor).sum )
+      @dados.merge!( debitos_09:   ContaCorrente.dia(params[:data]).where(forma_de_pagamento_id: 9).pluck(:valor).sum )
+      @dados.merge!( debitos_99:   @despesas.pluck(:valor).sum )
+    end
+    if params[:imprimir].present?
+      render layout: 'print'
     end
   end
 end
