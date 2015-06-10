@@ -50,8 +50,8 @@ ActiveRecord::Schema.define(version: 20150610173724) do
     t.datetime "updated_at"
     t.integer  "classe_id"
     t.string   "classe_type"
-    t.integer  "ordem_servico_id"
     t.integer  "forma_de_pagamento_id"
+    t.integer  "ordem_servico_id"
   end
 
   add_index "conta_correntes", ["cliente_id"], name: "index_conta_correntes_on_cliente_id", using: :btree

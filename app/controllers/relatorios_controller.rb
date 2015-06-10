@@ -24,8 +24,8 @@ class RelatoriosController < ApplicationController
       @dados.merge!( debitos_08:   ContaCorrente.dia(params[:data]).where(forma_de_pagamento_id: 8).pluck(:valor).sum )
       @dados.merge!( debitos_09:   ContaCorrente.dia(params[:data]).where(forma_de_pagamento_id: 9).pluck(:valor).sum )
       @dados.merge!( debitos_99:   @despesas.pluck(:valor).sum )
+      render layout: 'print4'
     end
-    render layout: 'print4'
   end
 
   def extrato_por_funcionario

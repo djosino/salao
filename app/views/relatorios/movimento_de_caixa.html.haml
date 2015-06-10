@@ -3,6 +3,8 @@
     %center * MOVIMENTO DO CAIXA *
   %p
   %h5 
+    RELATORIO DO DIA.....: #{params[:data]}
+    %br
     DATA.................: #{l(Time.now).upcase}
     %br
     CÓDIGO DO OPERADOR...: #{current_usuario.login.upcase}
@@ -67,23 +69,19 @@
       %h2.botton-border=t '.title'
       = flash_message
   .row-fluid
-    .box.span6
+    .box.span4
       .header
         %img{:height => "16", src: img_header, :width => "16"}
         %p=t '.header_search'
       .content-form
         = form_tag movimento_de_caixa_relatorios_path, class: 'form-group no-margin', method: :post do
           .container-fluid
-            .control-group.span8#datepicker2.input-append
+            .control-group.span12#datepicker2.input-append
               = label_tag :data, 'Data', class: 'control-label'
               .controls
                 = text_field_tag :data, params[:data] || l(Date.today), class: 'span11', required: true
                 %span.add-on
                   %i{"data-date-icon" => "icon-calendar"}
-            .control-group.span4
-              = label_tag :imprimir, t('helpers.label.layout_print'), class: 'control-label'
-              .controls
-                = check_box_tag 'imprimir', 1
           .form-actions
             .right  
               = submit_tag t('.confirm', :default => t("helpers.submit.confirm")),  class: 'btn btn-primary btn-small'
