@@ -54,11 +54,13 @@ Salao::Application.routes.draw do
     get 'ferramentas'                      => 'usuarios#ferramentas',         as: :ferramentas_usuarios
     get 'usuarios/:id/resetar_senha'       => 'usuarios#resetar_senha',       as: :resetar_senha_usuario      #member
     get 'usuarios/:id/lock_unlock'         => 'usuarios#lock_unlock',         as: :lock_unlock_usuario        #member
+    get 'usuarios/:id/editar_permissoes'   => 'usuarios#editar_permissoes',   as: :editar_permissoes_usuario  #member
     #get 'usuarios/sign_up'                 => 'devise/registrations#new',     as: :new_usuario_registration
     #get 'usuarios/:id/sign_in_with'        => 'devise/sessions#sign_in_with', as: :sign_in_with_usuarios_sessions
 
     patch 'usuarios/update_account/:id', to: 'devise/registrations#update_account', as: :update_account_user_registration
     get   'usuarios/:id/edit_account',   to: 'devise/registrations#edit_account',   as: :edit_account_user_registration
+    patch 'usuarios/:id/atualizar_permissoes' => 'usuarios#atualizar_permissoes', as: :atualizar_permissoes_usuario #member
   end
 
   namespace :dynamic_select do 

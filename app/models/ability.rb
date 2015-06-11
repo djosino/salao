@@ -38,6 +38,9 @@ class Ability
     end
 
     can [:new, :create], :registrations
+    can [:editar_permissoes, :atualizar_permissoes], Usuario
+
+
     
     can  :lock,         Usuario, locked_at: nil
     can  :unlock,       Usuario do |u|; !u.locked_at.nil? ;  end
