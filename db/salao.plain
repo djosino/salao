@@ -30,6 +30,46 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
+-- Name: caixas; Type: TABLE; Schema: public; Owner: dute; Tablespace: 
+--
+
+CREATE TABLE caixas (
+    id integer NOT NULL,
+    status integer,
+    funcionario_id integer,
+    valor_abertura double precision,
+    aberto_em timestamp without time zone,
+    valor_fechamento double precision,
+    fechado_em timestamp without time zone,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+ALTER TABLE public.caixas OWNER TO dute;
+
+--
+-- Name: caixas_id_seq; Type: SEQUENCE; Schema: public; Owner: dute
+--
+
+CREATE SEQUENCE caixas_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.caixas_id_seq OWNER TO dute;
+
+--
+-- Name: caixas_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: dute
+--
+
+ALTER SEQUENCE caixas_id_seq OWNED BY caixas.id;
+
+
+--
 -- Name: carteiras; Type: TABLE; Schema: public; Owner: dute; Tablespace: 
 --
 
@@ -123,7 +163,9 @@ CREATE TABLE conta_correntes (
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
     classe_id integer,
-    classe_type character varying(255)
+    classe_type character varying(255),
+    ordem_servico_id integer,
+    forma_de_pagamento_id integer
 );
 
 
@@ -158,7 +200,8 @@ CREATE TABLE forma_de_pagamentos (
     id integer NOT NULL,
     descricao character varying(255),
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    tipo_lancamento_id integer
 );
 
 
@@ -195,8 +238,9 @@ CREATE TABLE ordem_servicos (
     valor double precision,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    status integer,
-    usuario_id integer
+    status integer DEFAULT 1,
+    usuario_id integer,
+    valor_comissao double precision
 );
 
 
@@ -230,7 +274,10 @@ ALTER SEQUENCE ordem_servicos_id_seq OWNED BY ordem_servicos.id;
 CREATE TABLE ordem_servicos_servicos (
     id integer NOT NULL,
     ordem_servico_id integer,
-    servico_id integer
+    servico_id integer,
+    valor double precision,
+    comissao double precision,
+    funcionario_id integer
 );
 
 
@@ -506,6 +553,13 @@ ALTER TABLE public.usuarios OWNER TO postgres;
 -- Name: id; Type: DEFAULT; Schema: public; Owner: dute
 --
 
+ALTER TABLE ONLY caixas ALTER COLUMN id SET DEFAULT nextval('caixas_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: dute
+--
+
 ALTER TABLE ONLY carteiras ALTER COLUMN id SET DEFAULT nextval('carteiras_id_seq'::regclass);
 
 
@@ -573,11 +627,25 @@ ALTER TABLE ONLY tipo_servicos ALTER COLUMN id SET DEFAULT nextval('tipo_servico
 
 
 --
+-- Data for Name: caixas; Type: TABLE DATA; Schema: public; Owner: dute
+--
+
+COPY caixas (id, status, funcionario_id, valor_abertura, aberto_em, valor_fechamento, fechado_em, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Name: caixas_id_seq; Type: SEQUENCE SET; Schema: public; Owner: dute
+--
+
+SELECT pg_catalog.setval('caixas_id_seq', 1, true);
+
+
+--
 -- Data for Name: carteiras; Type: TABLE DATA; Schema: public; Owner: dute
 --
 
 COPY carteiras (id, cliente_id, valor, created_at, updated_at) FROM stdin;
-2	1	1871.69000000000005	2015-05-25 19:05:08.230772	2015-05-25 19:52:16.940483
 \.
 
 
@@ -593,7 +661,6 @@ SELECT pg_catalog.setval('carteiras_id_seq', 2, true);
 --
 
 COPY clientes (id, nome, cpf, cep, endereco, numero, bairro, data_nascimento, email, telefone, telefone2, created_at, updated_at) FROM stdin;
-1	Cliente de Teste	02231851326	60351570	Rua 3	162	QC	01/01/2015	danilo@teste.com	85 88888888	851234567	2015-05-20 13:33:59.267226	2015-05-20 13:33:59.267226
 \.
 
 
@@ -608,13 +675,7 @@ SELECT pg_catalog.setval('clientes_id_seq', 1, true);
 -- Data for Name: conta_correntes; Type: TABLE DATA; Schema: public; Owner: dute
 --
 
-COPY conta_correntes (id, cliente_id, funcionario_id, tipo_lancamento_id, valor, observacao, created_at, updated_at, classe_id, classe_type) FROM stdin;
-1	1	\N	1	2.56999999999999984	lanc de teste	2015-05-25 18:22:39.032168	2015-05-25 18:22:39.032168	\N	\N
-5	1	\N	1	1000	teste	2015-05-25 18:34:38.974791	2015-05-25 18:34:38.974791	1	Cliente
-2	1	\N	1	25.8999999999999986	lanc de teste	2015-05-25 18:26:49.829146	2015-05-25 19:05:38.953045	1	Cliente
-7	1	\N	1	500	Adiamentamento 	2015-05-25 19:51:42.811535	2015-05-25 19:51:42.811535	1	Cliente
-3	1	\N	2	888	teste	2015-05-25 18:29:00.678009	2015-05-25 19:52:02.253215	1	Cliente
-4	1	\N	1	1231.22000000000003	servico	2015-05-25 18:32:02.67514	2015-05-25 19:52:16.934502	1	Cliente
+COPY conta_correntes (id, cliente_id, funcionario_id, tipo_lancamento_id, valor, observacao, created_at, updated_at, classe_id, classe_type, ordem_servico_id, forma_de_pagamento_id) FROM stdin;
 \.
 
 
@@ -622,14 +683,23 @@ COPY conta_correntes (id, cliente_id, funcionario_id, tipo_lancamento_id, valor,
 -- Name: conta_correntes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: dute
 --
 
-SELECT pg_catalog.setval('conta_correntes_id_seq', 7, true);
+SELECT pg_catalog.setval('conta_correntes_id_seq', 25, true);
 
 
 --
 -- Data for Name: forma_de_pagamentos; Type: TABLE DATA; Schema: public; Owner: dute
 --
 
-COPY forma_de_pagamentos (id, descricao, created_at, updated_at) FROM stdin;
+COPY forma_de_pagamentos (id, descricao, created_at, updated_at, tipo_lancamento_id) FROM stdin;
+1	DINHEIRO	2015-05-26 18:10:56.326482	2015-05-26 18:10:56.326482	1
+2	CHEQUE DO DIA	2015-05-26 18:10:56.381213	2015-05-26 18:10:56.381213	1
+4	CARTÕES	2015-05-26 18:10:56.383645	2015-05-26 18:10:56.383645	1
+5	CONTA CORRENTE	2015-05-26 18:10:56.384761	2015-05-26 18:10:56.384761	1
+6	CONVÊNIOS	2015-05-26 18:10:56.385778	2015-05-26 18:10:56.385778	1
+3	CHEQUE PRE	2015-05-26 18:10:56.382614	2015-05-27 19:40:08.636284	1
+7	RETIRADAS	2015-06-10 17:10:52.81178	2015-06-10 17:10:52.81178	2
+8	ADIANTAMENTOS	2015-06-10 17:10:52.833997	2015-06-10 17:10:52.833997	2
+9	DESPESAS	2015-06-10 17:10:52.835253	2015-06-10 17:10:52.835253	2
 \.
 
 
@@ -637,16 +707,14 @@ COPY forma_de_pagamentos (id, descricao, created_at, updated_at) FROM stdin;
 -- Name: forma_de_pagamentos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: dute
 --
 
-SELECT pg_catalog.setval('forma_de_pagamentos_id_seq', 1, false);
+SELECT pg_catalog.setval('forma_de_pagamentos_id_seq', 9, true);
 
 
 --
 -- Data for Name: ordem_servicos; Type: TABLE DATA; Schema: public; Owner: dute
 --
 
-COPY ordem_servicos (id, cliente_id, valor, created_at, updated_at, status, usuario_id) FROM stdin;
-1	1	15	2015-05-20 13:56:59.020221	2015-05-20 17:09:10.921359	2	\N
-2	1	\N	2015-05-25 20:00:01.766708	2015-05-25 20:00:01.766708	1	8041
+COPY ordem_servicos (id, cliente_id, valor, created_at, updated_at, status, usuario_id, valor_comissao) FROM stdin;
 \.
 
 
@@ -654,17 +722,14 @@ COPY ordem_servicos (id, cliente_id, valor, created_at, updated_at, status, usua
 -- Name: ordem_servicos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: dute
 --
 
-SELECT pg_catalog.setval('ordem_servicos_id_seq', 2, true);
+SELECT pg_catalog.setval('ordem_servicos_id_seq', 6, true);
 
 
 --
 -- Data for Name: ordem_servicos_servicos; Type: TABLE DATA; Schema: public; Owner: dute
 --
 
-COPY ordem_servicos_servicos (id, ordem_servico_id, servico_id) FROM stdin;
-7	1	1
-8	1	1
-9	1	1
+COPY ordem_servicos_servicos (id, ordem_servico_id, servico_id, valor, comissao, funcionario_id) FROM stdin;
 \.
 
 
@@ -672,7 +737,7 @@ COPY ordem_servicos_servicos (id, ordem_servico_id, servico_id) FROM stdin;
 -- Name: ordem_servicos_servicos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: dute
 --
 
-SELECT pg_catalog.setval('ordem_servicos_servicos_id_seq', 10, true);
+SELECT pg_catalog.setval('ordem_servicos_servicos_id_seq', 29, true);
 
 
 --
@@ -710,6 +775,14 @@ COPY schema_migrations (version) FROM stdin;
 20150525182328
 20150525190041
 20150525190239
+20150526174335
+20150526181452
+20150527180237
+20150527184045
+20150527190302
+20150608130430
+20150610173724
+20150611140234
 \.
 
 
@@ -718,8 +791,6 @@ COPY schema_migrations (version) FROM stdin;
 --
 
 COPY servicos (id, descricao, percentual, valor, created_at, updated_at, tipo_servico_id) FROM stdin;
-1	Serviço	5	5	2015-05-19 19:33:04.724095	2015-05-25 19:54:48.552033	2
-2	ESCOVA 2	20	544	2015-05-25 19:55:51.897506	2015-05-25 19:55:51.897506	1
 \.
 
 
@@ -769,7 +840,6 @@ SELECT pg_catalog.setval('tipo_servicos_id_seq', 2, true);
 --
 
 COPY usuarios (id, login, name, email, crypted_password, salt, created_at, updated_at, remember_token, remember_token_expires_at, activation_code, activated_at, admin, cartorio_id, master, entidade_id, entidade_type, supervisor_master, supervisor_entidade, gerente_financeiro_master, gerente_financeiro_entidade, primeiro_acesso, acesso_controle_fisico, flag_ressarcimento_view, flag_ressarcimento_save, bloquear_cartorio, visualizar_bloqueio, flag_usuario_capital, flag_cadastro_de_msg, cadastra_selo_excecao, flg_alterar_data_autenticacao, acesso_limitado_cartorio, administrador_cartorio, flg_admin_crv, encrypted_password, password_salt, confirmation_token, confirmed_at, confirmation_sent_at, reset_password_token, reset_password_sent_at, sign_in_count, current_sign_in_at, last_sign_in_at, current_sign_in_ip, last_sign_in_ip, unlock_token, locked_at, remember_created_at, roles_mask, roles_string, valor_fixo, percentual, sexo, profissao, cep, endereco, numero, complemento, bairro, cidade, estado, fone, fone2, nascimento) FROM stdin;
-8041	teste	teste	teste@teste.com	\N	\N	2015-05-19 17:47:49.093106	2015-05-19 18:38:12.772592	\N	\N	\N	\N	f	\N	\N	\N	\N	f	f	f	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	db4965e21b6c75834fd82cf044d6edd29b6574f5	X-AypfQfsVis43iToRLM	\N	\N	\N	\N	\N	0	\N	\N	\N	\N	\N	\N	\N	4	administrador	\N	0	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
 \.
 
 
@@ -778,6 +848,14 @@ COPY usuarios (id, login, name, email, crypted_password, salt, created_at, updat
 --
 
 SELECT pg_catalog.setval('usuarios_id_seq', 8041, true);
+
+
+--
+-- Name: caixas_pkey; Type: CONSTRAINT; Schema: public; Owner: dute; Tablespace: 
+--
+
+ALTER TABLE ONLY caixas
+    ADD CONSTRAINT caixas_pkey PRIMARY KEY (id);
 
 
 --
@@ -901,6 +979,13 @@ CREATE INDEX index_conta_correntes_on_tipo_lancamento_id ON conta_correntes USIN
 --
 
 CREATE INDEX index_ordem_servicos_on_cliente_id ON ordem_servicos USING btree (cliente_id);
+
+
+--
+-- Name: index_ordem_servicos_servicos_on_funcionario_id; Type: INDEX; Schema: public; Owner: dute; Tablespace: 
+--
+
+CREATE INDEX index_ordem_servicos_servicos_on_funcionario_id ON ordem_servicos_servicos USING btree (funcionario_id);
 
 
 --
