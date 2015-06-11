@@ -2,14 +2,14 @@
 
 - if request.post? and params[:imprimir].present?
   %h3{style: "letter-spacing: 6px;"}
-    %center * RELATÓRIO DE COMISSÕES *
+    %center * RELATÓRIO DE PAGAMENTOS POR FUNCIONÁRIO *
   %p
   %h5 
     RELATORIO DO DIA.....: #{params[:data]}
     %br
     DATA.................: #{l(Time.now).upcase}
     %br
-    CÓDIGO DO OPERADOR...: #{current_usuario.login.upcase}
+    FUNCIONÁRIO...: #{@funcionario.id.to_s.rjust(5,'0')} - #{@funcionario.name}
   %p
   %table
     %thead
@@ -101,18 +101,31 @@
         %img{:height => "16", src: img_header, :width => "16"}
         %p=t '.header_search'
       .content-form
-        = form_tag extrato_por_funcionario_relatorios_path, class: 'form-group no-margin', method: :post do
+        = form_tag pagamento_funcionario_relatorios_path, class: 'form-group no-margin', method: :post do
           .container-fluid
-            .control-group.span8#datepicker2.input-append
-              = label_tag :data, 'Data', class: 'control-label'
+            .control-group.span6#datepicker2.input-append
+              = label_tag :data_ini, 'Data Inicio', class: 'control-label'
               .controls
-                = text_field_tag :data, params[:data] || l(Date.today), class: 'span11', required: true
+                = text_field_tag :data_ini, params[:data_ini], class: 'span11', required: true
                 %span.add-on
                   %i{"data-date-icon" => "icon-calendar"}
-            .control-group.span4
+            .control-group.span6#datepicker.input-append
+              = label_tag :data_ini, 'Data Final', class: 'control-label'
+              .controls
+                = text_field_tag :data_ini, params[:data_ini] || l(Date.today), class: 'span11', required: true
+                %span.add-on
+                  %i{"data-date-icon" => "icon-calendar"}
+
+          .container-fluid
+            .control-group.span6
+              = label_tag :funcionario, nil, class: 'control-label'
+              .controls
+                = select_tag :funcionario_id, options_for_select(funcionarios, params[:funcionario_id]), class: 'span12', required: true
+
+            .control-group.span6
               = label_tag :imprimir, t('helpers.label.layout_print'), class: 'control-label'
               .controls
-                = check_box_tag 'imprimir', 1
+                = check_box_tag 'imprimir', 1, nil, class: 'checkbox'
           .form-actions
             .right  
               = submit_tag t('.confirm', :default => t("helpers.submit.confirm")),  class: 'btn btn-primary btn-small'

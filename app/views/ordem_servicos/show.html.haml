@@ -17,17 +17,18 @@
             %th= model_class.human_attribute_name(:usuario)
             %th= model_class.human_attribute_name(:created_at)
             %th= model_class.human_attribute_name(:cliente)         
-            %th= model_class.human_attribute_name(:carteira)
-            %th= model_class.human_attribute_name(:valor_oss)
+            /%th= model_class.human_attribute_name(:carteira)
+            %th= model_class.human_attribute_name(:valor_os)
         %tbody
           %tr
             %td= @ordem_servico.id.to_s.rjust(6,'0')
             %td= @ordem_servico.usuario.try(:nome)
             %td=l @ordem_servico.created_at, format: :short
             %td
-              = cpf_cnpj_formatado(@ordem_servico.cliente.try(:cpf))
-              = ' - ' + @ordem_servico.cliente.try(:nome)
-            %td= @ordem_servico.cliente.carteira.valor.real_contabil
+              = link_to '#', {:'data-toggle' => "tooltip", :'data-original-title' => "Carteira: "+@ordem_servico.cliente.carteira.valor.real_contabil, class: 'tooltip'} do 
+                = cpf_cnpj_formatado(@ordem_servico.cliente.try(:cpf))
+                = ' - ' + @ordem_servico.cliente.try(:nome)
+            /%td= @ordem_servico.cliente.carteira.valor.real_contabil
             %td= @ordem_servico.servicos.pluck(:valor).sum.real_contabil
         %tfoot
           %tr  
@@ -58,17 +59,17 @@
             .control-group.span6
               = label_tag :funcionario_id, 'Funcionário', class: 'control-label'
               .controls
-                = select_tag :funcionario_id, options_for_select(funcionarios, params[:funcinarios]), {data: { dynamic_selectable_url: dynamic_select_usuarios_path(':funcionario_id'), dynamic_selectable_target: '#comissao'}, include_blank: true, class: 'span12' }
+                = select_tag :funcionario_id, options_for_select(funcionarios, params[:funcinarios]), include_blank: true, class: 'span12'
 
           .container-fluid
             .control-group.span6
               = label_tag :valor, 'Valor do Serviço', class: 'control-label'
               .controls
                 = text_field_tag :valor, nil, class: 'span12', required: true
-            .control-group.span6
-              = label_tag :comissao, 'Comissão (%)', class: 'control-label'
-              .controls
-                = text_field_tag :comissao, nil, class: 'span12'
+            /.control-group.span6
+            /  = label_tag :comissao, 'Comissão (%)', class: 'control-label'
+            /  .controls
+            /    = text_field_tag :comissao, nil, class: 'span12'
 
           .form-actions
             .right
@@ -90,7 +91,7 @@
               %th= model_class.human_attribute_name(:valor)
               %th= model_class.human_attribute_name(:comissao)
               %th= model_class.human_attribute_name(:funcionario)
-              - if @ordem_servico.status == 0
+              - if @ordem_servico.status == 1
                 %th{colspan: 4}=t '.actions', :default => t("helpers.actions")
           %tbody
             - total = 0
@@ -104,7 +105,7 @@
                   = oss.comissao.to_f > 0 ? oss.comissao.to_i : oss.funcionario.percentual.to_i 
                   & %
                 %td= oss.funcionario.nome
-                - if @ordem_servico.status == 0
+                - if @ordem_servico.status == 1
                   %td
                     - if can? :destroy, @ordem_servico
                       = link_to t('.destroy', :default => t("helpers.links.destroy")), ordem_servico_path(oss.id), method: :delete, class: 'btn btn-mini btn-danger',  :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }

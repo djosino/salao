@@ -75,6 +75,29 @@ class ContaCorrentesController < ApplicationController
     end
   end
 
+  def lancar_pagamento
+    @funcionarios = Usuario.where(id: params[:funcionarios]).order(:id)
+
+    @funcionarios.each do |func|
+      comissao = conta_corrente = 0
+      adiantamento   += ContaCorrente.where("forma_de_pagamento_id = 8 and created_at::date = ? and classe_type = 'Usuario' and classe_id = ?", params[:data].to_date, func.id).pluck(:valor).sum
+
+      OSS.joins(:ordem_servico).where("created_at::date = ? and funcionario_id = ?", params[:data].to_date, func.id).each do |oss|
+        comissao     += ((oss.valor - 2) * (oss.comissao || func.comissao).to_f / 100)
+      end
+      if (comissao - adiantamento) > 0
+        lancamento = ContaCorrente.new(tipo_lancamento_id: 2, classe_type: 'Usuario', classe_id: func.id, funcionario_id: func.id, valor: comissao - adiantamento, observacao: "Pagamento do dia #{l(Date.today)}", forma_de_pagamento_id: 1)
+        if lancamento.save
+          flash[:notice] = "Pagamentos realizados com sucesso"
+        else
+          render text: lancamento.errors.full_messages
+          return
+        end
+      end
+    end
+    redirect_to extrato_por_funcionario_relatorios_path
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_conta_corrente

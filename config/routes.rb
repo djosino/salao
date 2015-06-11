@@ -6,13 +6,17 @@ Salao::Application.routes.draw do
     end
   end
 
-  resources :conta_correntes
+  resources :conta_correntes do
+    collection do 
+      post :lancar_pagamento
+    end
+  end
 
   resources :tipo_servicos
 
   resources :forma_de_pagamentos, except: :destroy
 
-  resources :ordem_servicos, except: :destroy do
+  resources :ordem_servicos do
     member do
       post :adicionar_servico,    :pagamento
       get  :finalizar, :cancelar, :pagamento
@@ -29,8 +33,8 @@ Salao::Application.routes.draw do
 
   resources :relatorios, only: :index do 
     collection do
-      get  :movimento_de_caixa, :extrato_por_funcionario
-      post :movimento_de_caixa, :extrato_por_funcionario
+      get  :movimento_de_caixa, :extrato_por_funcionario, :pagamento_funcionario
+      post :movimento_de_caixa, :extrato_por_funcionario, :pagamento_funcionario
     end
   end
 

@@ -20,6 +20,7 @@ class Usuario < ActiveRecord::Base
 
   scope :por_permissao,    -> { order(locked_at: :desc, roles_mask: :desc, nome: :asc) }
 
+
   ROLES = %w(atendente gerente administrador)
 
   validates_presence_of :email, :name, :percentual #, :entidade_id, :entidade_type
