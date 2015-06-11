@@ -25,13 +25,12 @@ class Ability
     can :index, Caixa
     can [:new, :create], Caixa do |c|; Caixa.abertos.count == 0; end
     can :fechar,         Caixa do |c|; c.status == 1; end
-
     can [:adicionar_servico, :cancelar, :destroy], OrdemServico, status: 1
     can :pagamento, OrdemServico, status: 2
     
     can [:finalizar, :cancelar], OrdemServico, status: 1
     can [:new, :create], :registrations
-
+    
     can  :lock,         Usuario, locked_at: nil
     can  :unlock,       Usuario do |u|; !u.locked_at.nil? ;  end
     can  :lock_unlock,  Usuario

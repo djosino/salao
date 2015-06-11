@@ -11,3 +11,6 @@ pt-BR:
     extrato_por_funcionario:
       title: Extrato dos Funcionários
       header_search: Dados da Consulta
+    pagamento_funcionario:
+      title: Relatório de Pagamento de Funcionários
+      header_search: Dados da Consulta

@@ -50,46 +50,27 @@
         %p=t '.header_list', :default => model_class.model_name.human.pluralize.titleize
       .content
         %table.table.table-striped.table-bordered
-          = form_tag '/conta_correntes/lancar_pagamento' do
-            = hidden_field_tag :data, params[:data]
-            %thead
+          %thead
+            %tr
+              %th= model_class.human_attribute_name(:numero)         
+              %th= model_class.human_attribute_name(:funcionario)         
+              %th= model_class.human_attribute_name(:forma_de_pagamento)         
+              %th= model_class.human_attribute_name(:observacao)         
+              %th= model_class.human_attribute_name(:valor)         
+          %tbody
+            - valor = 0.0
+            - @lancamentos.each do |lanc|
               %tr
-                %th= model_class.human_attribute_name(:matricula)         
-                %th= model_class.human_attribute_name(:funcionario)         
-                %th= model_class.human_attribute_name(:vl_servicos)         
-                %th= model_class.human_attribute_name(:vl_comissao)         
-                %th= model_class.human_attribute_name(:adiatamentos)         
-                %th= model_class.human_attribute_name(:saldo)         
-                %th{colspan: 4}=t '.actions', :default => t("helpers.actions")
-            %tbody
-              - servicos = comissao = adiantamento = saldo = ccorrente = 0.0
-              - @dados.each do |dado|
-                %tr
-                  %td= dado[:func].to_s.rjust(5,'0')
-                  %td= dado[:nome]
-                  %td= dado[:valor].to_f.real_contabil
-                  %td= dado[:comissao].to_f.real_contabil
-                  %td= dado[:adiantamento].to_f.real_contabil
-                  %td= dado[:saldo].to_f.real_contabil
-                  %td
-                    = check_box_tag 'funcionarios[]', dado[:func], nil, class: ''
-
-                  - servicos     += dado[:valor].to_f
-                  - comissao     += dado[:comissao].to_f
-                  - adiantamento += dado[:adiantamento].to_f
-                  - saldo        += dado[:saldo].to_f
-            %tfoot
-              %tr
-                %th{colspan: 2} TOTAL
-                %th= servicos.to_f.real_contabil
-                %th= comissao.to_f.real_contabil
-                %th= adiantamento.to_f.real_contabil
-                %th= saldo.to_f.real_contabil
-                %th
-              %tr
-                %td{colspan: 99, height: 29}
-                  .left= link_to t('.print', :default => t("helpers.links.print")), extrato_por_funcionario_relatorios_path, class: 'btn btn-small'
-                  .right= submit_tag t('.confirm', :default => t("helpers.submit.confirm")),  class: 'btn btn-primary btn-small'
+                %td= lanc.id.to_s.rjust(5,'0')
+                %td= @funcionario.nome
+                %td= lanc.forma_de_pagamento.try(:descricao)
+                %td= lanc.observacao
+                %td= lanc.valor.to_f.real_contabil
+                - valor += lanc.valor.to_f
+          %tfoot
+            %tr
+              %th{colspan: 4} TOTAL
+              %th= valor.to_f.real_contabil
 - else
   .row-fluid
     .span12
@@ -110,9 +91,9 @@
                 %span.add-on
                   %i{"data-date-icon" => "icon-calendar"}
             .control-group.span6#datepicker.input-append
-              = label_tag :data_ini, 'Data Final', class: 'control-label'
+              = label_tag :data_fim, 'Data Final', class: 'control-label'
               .controls
-                = text_field_tag :data_ini, params[:data_ini] || l(Date.today), class: 'span11', required: true
+                = text_field_tag :data_fim, params[:data_fim] || l(Date.today), class: 'span11', required: true
                 %span.add-on
                   %i{"data-date-icon" => "icon-calendar"}
 

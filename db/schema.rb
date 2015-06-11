@@ -61,8 +61,8 @@ ActiveRecord::Schema.define(version: 20150611140234) do
     t.datetime "updated_at"
     t.integer  "classe_id"
     t.string   "classe_type"
-    t.integer  "forma_de_pagamento_id"
     t.integer  "ordem_servico_id"
+    t.integer  "forma_de_pagamento_id"
   end
 
   add_index "conta_correntes", ["cliente_id"], name: "index_conta_correntes_on_cliente_id", using: :btree
@@ -81,7 +81,7 @@ ActiveRecord::Schema.define(version: 20150611140234) do
     t.float    "valor"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "status"
+    t.integer  "status",         default: 1
     t.integer  "usuario_id"
     t.float    "valor_comissao"
   end
