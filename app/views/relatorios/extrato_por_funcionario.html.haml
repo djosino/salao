@@ -1,6 +1,103 @@
 - model_class = ContaCorrente
 
-- if request.post?
+- if request.post? and params[:imprimir].present?
+  %h3{style: "letter-spacing: 6px;"}
+    %center * RELATÓRIO DE COMISSÕES *
+  %p
+  %h5 
+    RELATORIO DO DIA.....: #{params[:data]}
+    %br
+    DATA.................: #{l(Time.now).upcase}
+    %br
+    CÓDIGO DO OPERADOR...: #{current_usuario.login.upcase}
+  %p
+  %table
+    %thead
+      %tr
+        %th.span2 MATR.
+        %th.span3 FUNCIONÁRIO
+        %th.span2 VL SERVIÇOS
+        %th.span2 VL COMISSÃO
+        %th.span2 ADIANTAMENTOS
+        %th.span2 C CORRENTE
+        %th.span2 SALDO
+    %tbody
+      - servicos = comissao = adiantamento = saldo = ccorrente = 0.0
+      - @dados.each do |dado|
+        %tr
+          %td= dado[:func].to_s.rjust(5,'0')
+          %td= dado[:nome]
+          %td= dado[:valor]
+          %td= dado[:comissao]
+          %td= dado[:adiantamento]
+          %td= dado[:ccorrente]
+          %td= dado[:saldo]
+          - servicos      += dado[:valor].to_f
+          - comissao      += dado[:comissao].to_f
+          - adiantamento  += dado[:adiantamento].to_f
+          - saldo         += dado[:saldo].to_f
+          - ccorrente     += dado[:ccorrente].to_f
+    %tfoot
+      %tr
+        %th{colspan: 2} TOTAL
+        %th= servicos.to_f.real_contabil
+        %th= comissao.to_f.real_contabil
+        %th= adiantamento.to_f.real_contabil
+        %th= ccorrente.to_f.real_contabil
+        %th= saldo.to_f.real_contabil
+        %th
+- elsif request.post? 
+  .row-fluid
+    .box.span12
+      .header.hidden_print
+        %img{:height => "16", :src => img_header, :width => "16"}
+        %p=t '.header_list', :default => model_class.model_name.human.pluralize.titleize
+      .content
+        %table.table.table-striped.table-bordered
+          = form_tag '/conta_correntes/lancar_pagamento' do
+            = hidden_field_tag :data, params[:data]
+            %thead
+              %tr
+                %th= model_class.human_attribute_name(:matricula)         
+                %th= model_class.human_attribute_name(:funcionario)         
+                %th= model_class.human_attribute_name(:vl_servicos)         
+                %th= model_class.human_attribute_name(:vl_comissao)         
+                %th= model_class.human_attribute_name(:adiatamentos)         
+                %th= model_class.human_attribute_name(:c_corrente)         
+                %th= model_class.human_attribute_name(:saldo)         
+                %th{colspan: 4}=t '.actions', :default => t("helpers.actions")
+            %tbody
+              - servicos = comissao = adiantamento = saldo = ccorrente = 0.0
+              - @dados.each do |dado|
+                %tr
+                  %td= dado[:func].to_s.rjust(5,'0')
+                  %td= dado[:nome]
+                  %td= dado[:valor].to_f.real_contabil
+                  %td= dado[:comissao].to_f.real_contabil
+                  %td= dado[:adiantamento].to_f.real_contabil
+                  %td= dado[:ccorrente].to_f.real_contabil
+                  %td= dado[:saldo].to_f.real_contabil
+                  %td
+                    = check_box_tag 'funcionarios[]', dado[:func], nil, class: ''
+
+                  - servicos     += dado[:valor].to_f
+                  - comissao     += dado[:comissao].to_f
+                  - adiantamento += dado[:adiantamento].to_f
+                  - saldo        += dado[:saldo].to_f
+                  - ccorrente    += dado[:ccorrente].to_f
+            %tfoot
+              %tr
+                %th{colspan: 2} TOTAL
+                %th= servicos.to_f.real_contabil
+                %th= comissao.to_f.real_contabil
+                %th= adiantamento.to_f.real_contabil
+                %th= ccorrente.to_f.real_contabil
+                %th= saldo.to_f.real_contabil
+                %th
+              %tr
+                %td{colspan: 99, height: 29}
+                  .left= link_to t('.print', :default => t("helpers.links.print")), extrato_por_funcionario_relatorios_path, class: 'btn btn-small'
+                  .right= submit_tag t('.confirm', :default => t("helpers.submit.confirm")),  class: 'btn btn-primary btn-small'
 - else
   .row-fluid
     .span12

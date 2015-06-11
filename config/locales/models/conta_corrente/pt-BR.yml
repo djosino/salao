@@ -16,6 +16,11 @@ spt-BR:
         observacao: Observação
         created_at: "Data de Cadastro"
         updated_at: "Data de Atualização"
+        vl_servicos: "Vl. Serviços"
+        vl_comissao: "Vl. Comissão"
+        adiatamentos: "Adiantamento"
+        saldo:  "Saldo"
+        c_corrente: "C. Corrente"
     errors:
       models:
         conta_corrente:

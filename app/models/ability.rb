@@ -39,6 +39,8 @@ class Ability
     can  :unlock,       Usuario do |u|; !u.locked_at.nil? ;  end
     can  :lock_unlock,  Usuario
     can [:edit_account, :update_account], :registrations
+
+    can :lancar_pagamento, ContaCorrente
   end
 
   def gerente

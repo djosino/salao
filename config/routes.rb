@@ -1,6 +1,10 @@
 Salao::Application.routes.draw do
 
-  resources :conta_correntes
+  resources :conta_correntes do
+    collection do 
+      post :lancar_pagamento
+    end
+  end
 
   resources :tipo_servicos
 

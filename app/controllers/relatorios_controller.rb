@@ -29,10 +29,33 @@ class RelatoriosController < ApplicationController
   end
 
   def extrato_por_funcionario
+    @dados = []
     if request.post?
+      @funcionarios = Usuario.order(:id)
+
+      @funcionarios.each do |func|
+        valor = comissao = adiantamento = conta_corrente = 0
+
+        OSS.joins(:ordem_servico).where("created_at::date = ? and funcionario_id = ?", params[:data].to_date, func.id).each do |oss|
+          valor        += oss.valor
+          comissao     += (oss.valor * (oss.comissao || func.comissao).to_f / 100)
+        end
+        adiantamento   += ContaCorrente.where("forma_de_pagamento_id = 8 and created_at::date = ? and classe_type = 'Usuario' and classe_id = ?", params[:data].to_date, func.id).pluck(:valor).sum
+        conta_corrente += ContaCorrente.where("tipo_lancamento_id    = 1 and classe_type = 'Usuario' and classe_id = ?", func.id).pluck(:valor).sum
+        conta_corrente -= ContaCorrente.where("tipo_lancamento_id    = 2 and classe_type = 'Usuario' and classe_id = ?", func.id).pluck(:valor).sum
+
+        @dados << { func:         func.id, 
+                    nome:         func.nome,
+                    comissao:     comissao,
+                    valor:        valor,
+                    adiantamento: adiantamento,
+                    ccorrente:    conta_corrente,
+                    saldo:        conta_corrente + comissao
+                  }
+      end
     end
     if params[:imprimir].present?
-      render layout: 'print'
+      render layout: 'print4'
     end
   end
 end
