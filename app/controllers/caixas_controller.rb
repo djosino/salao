@@ -27,6 +27,7 @@ class CaixasController < ApplicationController
     @caixa = Caixa.new(caixa_params.merge!({status: 1, funcionario_id: current_usuario.id, aberto_em: Time.now}))
 
     respond_to do |format|
+      @caixa.lancamento_credito
       if @caixa.save
         format.html { redirect_to caixas_path, notice: t(:created, name: 'Caixa') }
         format.json { render action: 'show', status: :created, location: @caixa }
@@ -62,7 +63,18 @@ class CaixasController < ApplicationController
   end
 
   def fechar
-
+    - creditos = ContaCorrente.creditos.where("created_at between ? and ?", @caixa.aberto_em, Time.now).pluck(:valor).sum 
+    - debitos  = ContaCorrente.debitos.where("created_at between ? and ?", @caixa.aberto_em, Time.now).pluck(:valor).sum
+    respond_to do |format|
+      if @caixa.update({status: 2, fechado_em: Time.now, valor_fechamento: creditos - debitos - @caixa.valor_abertura})
+        @caixa.lancamento_debito
+        format.html { redirect_to caixas_path, notice: t(:updated, name: 'Caixa') }
+        format.json { head :no_content }
+      else
+        format.html { render action: 'edit' }
+        format.json { render json: @caixa.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   private

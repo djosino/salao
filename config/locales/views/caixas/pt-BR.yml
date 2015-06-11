@@ -1,7 +1,7 @@
 pt-BR:
   caixas:    
     form:
-      title: Dados do caixa
+      title: Dados do Caixa
     edit:
       title: Editar %{model}
     index:
@@ -11,5 +11,4 @@ pt-BR:
       title: Abrir %{model}
     show:
       title: Visualizar %{model}
-      header: Dados do caixa
-      new_lancamento: Novo Lançamento
+      header: Dados do Caixa
