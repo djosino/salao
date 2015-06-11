@@ -1,7 +1,7 @@
 Salao::Application.routes.draw do
 
   resources :caixas do
-    collection do
+    member do
       get :fechar
     end
   end

@@ -1,10 +1,10 @@
 class CaixasController < ApplicationController
-  before_action :set_caixa, only: [:show, :edit, :update, :destroy]
+  before_action :set_caixa, only: [:show, :edit, :update, :destroy, :fechar]
 
   # GET /caixas
   # GET /caixas.json
   def index
-    @caixas = Caixa.all
+    @caixas = Caixa.all.paginate(page: params[:page])
   end
 
   # GET /caixas/1
@@ -24,7 +24,7 @@ class CaixasController < ApplicationController
   # POST /caixas
   # POST /caixas.json
   def create
-    @caixa = Caixa.new(caixa_params.merge!({status: 1, funcionario_id: current_usuario.id}))
+    @caixa = Caixa.new(caixa_params.merge!({status: 1, funcionario_id: current_usuario.id, aberto_em: Time.now}))
 
     respond_to do |format|
       if @caixa.save
@@ -59,6 +59,10 @@ class CaixasController < ApplicationController
       format.html { redirect_to caixas_url }
       format.json { head :no_content }
     end
+  end
+
+  def fechar
+
   end
 
   private
