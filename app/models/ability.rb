@@ -7,7 +7,7 @@ class Ability
      
     @user = usuario || Usuario.new
     
-    can :all, :all
+    cannot :all, :all
     
     if @user.id
       @user.roles.each { |role| send(role) }
@@ -24,7 +24,7 @@ class Ability
     can :admin, [Cliente, Servico, Produto, OrdemServico, Usuario, ContaCorrente, TipoServico]
     can :index, Caixa
     can [:new, :create], Caixa do |c|; Caixa.abertos.count == 0; end
-    can :fechar,         Caixa do |c|; Caixa.abertos.count == 1; end
+    can :fechar,         Caixa do |c|; c.status == 1; end
 
     can [:adicionar_servico, :cancelar, :destroy], OrdemServico, status: 1
     can :pagamento, OrdemServico, status: 2

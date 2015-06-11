@@ -1,29 +1,38 @@
-%h1 Listing caixas
-
-%table
-  %tr
-    %th Status
-    %th Funcionario
-    %th Valor abertura
-    %th Aberto em
-    %th Valor fechamento
-    %th Fechado em
-    %th
-    %th
-    %th
-
-  - @caixas.each do |caixa|
-    %tr
-      %td= caixa.status
-      %td= caixa.funcionario_id
-      %td= caixa.valor_abertura
-      %td= caixa.aberto_em
-      %td= caixa.valor_fechamento
-      %td= caixa.fechado_em
-      %td= link_to 'Show', caixa
-      %td= link_to 'Edit', edit_caixa_path(caixa)
-      %td= link_to 'Destroy', caixa, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
-= link_to 'New Caixa', new_caixa_path
+- model_class = Caixa
+.row-fluid
+  .box
+    .header
+      %img{:height => "16", :src => img_header, :width => "16"}
+      %p=t '.header_list', :default => model_class.model_name.human.pluralize.titleize
+    .content
+      %table.table.table-striped.table-bordered
+        %thead
+          %tr
+            %th= model_class.human_attribute_name(:id)         
+            %th= model_class.human_attribute_name(:funcionario_id)   
+            %th= model_class.human_attribute_name(:status)     
+            %th= model_class.human_attribute_name(:valor_abertura)     
+            %th= model_class.human_attribute_name(:aberto_em)     
+            %th= model_class.human_attribute_name(:valor_fechamento)     
+            %th= model_class.human_attribute_name(:fechado_em)     
+            %th{colspan: 4}=t '.actions', :default => t("helpers.actions")
+        %tbody
+          - @caixas.each do |caixa|
+            %tr
+              %td= caixa.id
+              %td= caixa.funcionario.try(:login)
+              %td= descricao_status_caixa(caixa.status)
+              %td= caixa.valor_abertura.real_contabil
+              %td=l caixa.aberto_em, format: :short
+              %td= caixa.valor_fechamento
+              %td=l caixa.fechado_em
+              %td
+                - if can? :fechar, caixa
+                  = link_to "Fechar", fechar_caixa_path(caixa), class: "btn btn-mini"
+        %tfoot
+          %tr  
+            %td{colspan: 99, height: 29}
+              %center
+                = page_navigation_links @caixas if will_paginate @caixas
+              .left{style: (will_paginate(@caixas) ? 'margin-top: -30px' : '')}
+                = link_to t('.back', :default => t("helpers.links.back")), ferramentas_usuarios_path, class: 'btn btn-small'
