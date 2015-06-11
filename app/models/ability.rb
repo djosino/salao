@@ -21,14 +21,22 @@ class Ability
   end
   
   def administrador
-    can :admin, [Cliente, Servico, Produto, OrdemServico, Usuario, ContaCorrente, TipoServico]
-    can :index, Caixa
+    can :admin, [Cliente, Servico, Produto, Usuario, TipoServico]
+    can :read, [Caixa, ContaCorrente, OrdemServico]
+
     can [:new, :create], Caixa do |c|; Caixa.abertos.count == 0; end
     can :fechar,         Caixa do |c|; c.status == 1; end
-    can [:adicionar_servico, :cancelar, :destroy], OrdemServico, status: 1
-    can :pagamento, OrdemServico, status: 2
-    
-    can [:finalizar, :cancelar], OrdemServico, status: 1
+
+    caixa = Caixa.last
+    if caixa and caixa.funcionario_id = @user.id and caixa.status == 0
+      can :admin, [ContaCorrente, OrdemServico]
+      can [:adicionar_servico, :cancelar, :destroy], OrdemServico, status: 1
+      can :pagamento, OrdemServico, status: 2
+      
+      can [:finalizar, :cancelar], OrdemServico, status: 1
+      can :lancar_pagamento, ContaCorrente
+    end
+
     can [:new, :create], :registrations
     
     can  :lock,         Usuario, locked_at: nil
@@ -36,7 +44,6 @@ class Ability
     can  :lock_unlock,  Usuario
     can [:edit_account, :update_account], :registrations
 
-    can :lancar_pagamento, ContaCorrente
   end
 
   def gerente

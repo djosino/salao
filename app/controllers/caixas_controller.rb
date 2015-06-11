@@ -28,7 +28,7 @@ class CaixasController < ApplicationController
 
     respond_to do |format|
       if @caixa.save
-        format.html { redirect_to @caixa, notice: t(:created, name: 'Caixa') }
+        format.html { redirect_to caixas_path, notice: t(:created, name: 'Caixa') }
         format.json { render action: 'show', status: :created, location: @caixa }
       else
         format.html { render action: 'new' }
@@ -42,7 +42,7 @@ class CaixasController < ApplicationController
   def update
     respond_to do |format|
       if @caixa.update(caixa_params)
-        format.html { redirect_to @caixa, notice: t(:updated, name: 'Caixa') }
+        format.html { redirect_to caixas_path, notice: t(:updated, name: 'Caixa') }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

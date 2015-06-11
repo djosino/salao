@@ -24,7 +24,7 @@
         %tr
           %td= lanc.id.to_s.rjust(5,'0')
           %td= lanc.forma_de_pagamento.try(:descricao)
-          %td= lanc.observacao
+          %td= l(lanc.created_at, format: :hour) + lanc.observacao
           %td= lanc.valor.to_f.real_contabil
           - valor += lanc.valor.to_f
     %tfoot
@@ -61,7 +61,7 @@
                 %td= lanc.id.to_s.rjust(5,'0')
                 %td= @funcionario.nome
                 %td= lanc.forma_de_pagamento.try(:descricao)
-                %td= lanc.observacao
+                %td= l(lanc.created_at, format: :hour) + lanc.observacao
                 %td= lanc.valor.to_f.real_contabil
                 - valor += lanc.valor.to_f
           %tfoot
