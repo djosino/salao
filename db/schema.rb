@@ -81,7 +81,7 @@ ActiveRecord::Schema.define(version: 20150611140234) do
     t.float    "valor"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "status",         default: 1
+    t.integer  "status"
     t.integer  "usuario_id"
     t.float    "valor_comissao"
   end
