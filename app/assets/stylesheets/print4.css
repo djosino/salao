@@ -13,6 +13,8 @@ td, a{ font-size: 7pt;  }
 td.span10,  th.span10  { width: 85%; }
 td.span8,   th.span8  { width: 70%; }
 td.span6,   th.span6  { width: 40%; }
+td.span5,   th.span5  { width: 35%; }
+td.span4,   th.span4  { width: 30%; }
 td.span2,   th.span2  { width: 15%; }
 td.span1,   th.span1  { width: 5%; }
 

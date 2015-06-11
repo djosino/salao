@@ -60,7 +60,7 @@ class RelatoriosController < ApplicationController
     if request.post?
       @funcionario = Usuario.find(params[:funcionario_id])
 
-      @lancamentos  = ContaCorrente.where("tipo_lancamento_id = 2 and created_at::date between ? and ? and classe_type = 'Usuario' and classe_id = ?", params[:data_ini].to_date, params[:data_fim].to_date, @funcionario.id)
+      @lancamentos  = ContaCorrente.where("tipo_lancamento_id = 2 and created_at::date between ? and ? and classe_type = 'Usuario' and classe_id = ?", params[:data_ini].to_date, params[:data_fim].to_date, @funcionario.id).order(:id)
 
     end
     if params[:imprimir].present?

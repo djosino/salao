@@ -24,18 +24,8 @@
       .container-fluid
         .row-fluid
           #logo
-            LOGO
-            %br
-            LOGO
-            %br
-            LOGO
-            %br
-            LOGO
-            %br
-            LOGO
-            %br
-            /= link_to root_url do
-            /  = image_tag "principal/x.png"
+            = link_to root_url do
+              = image_tag "principal/logo_site.png"
           %section#navigation
             .span1
             %nav#nav-wrap.span10
@@ -50,7 +40,7 @@
                   = link_to 'Contato', '#'
               .clear
 
-    .container-fluid{style: 'min-height: 463px'}
+    .container-fluid{style: 'min-height: 500px'}
       .row-fluid
         = yield
     

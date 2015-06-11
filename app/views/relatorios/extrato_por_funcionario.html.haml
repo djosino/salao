@@ -44,6 +44,10 @@
         %th
 - elsif request.post? 
   .row-fluid
+    .span12
+      %h2.botton-border=t '.title', :default => model_class.model_name.human.pluralize.titleize, model: model_class.model_name.human.pluralize.titleize
+      = flash_message
+  .row-fluid
     .box.span12
       .header.hidden_print
         %img{:height => "16", :src => img_header, :width => "16"}

@@ -43,7 +43,7 @@ class CaixasController < ApplicationController
   def update
     respond_to do |format|
       if @caixa.update(caixa_params)
-        format.html { redirect_to @caixa, notice: t(:updated, name: 'Caixa') }
+        format.html { redirect_to caixas_path, notice: t(:updated, name: 'Caixa') }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

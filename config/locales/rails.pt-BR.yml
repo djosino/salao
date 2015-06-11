@@ -201,6 +201,8 @@ pt-BR:
       long: '%A, %d de %B de %Y, %H:%M h'
       short: '%d/%m/%Y, %H:%M h'
       form: '%d/%m/%Y %H:%M:%S'
+      hour: '%H:%M h - '
+
     pm: ''
 
   # '
