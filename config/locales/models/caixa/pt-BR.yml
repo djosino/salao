@@ -8,7 +8,7 @@ pt-BR:
       caixa:
         id: "#"
         funcionario_id: Funcionário
-        status: Nome
+        status: Status
         valor_abertura: Valor Abertura
         aberto_em:: Aberto Em
         valor_fechamento: Valor Fechamento

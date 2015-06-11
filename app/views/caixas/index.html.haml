@@ -1,5 +1,11 @@
 - model_class = Caixa
 .row-fluid
+  .span12
+    %h2.botton-border=t '.title', default: model_class.model_name.human.pluralize.titleize, model: model_class.model_name.human.pluralize.titleize
+    = flash_message
+    = flash_message(@caixa)
+
+.row-fluid
   .box
     .header
       %img{:height => "16", :src => img_header, :width => "16"}
@@ -22,10 +28,10 @@
               %td= caixa.id
               %td= caixa.funcionario.try(:login)
               %td= descricao_status_caixa(caixa.status)
-              %td= caixa.valor_abertura.real_contabil
+              %td= caixa.valor_abertura.try(:real_contabil)
               %td=l caixa.aberto_em, format: :short
-              %td= caixa.valor_fechamento
-              %td=l caixa.fechado_em
+              %td= caixa.valor_fechamento.try(:real_contabil)
+              %td=l caixa.fechado_em, format: :short
               %td
                 - if can? :fechar, caixa
                   = link_to "Fechar", fechar_caixa_path(caixa), class: "btn btn-mini"

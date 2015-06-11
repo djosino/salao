@@ -10,8 +10,7 @@
           %span.caret
         %ul.dropdown-menu
           = link_to "Listar",   caixas_path,    class: "btn btn-small"
-          - if can? :new, Caixa
-            = link_to "Abrir Caixa",  new_caixa_path,     class: "btn btn-small"
+          = link_to "Abrir Caixa",  new_caixa_path,     class: "btn btn-small"
     - if can? :index, Cliente
       .btn-group
         = link_to "Clientes", clientes_path, class: "btn btn-small"

@@ -6,13 +6,17 @@ class Caixa < ActiveRecord::Base
 
   validate :unicidade, on: :create
 
-  after_create :realizar_lancamento
-
   scope :abertos,     -> { where(status: 1) }
+  scope :fechados,    -> { where(status: 2) }
 
-  def realizar_lancamento
-    ContaCorrente.create(tipo_lancamento_id: 1, valor: self.valor_abertura, forma_de_pagamento_id: 3, classe_type: 'Funcionario', classe_id: self.funcionario_id, observacao: "FUNDO FIXO")
-    ContaCorrente.create(tipo_lancamento_id: 2, valor: self.valor_abertura, forma_de_pagamento_id: 9, classe_type: 'Funcionario', classe_id: self.funcionario_id, observacao: "FUNDO FIXO")
+  def lancamento_credito
+    # tipo_lancamento: Crédito, forma_de_pagamento: Dinheiro
+    ContaCorrente.create({tipo_lancamento_id: 1, valor: self.valor_abertura, forma_de_pagamento_id: 1, classe_type: 'Funcionario', classe_id: self.funcionario_id, observacao: "FUNDO FIXO - Abertura", funcionario_id: self.funcionario_id})
+  end
+  
+  def lancamento_debito
+    # tipo_lancamento: Debito, forma_de_pagamento: Despesas
+    ContaCorrente.create({tipo_lancamento_id: 2, valor: self.valor_abertura, forma_de_pagamento_id: 9, classe_type: 'Funcionario', classe_id: self.funcionario_id, observacao: "FUNDO FIXO - Fechamento", funcionario_id: self.funcionario_id})
   end
 
   def unicidade
