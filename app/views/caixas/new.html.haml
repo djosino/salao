@@ -1,0 +1,6 @@
+- model_class = Caixa
+.row-fluid
+  %h2.botton-border=t '.title', :model => model_class.model_name.human.titleize
+  = flash_message(@caixa)
+.row-fluid
+  = render :partial => "form"

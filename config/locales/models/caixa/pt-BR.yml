@@ -1,0 +1,23 @@
+pt-BR:
+  activerecord:
+    models:
+      caixa: 
+        one: Caixa
+        other: Caixas
+    attributes:
+      caixa:
+        id: "#"
+        funcionario_id: Funcionário
+        status: Nome
+        valor_abertura: Valor Abertura
+        aberto_em:: Aberto Em
+        valor_fechamento: Valor Fechamento
+        fechado_em: Fechado Em
+        created_at: "Data de Cadastro"
+        updated_at: "Data de Atualização"
+    errors:
+      models:
+        caixa:
+          attributes:
+          validate:
+

@@ -3,6 +3,15 @@
     = link_to root_path, class: "btn btn-small", style: "margin-right: 4px" do
       %i.icon.icon-home
     /
+    .btn-group
+      = link_to "Caixas", caixas_path, class: "btn btn-small"
+      = link_to '#', class: 'btn btn-small dropdown-toggle', :'data-toggle' => "dropdown" do
+        %span.caret
+      %ul.dropdown-menu
+        - if can? :new, Caixa
+          = link_to "Abrir",  new_caixa_path,     class: "btn btn-small"
+        - if can? :fechar, Caixa
+          = link_to "Fechar", fechar_caixas_path, class: "btn btn-small"
     - if can? :index, Cliente
       .btn-group
         = link_to "Clientes", clientes_path, class: "btn btn-small"

@@ -1,0 +1,17 @@
+- model_class = Caixa
+.box.span4
+  .header
+    %img{:height => "16", :src => img_header, :width => "16"}
+    %p=t '.header', :default => model_class.model_name.human.pluralize.titleize
+  = form_for @caixa, :html => { class: 'form-group' } do |f|
+    .content-form
+      .container-fluid
+        .control-group.span12
+          = f.label :valor_abertura, class: 'control-label'
+          .controls
+            = f.text_field :valor_abertura, value: @caixa.valor_abertura.real, class: 'span12', required: true 
+      .form-actions
+        .right
+          = f.submit t('.confirm', :default => t("helpers.submit.confirm")),  class: 'btn btn-small btn-primary'
+        .left
+          = link_to t('.back', :default => t("helpers.links.back")), clientes_path, class: 'btn btn-small'

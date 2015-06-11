@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  status: 1
+  funcionario_id: 1
+  valor_abertura: 1.5
+  aberto_em: 2015-06-11 11:02:34
+  valor_fechamento: 1.5
+  fechado_em: 2015-06-11 11:02:34
+
+two:
+  status: 1
+  funcionario_id: 1
+  valor_abertura: 1.5
+  aberto_em: 2015-06-11 11:02:34
+  valor_fechamento: 1.5
+  fechado_em: 2015-06-11 11:02:34

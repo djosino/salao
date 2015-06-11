@@ -21,13 +21,10 @@ class Ability
   end
   
   def administrador
-    can :admin, Cliente
-    can :admin, Servico
-    can :admin, Produto
-    can :admin, OrdemServico
-    can :admin, Usuario
-    can :admin, ContaCorrente
-    can :admin, TipoServico
+    can :admin, [Cliente, Servico, Produto, OrdemServico, Usuario, ContaCorrente, TipoServico]
+    can :index, Caixa
+    can [:new, :create], Caixa do |c|; Caixa.abertos.count == 0; end
+    can :fechar,         Caixa do |c|; Caixa.abertos.count == 1; end
 
     can [:adicionar_servico, :cancelar, :destroy], OrdemServico, status: 1
     can :pagamento, OrdemServico, status: 2

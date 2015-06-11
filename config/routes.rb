@@ -1,5 +1,11 @@
 Salao::Application.routes.draw do
 
+  resources :caixas do
+    collection do
+      get :fechar
+    end
+  end
+
   resources :conta_correntes
 
   resources :tipo_servicos
@@ -8,8 +14,8 @@ Salao::Application.routes.draw do
 
   resources :ordem_servicos, except: :destroy do
     member do
-      post :adicionar_servico,   :pagamento
-      get :finalizar, :cancelar, :pagamento
+      post :adicionar_servico,    :pagamento
+      get  :finalizar, :cancelar, :pagamento
     end
   end
 

@@ -11,10 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150610173724) do
+ActiveRecord::Schema.define(version: 20150611140234) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "caixas", force: true do |t|
+    t.integer  "status"
+    t.integer  "funcionario_id"
+    t.float    "valor_abertura"
+    t.datetime "aberto_em"
+    t.float    "valor_fechamento"
+    t.datetime "fechado_em"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "carteiras", force: true do |t|
     t.integer  "cliente_id"

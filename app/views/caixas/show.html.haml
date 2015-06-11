@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%p
+  %b Status:
+  = @caixa.status
+%p
+  %b Funcionario:
+  = @caixa.funcionario_id
+%p
+  %b Valor abertura:
+  = @caixa.valor_abertura
+%p
+  %b Aberto em:
+  = @caixa.aberto_em
+%p
+  %b Valor fechamento:
+  = @caixa.valor_fechamento
+%p
+  %b Fechado em:
+  = @caixa.fechado_em
+
+= link_to 'Edit', edit_caixa_path(@caixa)
+\|
+= link_to 'Back', caixas_path

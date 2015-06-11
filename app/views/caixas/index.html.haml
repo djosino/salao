@@ -1,0 +1,29 @@
+%h1 Listing caixas
+
+%table
+  %tr
+    %th Status
+    %th Funcionario
+    %th Valor abertura
+    %th Aberto em
+    %th Valor fechamento
+    %th Fechado em
+    %th
+    %th
+    %th
+
+  - @caixas.each do |caixa|
+    %tr
+      %td= caixa.status
+      %td= caixa.funcionario_id
+      %td= caixa.valor_abertura
+      %td= caixa.aberto_em
+      %td= caixa.valor_fechamento
+      %td= caixa.fechado_em
+      %td= link_to 'Show', caixa
+      %td= link_to 'Edit', edit_caixa_path(caixa)
+      %td= link_to 'Destroy', caixa, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Caixa', new_caixa_path
