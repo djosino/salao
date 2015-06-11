@@ -1,5 +1,5 @@
 class OrdemServicosController < ApplicationController
-  before_action :set_ordem_servico, only: [ :show, :edit, :update, :destroy, :adicionar_servico, 
+  before_action :set_ordem_servico, only: [ :show, :edit, :update, :adicionar_servico, 
                                             :pagamento, :finalizar, :cancelar]
 
   # GET /ordem_servicos
@@ -66,10 +66,12 @@ class OrdemServicosController < ApplicationController
   # DELETE /ordem_servicos/1
   # DELETE /ordem_servicos/1.json
   def destroy
-    @ordem_servico.remover_servico(params[:servico_id])
-
+    oss = OSS.find(params[:id])
+    @ordem_servico = oss.ordem_servico
+    #@ordem_servico.remover_servico(params[:servico_id])
+    oss.destroy
     respond_to do |format|
-      format.html { redirect_to @ordem_servico, notice: t(:updated, 'Ordem de Serviço') }
+      format.html { redirect_to @ordem_servico, notice: t(:updated, name: 'Ordem de Serviço') }
       format.json { head :no_content }
     end
   end
@@ -77,12 +79,13 @@ class OrdemServicosController < ApplicationController
   def adicionar_servico
     if request.post? 
       servico = Servico.where(id: params[:servico_id]).first
+      funcionario = Usuario.find(params[:funcionario_id]) 
       valor   = params[:valor].gsub('.','').gsub(',','.').to_f
       # parametros do new
       parametros = {  ordem_servico_id: @ordem_servico.id, 
                       servico_id: servico.try(:id), 
                       valor: valor, 
-                      comissao: params[:comissao], 
+                      comissao: servico.percentual || funcionario.percentual, 
                       funcionario_id: params[:funcionario_id] 
                     }
 

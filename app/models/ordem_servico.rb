@@ -9,7 +9,7 @@ class OrdemServico < ActiveRecord::Base
   has_and_belongs_to_many :servicos
 
   validates_presence_of :cliente
-  before_create :set_status
+  before_save :set_status
 
 
   def descricao_status
@@ -45,6 +45,6 @@ class OrdemServico < ActiveRecord::Base
 
   private
     def set_status
-      self.status = 1
+      self.status = 1 if self.new_record?
     end
 end
