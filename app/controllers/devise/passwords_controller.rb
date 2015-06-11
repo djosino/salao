@@ -1,9 +1,9 @@
 class Devise::PasswordsController < DeviseController
   layout 'login'
 
-  prepend_before_filter :require_no_authentication
+  #prepend_before_filter :require_no_authentication
   # Render the #edit only if coming from a reset password email link
-  append_before_filter :assert_reset_token_passed, only: :edit
+  #append_before_filter :assert_reset_token_passed, only: :edit
 
   # Removendo cancan e add minha checagem
   skip_authorize_resource
@@ -29,10 +29,12 @@ class Devise::PasswordsController < DeviseController
   def edit
     self.resource = resource_class.new
     resource.reset_password_token = params[:reset_password_token]
+    render layout: 'application'
   end
 
   # PUT /resource/password
   def update
+    render layout: 'application'
     self.resource = resource_class.reset_password_by_token(resource_params)
 
     if resource.errors.empty?
