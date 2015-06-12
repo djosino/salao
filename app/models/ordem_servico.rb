@@ -3,7 +3,7 @@ class OrdemServico < ActiveRecord::Base
   belongs_to :cliente
   belongs_to :usuario
 
-  has_many :pagamentos, class_name: 'ContaCorrente'
+  has_many :pagamentos, -> { where(tipo_lancamento_id: 2).order(:id) }, class_name: 'ContaCorrente'
   has_many :ordem_servicos_servicos, class_name: 'OSS'
   
   has_and_belongs_to_many :servicos

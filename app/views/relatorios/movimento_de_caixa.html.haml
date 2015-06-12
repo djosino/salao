@@ -62,7 +62,7 @@
         %th.span2= (@dados[:creditos_99] - @dados[:debitos_99]).real.real_formatado
       %tr
         %th.span10= "PEDE"         
-        %th.span2= (@dados[:creditos_01] - @dados[:debitos_99]).real.real_formatado
+        %th.span2= (@dados[:creditos_01] + @dados[:creditos_00] - @dados[:debitos_99]).real.real_formatado
 
 - else
   .row-fluid

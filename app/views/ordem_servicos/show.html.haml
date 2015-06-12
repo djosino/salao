@@ -61,7 +61,7 @@
             .control-group.span6
               = label_tag :funcionario_id, 'Funcionário', class: 'control-label'
               .controls
-                = select_tag :funcionario_id, options_for_select(funcionarios, params[:funcinarios]), include_blank: true, class: 'span12'
+                = select_tag :funcionario_id, options_for_select(funcionarios, params[:funcinarios]), required: true, include_blank: true, class: 'span12'
 
           .container-fluid
             .control-group.span6

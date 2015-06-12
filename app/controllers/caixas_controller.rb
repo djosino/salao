@@ -67,7 +67,7 @@ class CaixasController < ApplicationController
     - debitos  = ContaCorrente.debitos.where("created_at between ? and ?", @caixa.aberto_em, Time.now).pluck(:valor).sum
     respond_to do |format|
       if @caixa.update({status: 2, fechado_em: Time.now, valor_fechamento: creditos - debitos - @caixa.valor_abertura})
-        @caixa.lancamento_debito
+        #@caixa.lancamento_debito
         format.html { redirect_to caixas_path, notice: t(:updated, name: 'Caixa') }
         format.json { head :no_content }
       else
