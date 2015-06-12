@@ -106,7 +106,7 @@
                 %td
                   = oss.comissao.to_f > 0 ? oss.comissao.to_i : oss.funcionario.percentual.to_i 
                   & %
-                %td= oss.funcionario.nome
+                %td= oss.funcionario.try(:name)
                 - if @ordem_servico.status == 1
                   %td
                     - if can? :destroy, @ordem_servico
