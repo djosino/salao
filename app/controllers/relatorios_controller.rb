@@ -10,7 +10,7 @@ class RelatoriosController < ApplicationController
 
   def movimento_de_caixa
     if request.post?
-      @despesas = ContaCorrente.dia(params[:data]).debitos.order(:created_at)
+      @despesas = ContaCorrente.debitos.funcionarios.dia(params[:data]).order(:created_at)
       @dados = {}
       @dados.merge!( creditos_01:  ContaCorrente.dia(params[:data]).where(forma_de_pagamento_id: 1).pluck(:valor).sum )
       @dados.merge!( creditos_02:  ContaCorrente.dia(params[:data]).where(forma_de_pagamento_id: 2).pluck(:valor).sum )
@@ -18,7 +18,7 @@ class RelatoriosController < ApplicationController
       @dados.merge!( creditos_04:  ContaCorrente.dia(params[:data]).where(forma_de_pagamento_id: 4).pluck(:valor).sum )
       @dados.merge!( creditos_05:  ContaCorrente.dia(params[:data]).where(forma_de_pagamento_id: 5).pluck(:valor).sum )
       @dados.merge!( creditos_06:  ContaCorrente.dia(params[:data]).where(forma_de_pagamento_id: 6).pluck(:valor).sum )
-      @dados.merge!( creditos_99:  ContaCorrente.dia(params[:data]).creditos.pluck(:valor).sum )
+      @dados.merge!( creditos_99:  ContaCorrente.dia(params[:data]).where(forma_de_pagamento_id: [1,2,3,4,5,6]).pluck(:valor).sum )
 
       @dados.merge!( debitos_07:   ContaCorrente.dia(params[:data]).where(forma_de_pagamento_id: 7).pluck(:valor).sum )
       @dados.merge!( debitos_08:   ContaCorrente.dia(params[:data]).where(forma_de_pagamento_id: 8).pluck(:valor).sum )
