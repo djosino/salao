@@ -7,10 +7,7 @@
     %title
       = content_for?(:title) ? 'TUTTIBELLA - ' + yield(:title) : "TUTTIBELLA"
     = csrf_meta_tags
-    - if Rails.env.production?
-      = stylesheet_link_tag "print4", media: "print4"
-    - else
-      = stylesheet_link_tag "print4", media: "all"
+    = stylesheet_link_tag "print4", media: "all"
   %body
     = yield
     :javascript

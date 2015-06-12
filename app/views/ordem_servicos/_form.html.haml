@@ -6,10 +6,14 @@
   = form_for @ordem_servico, :html => { class: 'form-group' } do |f|
     .content-form
       .container-fluid
-        .control-group
+        .control-group.span8
           = f.label :cliente_id, class: 'control-label'
           .controls
-            = f.select :cliente_id, options_for_select(Cliente.pluck(:nome, :id)), {}, class: 'span8', required: true
+            = f.select :cliente_id, options_for_select(Cliente.pluck(:nome, :id)), {}, class: 'span12', required: true
+        .control-group.span4
+          = f.label :numero, class: 'control-label'
+          .controls
+            = f.text_field :numero, class: 'span12', required: true
       .form-actions
         .right
           = f.submit t('.confirm', :default => t("helpers.submit.confirm")),  class: 'btn btn-small btn-primary'

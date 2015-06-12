@@ -31,17 +31,19 @@ class RelatoriosController < ApplicationController
   def extrato_por_funcionario
     @dados = []
     if request.post?
-      @funcionarios = Usuario.order(:id)
-
+      @funcionarios = Usuario.where('percentual > 0').order(:id)
+      
       @funcionarios.each do |func|
         valor = comissao = adiantamento = conta_corrente = 0
-
-        OSS.joins(:ordem_servico).where("created_at::date = ? and funcionario_id = ?", params[:data].to_date, func.id).each do |oss|
+        descontado = []
+        OSS.joins(:ordem_servico).where("created_at::date = ? and funcionario_id = ?", params[:data].to_date, func.id).order(comissao: :desc).each do |oss|
+          desconto      = (descontado.include?(oss.id) ? 0 : 2)
+          descontado   << oss.id
           valor        += oss.valor
-          comissao     += (oss.valor * (oss.comissao || func.comissao).to_f / 100)
+          comissao     += ((oss.valor - desconto) * (oss.comissao || func.comissao).to_f / 100)
         end
         adiantamento   += ContaCorrente.where("forma_de_pagamento_id = 8 and created_at::date = ? and classe_type = 'Usuario' and classe_id = ?", params[:data].to_date, func.id).pluck(:valor).sum
-
+        
         @dados << { func:         func.id, 
                     nome:         func.nome,
                     valor:        valor,
@@ -61,7 +63,6 @@ class RelatoriosController < ApplicationController
       @funcionario = Usuario.find(params[:funcionario_id])
 
       @lancamentos  = ContaCorrente.where("tipo_lancamento_id = 2 and created_at::date between ? and ? and classe_type = 'Usuario' and classe_id = ?", params[:data_ini].to_date, params[:data_fim].to_date, @funcionario.id).order(:id)
-
     end
     if params[:imprimir].present?
       render layout: 'print4'

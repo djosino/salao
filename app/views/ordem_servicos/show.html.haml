@@ -14,6 +14,7 @@
         %thead
           %tr
             %th= model_class.human_attribute_name(:id)         
+            %th= model_class.human_attribute_name(:numero)
             %th= model_class.human_attribute_name(:usuario)
             %th= model_class.human_attribute_name(:created_at)
             %th= model_class.human_attribute_name(:cliente)         
@@ -22,6 +23,7 @@
         %tbody
           %tr
             %td= @ordem_servico.id.to_s.rjust(6,'0')
+            %td= @ordem_servico.numero
             %td= @ordem_servico.usuario.try(:nome)
             %td=l @ordem_servico.created_at, format: :short
             %td

@@ -1,5 +1,5 @@
 class UsuariosController < ApplicationController
-  before_action :set_usuario, only: [:lock_unlock, :resetar_senha, :show, :editar_permissoes]
+  before_action :set_usuario, only: [:lock_unlock, :resetar_senha, :show, :editar_permissoes, :atualizar_permissoes]
   before_action :authenticate_usuario!, except: :atualizar_hora
 
   def index
@@ -35,7 +35,7 @@ class UsuariosController < ApplicationController
     params[:usuario]         ||= {}
     params[:usuario][:roles] ||= []
     if @usuario.update(usuario_params)
-      redirect_to editar_permissoes_usuario_path(@usuario), notice: t(:updated, name: "Usuário " + @usuario.login)
+      redirect_to usuarios_path, notice: t(:updated, name: "Usuário " + @usuario.login)
     end
   end
 

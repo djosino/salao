@@ -10,6 +10,7 @@ class OrdemServicosController < ApplicationController
       num          = params[:find_by].gsub(/[^0-9]/,'').to_i
       cond = case type_search
         when '1' then { id: num }
+        when '2' then { numero: num }
         else { id: 0 }
       end
       @ordem_servicos = OrdemServico.includes(:servicos, :cliente).where(cond).order(id: :desc).paginate(page: params[:page])
@@ -123,6 +124,6 @@ class OrdemServicosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ordem_servico_params
-      params.require(:ordem_servico).permit(:cliente_id, :valor)
+      params.require(:ordem_servico).permit(:cliente_id, :numero)
     end
 end

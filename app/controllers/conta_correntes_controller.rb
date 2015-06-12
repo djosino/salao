@@ -79,11 +79,13 @@ class ContaCorrentesController < ApplicationController
     @funcionarios = Usuario.where(id: params[:funcionarios]).order(:id)
 
     @funcionarios.each do |func|
-      comissao = conta_corrente = 0
-      adiantamento   += ContaCorrente.where("forma_de_pagamento_id = 8 and created_at::date = ? and classe_type = 'Usuario' and classe_id = ?", params[:data].to_date, func.id).pluck(:valor).sum
-
+      comissao        = conta_corrente = 0
+      adiantamento    = ContaCorrente.where("forma_de_pagamento_id = 8 and created_at::date = ? and classe_type = 'Usuario' and classe_id = ?", params[:data].to_date, func.id).pluck(:valor).sum
+      descontado      = []
       OSS.joins(:ordem_servico).where("created_at::date = ? and funcionario_id = ?", params[:data].to_date, func.id).each do |oss|
-        comissao     += ((oss.valor - 2) * (oss.comissao || func.comissao).to_f / 100)
+        desconto      = (descontado.include?(oss.id) ? 0 : 2)
+        descontado   << oss.id
+        comissao     += ((oss.valor - desconto) * (oss.comissao || func.comissao).to_f / 100)
       end
       if (comissao - adiantamento) > 0
         lancamento = ContaCorrente.new(tipo_lancamento_id: 2, classe_type: 'Usuario', classe_id: func.id, funcionario_id: func.id, valor: comissao - adiantamento, observacao: "Pagamento do dia #{l(Date.today)}", forma_de_pagamento_id: 1)

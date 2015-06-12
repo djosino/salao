@@ -25,8 +25,8 @@
           %td= despesa.id
           %td= data_hora(despesa.created_at)
           %td= despesa.observacao
-          %td= despesa.valor.real_contabil
-          %td= saldo.round(2)
+          %td= despesa.valor.real.real_formatado
+          %td= saldo.round(2).real.real_formatado
   %p
   %table
     %tbody
@@ -36,10 +36,10 @@
       - for i in 'creditos_01'..'creditos_06'
         %tr
           %td.span8= i.gsub(/\D/, "")  + ' - ' + FormaDePagamento.find( i.gsub(/\D/, "") ).descricao
-          %td= @dados[i.to_sym].real_contabil
+          %td= @dados[i.to_sym].real.real_formatado
       %tr
         %th.span2= "99 - TOTAL"
-        %th= @dados[:creditos_99].real_contabil
+        %th= @dados[:creditos_99].real.real_formatado
   %p
   %table
     %tbody
@@ -49,19 +49,19 @@
       - for i in 'debitos_07'..'debitos_09'
         %tr
           %td.span8= i.gsub(/\D/, "")  + ' - ' + FormaDePagamento.find( i.gsub(/\D/, "") ).descricao
-          %td= @dados[i.to_sym].real_contabil
+          %td= @dados[i.to_sym].real.real_formatado
       %tr
         %th.span2= "99 - TOTAL"
-        %th= @dados[:debitos_99].real_contabil
+        %th= @dados[:debitos_99].real.real_formatado
   %p
   %table
     %thead
       %tr
         %th.span10= "SALDO LIQUIDO NESTA DATA"         
-        %th.span2= (@dados[:creditos_99] - @dados[:debitos_99]).real_contabil
+        %th.span2= (@dados[:creditos_99] - @dados[:debitos_99]).real.real_formatado
       %tr
         %th.span10= "PEDE"         
-        %th.span2= (@dados[:creditos_01] - @dados[:debitos_99]).real_contabil
+        %th.span2= (@dados[:creditos_01] - @dados[:debitos_99]).real.real_formatado
 
 - else
   .row-fluid
