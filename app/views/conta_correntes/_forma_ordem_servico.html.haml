@@ -4,6 +4,7 @@
     %img{:height => "16", :src => img_header, :width => "16"}
     %p=t '.header', :default => model_class.model_name.human.pluralize.titleize
   = form_for @conta_corrente, :html => { class: 'form-group' } do |f|
+    = hidden_field_tag :pagamento, true
     = f.hidden_field :ordem_servico_id,   value: @ordem_servico.id
     = f.hidden_field :classe_type,        value: "Cliente"
     = f.hidden_field :cliente_id,         value: @ordem_servico.cliente_id

@@ -42,6 +42,11 @@ class ContaCorrentesController < ApplicationController
     end
     respond_to do |format|
       if @conta_corrente.save
+        if params[:pagamento].present?
+          cc = @conta_corrente.dup
+          cc.tipo_lancamento_id = 1
+          cc.save
+        end
         format.html { redirect_to :back, notice: t(:created, name: 'Lançamento') }
         format.json { render action: 'show', status: :created, location: @conta_corrente }
       else

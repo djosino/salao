@@ -29,8 +29,8 @@ class OrdemServico < ActiveRecord::Base
 
   def finalizar!
     self.status          = 2
-    self.valor           = self.servicos.pluck(:valor).sum.to_f
-    self.valor_comissao  = self.valor - (self.ordem_servicos_servicos.pluck(:funcionario_id).uniq.size * 2)
+    self.valor           = self.ordem_servicos_servicos.pluck(:valor).sum.to_f
+    #self.valor_comissao  = self.valor - (self.ordem_servicos_servicos.pluck(:funcionario_id).uniq.size * 2)
     self.save
   end
 

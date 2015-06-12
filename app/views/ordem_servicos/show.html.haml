@@ -31,7 +31,7 @@
                 = cpf_cnpj_formatado(@ordem_servico.cliente.try(:cpf))
                 = ' - ' + @ordem_servico.cliente.try(:nome)
             /%td= @ordem_servico.cliente.carteira.valor.real_contabil
-            %td= @ordem_servico.servicos.pluck(:valor).sum.real_contabil
+            %td= @ordem_servico.ordem_servicos_servicos.pluck(:valor).sum.to_f.real.real_formatado
         %tfoot
           %tr  
             %td{colspan: 99}
@@ -102,7 +102,7 @@
               %tr
                 %td= oss.servico_id.to_s.rjust(6,'0')
                 %td= oss.servico.descricao
-                %td= oss.valor.try(:real_contabil)
+                %td= oss.valor.try(:real).try(:real_formatado)
                 %td
                   = oss.comissao.to_f > 0 ? oss.comissao.to_i : oss.funcionario.percentual.to_i 
                   & %
@@ -114,5 +114,5 @@
           %tfoot
             %tr
               %th{colspan: 2} Total
-              %th{colspan: 1}= total
+              %th{colspan: 1}= total.real.real_formatado
               %th{colspan: 5} 
