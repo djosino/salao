@@ -5,6 +5,8 @@
 doc/sdoc
 public/remessas/*
 public/assets/
+public/assets/*
+/public/assets/*
 public/digitalizacoes/
 public/digitalizacoes/*
 config/database.yml

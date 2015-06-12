@@ -28,7 +28,7 @@ class Ability
     can :fechar,         Caixa do |c|; c.status == 1; end
 
     caixa = Caixa.last
-    if caixa and caixa.funcionario_id = @user.id and caixa.status == 0
+    if caixa and caixa.funcionario_id = @user.id and caixa.status == 1
       can :admin, [ContaCorrente, OrdemServico]
       can [:adicionar_servico, :cancelar, :destroy], OrdemServico, status: 1
       can :pagamento, OrdemServico, status: 2
@@ -38,6 +38,9 @@ class Ability
     end
 
     can [:new, :create], :registrations
+    can [:editar_permissoes, :atualizar_permissoes], Usuario
+
+
     
     can  :lock,         Usuario, locked_at: nil
     can  :unlock,       Usuario do |u|; !u.locked_at.nil? ;  end

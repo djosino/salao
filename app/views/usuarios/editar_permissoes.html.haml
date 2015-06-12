@@ -1,0 +1,28 @@
+- model_class = Usuario
+.row-fluid
+  %h2.botton-border=t '.title', :default => [:'helpers.titles.edit', 'Edit Roles'], :model => model_class.model_name.human.titleize
+  = flash_message(@usuario)
+  
+.row-fluid
+  .box.span6
+    .header
+      %img{:height => "16", :src => img_header, :width => "16"}
+      %p=t '.header', :default => model_class.model_name.human.pluralize.titleize
+    = form_for @usuario, url: atualizar_permissoes_usuario_path, html: { class: 'form-group' } do |f|
+      .content-form
+        .container-fluid
+          .control-group
+            = f.label :roles, class: 'control-label'
+            - Usuario::ROLES.sort.each do |role|
+              .controls
+                .span1 &nbsp;
+                .span7
+                  = label_tag role
+                .span4
+                  = check_box_tag 'usuario[roles][]', role, @usuario.is?(role), class: 'span12'
+        .form-actions
+          .right
+            = f.submit t('.confirm', :default => t("helpers.submit.confirm")),  class: 'btn btn-primary btn-small'
+          .left
+            = link_to t('.back', :default => t("helpers.links.back")), @usuario.entidade, class: 'btn btn-small'
+

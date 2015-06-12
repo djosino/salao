@@ -26,10 +26,10 @@
         %tr
           %td= dado[:func].to_s.rjust(5,'0')
           %td= dado[:nome]
-          %td= dado[:valor]
-          %td= dado[:comissao]
-          %td= dado[:adiantamento]
-          %td= dado[:saldo]
+          %td= dado[:valor].to_f.real.real_formatado
+          %td= dado[:comissao].to_f.real.real_formatado
+          %td= dado[:adiantamento].to_f.real.real_formatado
+          %td= dado[:saldo].to_f.real.real_formatado
           - servicos      += dado[:valor].to_f
           - comissao      += dado[:comissao].to_f
           - adiantamento  += dado[:adiantamento].to_f
@@ -37,10 +37,10 @@
     %tfoot
       %tr
         %th{colspan: 2} TOTAL
-        %th= servicos.to_f.real_contabil
-        %th= comissao.to_f.real_contabil
-        %th= adiantamento.to_f.real_contabil
-        %th= saldo.to_f.real_contabil
+        %th= servicos.to_f.real.real_formatado
+        %th= comissao.to_f.real.real_formatado
+        %th= adiantamento.to_f.real.real_formatado
+        %th= saldo.to_f.real.real_formatado
         %th
 - elsif request.post? 
   .row-fluid
@@ -71,13 +71,12 @@
                 %tr
                   %td= dado[:func].to_s.rjust(5,'0')
                   %td= dado[:nome]
-                  %td= dado[:valor].to_f.real_contabil
-                  %td= dado[:comissao].to_f.real_contabil
-                  %td= dado[:adiantamento].to_f.real_contabil
-                  %td= dado[:saldo].to_f.real_contabil
+                  %td= dado[:valor].to_f.real.real_formatado
+                  %td= dado[:comissao].to_f.real.real_formatado
+                  %td= dado[:adiantamento].to_f.real.real_formatado
+                  %td= dado[:saldo].to_f.real.real_formatado
                   %td
                     = check_box_tag 'funcionarios[]', dado[:func], nil, class: ''
-
                   - servicos     += dado[:valor].to_f
                   - comissao     += dado[:comissao].to_f
                   - adiantamento += dado[:adiantamento].to_f
@@ -85,10 +84,10 @@
             %tfoot
               %tr
                 %th{colspan: 2} TOTAL
-                %th= servicos.to_f.real_contabil
-                %th= comissao.to_f.real_contabil
-                %th= adiantamento.to_f.real_contabil
-                %th= saldo.to_f.real_contabil
+                %th= servicos.to_f.real.real_formatado
+                %th= comissao.to_f.real.real_formatado
+                %th= adiantamento.to_f.real.real_formatado
+                %th= saldo.to_f.real.real_formatado
                 %th
               %tr
                 %td{colspan: 99, height: 29}

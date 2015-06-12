@@ -38,14 +38,14 @@
           = link_to "Listar",    ordem_servicos_path,    class: "btn btn-small"
           = link_to "Cadastrar", new_ordem_servico_path, class: "btn btn-small"
 
-    - if can? :index, Produto
-      .btn-group
-        = link_to "Produtos",       produtos_path, class: "btn btn-small"
-        = link_to '#', class: 'btn btn-small dropdown-toggle', :'data-toggle' => "dropdown" do
-          %span.caret
-        %ul.dropdown-menu
-          = link_to "Listar",    produtos_path,    class: "btn btn-small"
-          = link_to "Cadastrar", new_produto_path, class: "btn btn-small"
+    /- if can? :index, Produto
+    /  .btn-group
+    /    = link_to "Produtos",       produtos_path, class: "btn btn-small"
+    /    = link_to '#', class: 'btn btn-small dropdown-toggle', :'data-toggle' => "dropdown" do
+    /      %span.caret
+    /    %ul.dropdown-menu
+    /      = link_to "Listar",    produtos_path,    class: "btn btn-small"
+    /      = link_to "Cadastrar", new_produto_path, class: "btn btn-small"
 
     - if can? :index, Servico
       .btn-group

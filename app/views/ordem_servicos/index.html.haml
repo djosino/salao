@@ -40,6 +40,7 @@
         %thead
           %tr
             %th= model_class.human_attribute_name(:id)         
+            %th= model_class.human_attribute_name(:numero)
             %th= model_class.human_attribute_name(:created_at)         
             %th= model_class.human_attribute_name(:status)         
             %th{colspan: 2}= model_class.human_attribute_name(:cliente)         
@@ -51,6 +52,7 @@
           - @ordem_servicos.each do |ordem_servico|
             %tr
               %td= ordem_servico.id.to_s.rjust(6,'0')
+              %td= ordem_servico.numero
               %td=l ordem_servico.created_at, format: :short
               %td= ordem_servico.descricao_status
               %td= cpf_cnpj_formatado(ordem_servico.cliente.try(:cpf))

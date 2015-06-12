@@ -23,7 +23,7 @@ class Usuario < ActiveRecord::Base
 
   ROLES = %w(atendente gerente administrador)
 
-  validates_presence_of :email, :name, :percentual #, :entidade_id, :entidade_type
+  validates_presence_of :email, :name, :percentual #, :password #, :entidade_id, :entidade_type
   
   validates :login, presence: true, uniqueness: true 
 

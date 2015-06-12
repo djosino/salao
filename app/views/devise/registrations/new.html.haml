@@ -13,6 +13,11 @@
         .content-form
           .container-fluid
             .control-group.span3
+              = f.label :login, class: 'control-label'
+              .controls
+                = f.text_field :login, class: 'span12', required: true
+          .container-fluid
+            .control-group.span3
               = f.label :name, class: 'control-label'
               .controls
                 = f.text_field :name, class: 'span12', required: true
