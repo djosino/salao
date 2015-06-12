@@ -30,12 +30,13 @@
   %p
   %table
     %tbody
-      %td.span2{rowspan: 8}
+      %td.span2{rowspan: 10}
         .vertical
           E N T R A D A S
-      - for i in 'creditos_01'..'creditos_06'
+      - for i in 'creditos_00'..'creditos_06'
+        - id_pesquisa = i == 'creditos_00' ? '10' :  i.gsub(/\D/, "")
         %tr
-          %td.span8= i.gsub(/\D/, "")  + ' - ' + FormaDePagamento.find( i.gsub(/\D/, "") ).descricao
+          %td.span8= i.gsub(/\D/, "") + ' - ' + FormaDePagamento.find( id_pesquisa ).descricao
           %td= @dados[i.to_sym].real.real_formatado
       %tr
         %th.span2= "99 - TOTAL"
@@ -43,7 +44,7 @@
   %p
   %table
     %tbody
-      %td.span2{rowspan: 8}
+      %td.span2{rowspan: 9}
         .vertical
           S A I D A S      
       - for i in 'debitos_07'..'debitos_09'

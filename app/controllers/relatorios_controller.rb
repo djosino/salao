@@ -10,15 +10,18 @@ class RelatoriosController < ApplicationController
 
   def movimento_de_caixa
     if request.post?
+      creditos = ContaCorrente.creditos.dia(params[:data])
+
       @despesas = ContaCorrente.debitos.funcionarios.dia(params[:data]).order(:created_at)
       @dados = {}
-      @dados.merge!( creditos_01:  ContaCorrente.dia(params[:data]).where(forma_de_pagamento_id: 1).pluck(:valor).sum )
-      @dados.merge!( creditos_02:  ContaCorrente.dia(params[:data]).where(forma_de_pagamento_id: 2).pluck(:valor).sum )
-      @dados.merge!( creditos_03:  ContaCorrente.dia(params[:data]).where(forma_de_pagamento_id: 3).pluck(:valor).sum )
-      @dados.merge!( creditos_04:  ContaCorrente.dia(params[:data]).where(forma_de_pagamento_id: 4).pluck(:valor).sum )
-      @dados.merge!( creditos_05:  ContaCorrente.dia(params[:data]).where(forma_de_pagamento_id: 5).pluck(:valor).sum )
-      @dados.merge!( creditos_06:  ContaCorrente.dia(params[:data]).where(forma_de_pagamento_id: 6).pluck(:valor).sum )
-      @dados.merge!( creditos_99:  ContaCorrente.dia(params[:data]).where(forma_de_pagamento_id: [1,2,3,4,5,6]).pluck(:valor).sum )
+      @dados.merge!( creditos_00:  creditos.where(forma_de_pagamento_id: 10).pluck(:valor).sum )
+      @dados.merge!( creditos_01:  creditos.where(forma_de_pagamento_id: 1).pluck(:valor).sum )
+      @dados.merge!( creditos_02:  creditos.where(forma_de_pagamento_id: 2).pluck(:valor).sum )
+      @dados.merge!( creditos_03:  creditos.where(forma_de_pagamento_id: 3).pluck(:valor).sum )
+      @dados.merge!( creditos_04:  creditos.where(forma_de_pagamento_id: 4).pluck(:valor).sum )
+      @dados.merge!( creditos_05:  creditos.where(forma_de_pagamento_id: 5).pluck(:valor).sum )
+      @dados.merge!( creditos_06:  creditos.where(forma_de_pagamento_id: 6).pluck(:valor).sum )
+      @dados.merge!( creditos_99:  creditos.where(forma_de_pagamento_id: [1,2,3,4,5,6,10]).pluck(:valor).sum )
 
       @dados.merge!( debitos_07:   ContaCorrente.dia(params[:data]).where(forma_de_pagamento_id: 7).pluck(:valor).sum )
       @dados.merge!( debitos_08:   ContaCorrente.dia(params[:data]).where(forma_de_pagamento_id: 8).pluck(:valor).sum )
