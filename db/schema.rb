@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150612124015) do
+ActiveRecord::Schema.define(version: 20150617194319) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,8 +61,8 @@ ActiveRecord::Schema.define(version: 20150612124015) do
     t.datetime "updated_at"
     t.integer  "classe_id"
     t.string   "classe_type"
-    t.integer  "forma_de_pagamento_id"
     t.integer  "ordem_servico_id"
+    t.integer  "forma_de_pagamento_id"
   end
 
   add_index "conta_correntes", ["cliente_id"], name: "index_conta_correntes_on_cliente_id", using: :btree
@@ -81,7 +81,7 @@ ActiveRecord::Schema.define(version: 20150612124015) do
     t.float    "valor"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "status"
+    t.integer  "status",         default: 1
     t.integer  "usuario_id"
     t.float    "valor_comissao"
     t.string   "numero"
@@ -90,11 +90,12 @@ ActiveRecord::Schema.define(version: 20150612124015) do
   add_index "ordem_servicos", ["cliente_id"], name: "index_ordem_servicos_on_cliente_id", using: :btree
 
   create_table "ordem_servicos_servicos", force: true do |t|
-    t.integer "ordem_servico_id"
-    t.integer "servico_id"
-    t.float   "valor"
-    t.float   "comissao"
-    t.integer "funcionario_id"
+    t.integer  "ordem_servico_id"
+    t.integer  "servico_id"
+    t.float    "valor"
+    t.float    "comissao"
+    t.integer  "funcionario_id"
+    t.datetime "created_at"
   end
 
   add_index "ordem_servicos_servicos", ["funcionario_id"], name: "index_ordem_servicos_servicos_on_funcionario_id", using: :btree

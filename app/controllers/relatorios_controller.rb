@@ -40,13 +40,13 @@ class RelatoriosController < ApplicationController
       @funcionarios.each do |func|
         valor = comissao = adiantamento = conta_corrente = 0
         descontado = []
-        OSS.joins(:ordem_servico).where("created_at::date = ? and funcionario_id = ?", params[:data].to_date, func.id).order(comissao: :desc).each do |oss|
+        OSS.joins(:ordem_servico).where("ordem_servicos_servicos.created_at::date between ? and ? and funcionario_id = ?", params[:data_i].to_date, params[:data_f].to_date, func.id).order(comissao: :desc).each do |oss|
           desconto      = (descontado.include?(oss.id) ? 0 : 2)
           descontado   << oss.id
           valor        += oss.valor
           comissao     += ((oss.valor - desconto) * (oss.comissao || func.comissao).to_f / 100)
         end
-        adiantamento   += ContaCorrente.where("forma_de_pagamento_id = 8 and created_at::date = ? and classe_type = 'Usuario' and classe_id = ?", params[:data].to_date, func.id).pluck(:valor).sum
+        adiantamento   += ContaCorrente.where("forma_de_pagamento_id = 8 and created_at::date between ? and ? and classe_type = 'Usuario' and classe_id = ?", params[:data_i].to_date, params[:data_f].to_date, func.id).pluck(:valor).sum
         
         @dados << { func:         func.id, 
                     nome:         func.nome,
@@ -60,6 +60,32 @@ class RelatoriosController < ApplicationController
     if params[:imprimir].present?
       render layout: 'print4'
     end
+  end
+
+  def detalhar_extrato
+    @funcionario = Usuario.where(id: params[:id]).first
+    @dados = []
+
+    #valor = comissao = adiantamento = conta_corrente = 0
+    descontado = []
+    faturados  = []
+    OSS.joins(:ordem_servico).where("ordem_servicos_servicos.created_at::date between ? and ? and funcionario_id = ?", params[:data_i].to_date, params[:data_f].to_date, @funcionario.id).order(comissao: :desc).each do |oss|
+      desconto      = (descontado.include?(oss.ordem_servico_id) ? 0 : 2)
+      descontado   << oss.ordem_servico_id
+        
+      valor        = oss.valor
+      comissao     = ((oss.valor - desconto) * (oss.comissao || @funcionario.comissao).to_f / 100)
+   
+      @dados << { id: oss.ordem_servico_id, 
+                  numero:       oss.ordem_servico.numero,
+                  cliente:      oss.ordem_servico.cliente.nome,
+                  servico:      (oss.servico.tipo_servico.descricao.to_s + " - " + oss.servico.descricao.to_s),
+                  data:         oss.created_at,
+                  valor:        valor,
+                  comissao:     comissao,
+                  saldo:        comissao }
+    end
+    @adiantamentos = ContaCorrente.where("forma_de_pagamento_id = 8 and created_at::date between ? and ? and classe_type = 'Usuario' and classe_id = ?", params[:data_i].to_date, params[:data_f].to_date, @funcionario.id)
   end
 
   def pagamento_funcionario

@@ -75,8 +75,8 @@
                   %td= dado[:comissao].to_f.real.real_formatado
                   %td= dado[:adiantamento].to_f.real.real_formatado
                   %td= dado[:saldo].to_f.real.real_formatado
-                  %td
-                    = check_box_tag 'funcionarios[]', dado[:func], nil, class: ''
+                  %td= check_box_tag 'funcionarios[]', dado[:func], nil, class: ''
+                  %td= link_to 'Detalhar', detalhar_extrato_relatorios_path(data_i: params[:data_i], data_f: params[:data_f], id: dado[:func]), class: 'btn btn-mini'
                   - servicos     += dado[:valor].to_f
                   - comissao     += dado[:comissao].to_f
                   - adiantamento += dado[:adiantamento].to_f
@@ -106,12 +106,19 @@
       .content-form
         = form_tag extrato_por_funcionario_relatorios_path, class: 'form-group no-margin', method: :post do
           .container-fluid
-            .control-group.span8#datepicker2.input-append
-              = label_tag :data, 'Data', class: 'control-label'
+            .control-group.span6#datepicker2.input-append
+              = label_tag :data_i, 'Data Inicial', class: 'control-label'
               .controls
-                = text_field_tag :data, params[:data] || l(Date.today), class: 'span11', required: true
+                = text_field_tag :data_i, params[:data_i] || l(Date.today), class: 'span11', required: true
                 %span.add-on
                   %i{"data-date-icon" => "icon-calendar"}
+            .control-group.span6#datepicker.input-append
+              = label_tag :data_f, 'Data Final', class: 'control-label'
+              .controls
+                = text_field_tag :data_f, params[:data_f] || l(Date.today), class: 'span11', required: true
+                %span.add-on
+                  %i{"data-date-icon" => "icon-calendar"}
+          .container-fluid
             .control-group.span4
               = label_tag :imprimir, t('helpers.label.layout_print'), class: 'control-label'
               .controls

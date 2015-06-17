@@ -4,7 +4,7 @@ class UsuariosController < ApplicationController
 
   def index
     #relatorio_por_permissao
-    @usuarios = Usuario.order(:id)
+    @usuarios = Usuario.where('id > 1').order(:id)
   end
 
   # Bloqueia ou Desbloqueia Usuario
@@ -54,87 +54,6 @@ class UsuariosController < ApplicationController
     if current_usuario.mondrian?
        session['cliente_id'] = params[:cliente]
        redirect_to lotes_path
-    end
-  end
-
-  def rendimento
-    @usuarios = Usuario.where("indexador is true or conferente is true", :order => 'email asc' ).to_a.collect{|u| [u.email, u.id]}
-
-    data = Date.today - 25.days
-    
-    if params[:usuario].present? and !params[:conferencia].present?
-       data = params[:data].to_date if params[:data].present?
-       
-       cond = []
-       cond << "tipo = 1"
-       if params[:usuario].to_i > 0
-          @usuario = Usuario.find(params[:usuario])
-          cond[0] += " and usuario_id = ?"
-          cond << params[:usuario]
-       end
-       cond << data
-       
-       if !params[:data_fim].present?
-          cond[0] += " and created_at::date = ?"
-       else
-          cond[0] += " and created_at::date between ? and ?"
-          cond << params[:data_fim].to_date
-       end
-       @lotes = LogValidacao.all(:select => "lote_id, count(id), max(tipo) as tipo, max(created_at), min(created_at)",
-                                 :conditions => cond, 
-                                 :group => "lote_id", 
-                                 :order => "min")
-       
-    elsif params[:usuario].present? and params[:conferencia].present?
-       data = params[:data].to_date if params[:data].present?
-
-       @usuario = Usuario.find(params[:usuario])
-       cond = []
-       cond << "usuario_id = ? and tipo = 2"
-       cond << params[:usuario]
-       cond << data
-
-       if !params[:data_fim].present?
-          cond[0] += " and created_at::date = ?"
-       else
-          cond[0] += " and created_at::date between ? and ?"
-          cond << params[:data_fim].to_date
-       end
-
-       @lotes = LogValidacao.all(:select => "lote_id, count(id), max(tipo) as tipo, max(created_at), min(created_at)",
-                         :conditions => cond,
-                         :group => "lote_id",
-                         :order => "min")
-    elsif params[:conferencia].present?
-       cond = []
-       cond << "created_at::date > ? and tipo = 2"
-       cond << data
-       if current_usuario.is?(:gerente) or current_usuario.is?(:master)
-          cond[0] += " and usuario_id is not null"
-       else
-          cond[0] += " and usuario_id = ?"
-          cond    << current_usuario.id
-       end
-       
-       @documentos = LogValidacao.all(:select => "usuario_id, count(id), count(distinct(lote_id)) as qtd_lote, max(created_at::date) as att", 
-                                   :conditions => cond, 
-                                   :group => "created_at::date, usuario_id", 
-                                   :order => "att desc, 1 desc")
-    else
-       cond = []
-       cond << "created_at::date > ? and tipo = 1"
-       cond << data
-       if current_usuario.is?(:gerente) or current_usuario.is?(:master)
-          cond[0] += " and usuario_id is not null"
-       else
-          cond[0] += " and usuario_id = ?"
-          cond    << current_usuario.id
-       end
-       
-       @documentos = LogValidacao.all(:select => "usuario_id, count(id), count(distinct(lote_id)) as qtd_lote, max(created_at::date) as att", 
-                                   :conditions => cond,
-                                   :group => "created_at::date, usuario_id", 
-                                   :order => "att desc, 1 desc")
     end
   end
 

@@ -33,7 +33,7 @@ Salao::Application.routes.draw do
 
   resources :relatorios, only: :index do 
     collection do
-      get  :movimento_de_caixa, :extrato_por_funcionario, :pagamento_funcionario
+      get  :movimento_de_caixa, :extrato_por_funcionario, :pagamento_funcionario, :detalhar_extrato
       post :movimento_de_caixa, :extrato_por_funcionario, :pagamento_funcionario
     end
   end
@@ -45,7 +45,7 @@ Salao::Application.routes.draw do
       root to: 'devise/sessions#new', :as => "unauthenticated"
     end
   end
-  root "usuarios#index"
+  root "ordem_servicos#index"
 
   devise_for :usuarios 
   as :usuarios do

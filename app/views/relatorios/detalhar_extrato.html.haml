@@ -1,0 +1,47 @@
+- model_class = ContaCorrente
+
+- if params[:imprimir].blank?
+  .row-fluid
+    .span12
+      %h2.botton-border=t '.title', :default => model_class.model_name.human.pluralize.titleize, model: model_class.model_name.human.pluralize.titleize
+      = flash_message
+  .row-fluid
+    .box.span12
+      .header.hidden_print
+        %img{:height => "16", :src => img_header, :width => "16"}
+        %p=t '.header_list', :default => model_class.model_name.human.pluralize.titleize
+      .content
+        .div
+          %table.table.table-striped.table-bordered
+            %thead
+              %tr
+                %th= model_class.human_attribute_name(:id)         
+                %th= model_class.human_attribute_name(:numero)         
+                %th= model_class.human_attribute_name(:cliente)         
+                %th= model_class.human_attribute_name(:servico)         
+                %th= model_class.human_attribute_name(:realizado)         
+                %th= model_class.human_attribute_name(:vl_servicos)         
+                %th= model_class.human_attribute_name(:vl_comissao)         
+                %th= model_class.human_attribute_name(:saldo)         
+                /%th{colspan: 4}=t '.actions', :default => t("helpers.actions")
+            %tbody
+              - servicos = comissao = adiantamento = saldo = ccorrente = 0.0
+              - @dados.sort_by { |dado| dado[:data] }.each do |dado|
+                %tr
+                  %td= dado[:id].to_s.rjust(5,'0')
+                  %td= dado[:numero]
+                  %td= dado[:cliente]
+                  %td= dado[:servico]
+                  %td= l(dado[:data], format: :short)
+                  %td= dado[:valor].to_f.real.real_formatado
+                  %td= dado[:comissao].to_f.real.real_formatado
+                  %td= dado[:saldo].to_f.real.real_formatado
+                  - servicos     += dado[:valor].to_f
+                  - comissao     += dado[:comissao].to_f
+                  - saldo        += dado[:saldo].to_f
+            %tfoot
+              %tr
+                %th{colspan: 5} TOTAL
+                %th= servicos.to_f.real.real_formatado
+                %th= comissao.to_f.real.real_formatado
+                %th= saldo.to_f.real.real_formatado

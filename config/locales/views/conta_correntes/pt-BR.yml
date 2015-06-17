@@ -14,3 +14,5 @@ pt-BR:
       header: Dados da Conta Corrente
     listagem: 
       title: Contas Correntes
+    detalhar_extrato: 
+      title: Detalhar Extrato
