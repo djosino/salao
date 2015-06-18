@@ -88,7 +88,7 @@
                 %th= comissao.to_f.real.real_formatado
                 %th= adiantamento.to_f.real.real_formatado
                 %th= saldo.to_f.real.real_formatado
-                %th
+                %th{colspan: 2}
               %tr
                 %td{colspan: 99, height: 29}
                   .left= link_to t('.print', :default => t("helpers.links.print")), extrato_por_funcionario_relatorios_path, class: 'btn btn-small'
@@ -109,7 +109,7 @@
             .control-group.span6#datepicker2.input-append
               = label_tag :data_i, 'Data Inicial', class: 'control-label'
               .controls
-                = text_field_tag :data_i, params[:data_i] || l(Date.today), class: 'span11', required: true
+                = text_field_tag :data_i, params[:data_i], class: 'span11', required: true
                 %span.add-on
                   %i{"data-date-icon" => "icon-calendar"}
             .control-group.span6#datepicker.input-append

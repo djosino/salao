@@ -38,13 +38,14 @@ class RelatoriosController < ApplicationController
       @funcionarios = Usuario.where('percentual > 0').order(:id)
       
       @funcionarios.each do |func|
-        valor = comissao = adiantamento = conta_corrente = 0
-        descontado = []
-        OSS.joins(:ordem_servico).where("ordem_servicos_servicos.created_at::date between ? and ? and funcionario_id = ?", params[:data_i].to_date, params[:data_f].to_date, func.id).order(comissao: :desc).each do |oss|
-          desconto      = (descontado.include?(oss.id) ? 0 : 2)
-          descontado   << oss.id
+        valor      = comissao = adiantamento = conta_corrente = 0
+        descontado = x        = []
+        OSS.joins(:ordem_servico).where("ordem_servicos_servicos.created_at::date between ? and ? and funcionario_id = ?", params[:data_i].to_date, params[:data_f].to_date, func.id).order(valor: :desc).each do |oss|
+          desconto      = (descontado.include?(oss.ordem_servico_id) ? 0 : 2)
+          descontado   << oss.ordem_servico_id
           valor        += oss.valor
           comissao     += ((oss.valor - desconto) * (oss.comissao || func.comissao).to_f / 100)
+          x << { func: func.id, desconto: desconto, valor: oss.valor, comissao: ((oss.valor - desconto) * (oss.comissao || func.comissao).to_f / 100) }
         end
         adiantamento   += ContaCorrente.where("forma_de_pagamento_id = 8 and created_at::date between ? and ? and classe_type = 'Usuario' and classe_id = ?", params[:data_i].to_date, params[:data_f].to_date, func.id).pluck(:valor).sum
         
@@ -57,6 +58,7 @@ class RelatoriosController < ApplicationController
                   }
       end
     end
+
     if params[:imprimir].present?
       render layout: 'print4'
     end
@@ -68,8 +70,7 @@ class RelatoriosController < ApplicationController
 
     #valor = comissao = adiantamento = conta_corrente = 0
     descontado = []
-    faturados  = []
-    OSS.joins(:ordem_servico).where("ordem_servicos_servicos.created_at::date between ? and ? and funcionario_id = ?", params[:data_i].to_date, params[:data_f].to_date, @funcionario.id).order(comissao: :desc).each do |oss|
+    OSS.joins(:ordem_servico).where("ordem_servicos_servicos.created_at::date between ? and ? and funcionario_id = ?", params[:data_i].to_date, params[:data_f].to_date, @funcionario.id).order(valor: :desc).each do |oss|
       desconto      = (descontado.include?(oss.ordem_servico_id) ? 0 : 2)
       descontado   << oss.ordem_servico_id
         
