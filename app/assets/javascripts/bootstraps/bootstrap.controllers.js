@@ -7,6 +7,7 @@ $('span.zoom').zoom({ on:'click', magnify: 0.4 });
 $('.data').mask('99/99/9999');
 $('#initial_date').mask('99/99/9999');
 $('#final_date').mask('99/99/9999');
+$('#ordem_servico_data').mask('99/99/9999');
 
 jQuery(".datepicker-days .table-condensed tbody").bind("click", function() { 
   jQuery(".datepicker.dropdown-menu").fadeOut('fast'); 

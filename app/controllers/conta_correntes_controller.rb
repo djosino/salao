@@ -4,15 +4,21 @@ class ContaCorrentesController < ApplicationController
   # GET /conta_correntes
   # GET /conta_correntes.json
   def index
-    #@conta_correntes = ContaCorrente.all
-    if params[:data_ini].present?
-      @clientes = Cliente.all
+    if params[:data_ini].present? and params[:data_final].present?
+      @conta_correntes = ContaCorrente.where(["created_at::date between ? and ? and tipo_lancamento_id = 2", params[:data_ini].to_date, params[:data_final].to_date]).order(id: :desc).paginate(page: params[:page])
+      flash[:error] = t(:not_found, name: "Conta Corrente") if @conta_correntes.blank?
     else
-      @carteiras = Carteira.joins(:cliente).order("clientes.nome")
+      @conta_correntes = ContaCorrente.where("tipo_lancamento_id = 2").order(id: :desc).paginate(page: params[:page])
     end
-    if params[:imprimir].present?
-      render layout: 'print'
-    end
+    #@conta_correntes = ContaCorrente.all
+    #if params[:data_ini].present?
+    #  @clientes = Cliente.all
+    #else
+    #  @carteiras = Carteira.joins(:cliente).order("clientes.nome")
+    #end
+    #if params[:imprimir].present?
+    #  render layout: 'print'
+    #end
   end
 
   # GET /conta_correntes/1
@@ -27,12 +33,14 @@ class ContaCorrentesController < ApplicationController
 
   # GET /conta_correntes/1/edit
   def edit
+    @formas_de_pagamento = @conta_corrente.tipo_lancamento.forma_de_pagamentos
   end
 
   # POST /conta_correntes
   # POST /conta_correntes.json
   def create
     @conta_corrente = ContaCorrente.new(conta_corrente_params)
+    @conta_corrente.data ||= Date.today
     if params[:selecione].present?
       if params[:selecione] == 'cliente'
         @conta_corrente.funcionario = nil
@@ -40,13 +48,13 @@ class ContaCorrentesController < ApplicationController
         @conta_corrente.cliente     = nil
       end
     end
+    if params[:carteira].present? and @conta_corrente.valor > @conta_corrente.cliente.saldo 
+      flash[:error] = "Valor inválido."
+      redirect_to :back
+      return
+    end
     respond_to do |format|
       if @conta_corrente.save
-        if params[:pagamento].present?
-          cc = @conta_corrente.dup
-          cc.tipo_lancamento_id = 1
-          cc.save
-        end
         format.html { redirect_to :back, notice: t(:created, name: 'Lançamento') }
         format.json { render action: 'show', status: :created, location: @conta_corrente }
       else
@@ -61,7 +69,7 @@ class ContaCorrentesController < ApplicationController
   def update
     respond_to do |format|
       if @conta_corrente.update(conta_corrente_params)
-        format.html { redirect_to @conta_corrente.classe, notice: t(:updated, name: 'Conta Corrente') }
+        format.html { redirect_to conta_correntes_path, notice: t(:updated, name: 'Conta Corrente') }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -116,6 +124,6 @@ class ContaCorrentesController < ApplicationController
       if params[:conta_corrente].present? and params[:conta_corrente][:valor].present?
         params[:conta_corrente][:valor] = params[:conta_corrente][:valor].gsub('.', '').gsub(',', '.')
       end
-      params.require(:conta_corrente).permit(:cliente_id, :funcionario_id, :tipo_lancamento_id, :valor, :observacao, :forma_de_pagamento_id, :ordem_servico_id)
+      params.require(:conta_corrente).permit(:cliente_id, :funcionario_id, :tipo_lancamento_id, :valor, :observacao, :forma_de_pagamento_id, :ordem_servico_id, :carteira, :data)
     end
 end

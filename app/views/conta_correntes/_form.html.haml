@@ -4,6 +4,7 @@
     %img{:height => "16", :src => img_header, :width => "16"}
     %p=t '.header', :default => model_class.model_name.human.pluralize.titleize
   = form_for @conta_corrente, :html => { class: 'form-group' } do |f|
+    = f.hidden_field :carteira, value: true
     .content-form
       .container-fluid
         .control-group.span6
@@ -29,13 +30,21 @@
         .control-group.span6
           = f.label :forma_de_pagamento_id, class: 'control-label'
           .controls
-            = f.select :forma_de_pagamento_id, options_from_collection_for_select(@tipo_lancamento || [], :id, :name), {include_blank: true}, class: 'span12', required: true
+            = f.select :forma_de_pagamento_id, options_for_select(@formas_de_pagamento ? @formas_de_pagamento.pluck(:descricao, :id) : [], @conta_corrente.forma_de_pagamento_id ), {include_blank: true}, class: 'span12', required: true
 
       .container-fluid
         .control-group.span6
           = f.label :valor, class: 'control-label'
           .controls
             = f.text_field :valor, value: @conta_corrente.valor.real, class: 'span12', required: true 
+        .control-group.span6#datepicker2.input-append
+          = label_tag :data, 'Data', class: 'control-label'
+          .controls
+            = f.text_field :data, value: l(@conta_corrente.data) || l(Date.today), class: 'span11', required: true
+            %span.add-on
+              %i{"data-date-icon" => "icon-calendar"}
+
+      .container-fluid
         .control-group.span6
           = f.label :observacao, class: 'control-label'
           .controls

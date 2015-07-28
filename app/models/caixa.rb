@@ -11,7 +11,7 @@ class Caixa < ActiveRecord::Base
 
   def lancamento_credito
     # tipo_lancamento: Crédito, forma_de_pagamento: Fundo Fixo
-    ContaCorrente.create({tipo_lancamento_id: 1, valor: self.valor_abertura, forma_de_pagamento_id: 10, classe_type: 'Funcionario', classe_id: self.funcionario_id, observacao: "FUNDO FIXO - Abertura", funcionario_id: self.funcionario_id})
+    ContaCorrente.create({tipo_lancamento_id: 1, valor: self.valor_abertura, forma_de_pagamento_id: 10, classe_type: 'Funcionario', classe_id: self.funcionario_id, observacao: "FUNDO FIXO - Abertura", funcionario_id: self.funcionario_id, data: Date.today})
   end
   
   #def lancamento_debito

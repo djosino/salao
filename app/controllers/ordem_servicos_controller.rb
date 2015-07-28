@@ -1,5 +1,5 @@
 class OrdemServicosController < ApplicationController
-  before_action :set_ordem_servico, only: [ :show, :edit, :update, :adicionar_servico, 
+  before_action :set_ordem_servico, only: [ :show, :edit, :update, :adicionar_servico, :destroy, 
                                             :pagamento, :finalizar, :cancelar]
 
   # GET /ordem_servicos
@@ -9,8 +9,8 @@ class OrdemServicosController < ApplicationController
       type_search  = params[:type_search]
       num          = params[:find_by].gsub(/[^0-9]/,'').to_i
       cond = case type_search
-        when '1' then { id: num }
-        when '2' then { numero: num }
+        when '2' then { id: num }
+        when '1' then "numero like '#{num}'"
         else { id: 0 }
       end
       @ordem_servicos = OrdemServico.includes(:servicos, :cliente).where(cond).order(id: :desc).paginate(page: params[:page])
@@ -67,15 +67,27 @@ class OrdemServicosController < ApplicationController
   # DELETE /ordem_servicos/1
   # DELETE /ordem_servicos/1.json
   def destroy
+    @ordem_servico.destroy
+    @ordem_servico.ordem_servicos_servicos.destroy_all
+    respond_to do |format|
+      format.html { redirect_to ordem_servicos_path, notice: t(:destroy, name: 'Ordem de Serviço') }
+      format.json { head :no_content }
+    end
+  end
+
+  def destroy_oss
     oss = OSS.find(params[:id])
     @ordem_servico = oss.ordem_servico
-    #@ordem_servico.remover_servico(params[:servico_id])
     oss.destroy
+
+    @ordem_servico.valor = @ordem_servico.ordem_servicos_servicos.pluck(:valor).sum.to_f
+    @ordem_servico.save
     respond_to do |format|
       format.html { redirect_to @ordem_servico, notice: t(:updated, name: 'Ordem de Serviço') }
       format.json { head :no_content }
     end
   end
+
 
   def adicionar_servico
     if request.post? 
@@ -92,6 +104,8 @@ class OrdemServicosController < ApplicationController
 
       oss = OSS.new(parametros)
       if oss.save
+        @ordem_servico.valor = @ordem_servico.ordem_servicos_servicos.pluck(:valor).sum.to_f
+        @ordem_servico.save
         redirect_to @ordem_servico, notice: t(:updated, name: "Ordem de Serviço")
         return
       else
@@ -124,6 +138,6 @@ class OrdemServicosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ordem_servico_params
-      params.require(:ordem_servico).permit(:cliente_id, :numero)
+      params.require(:ordem_servico).permit(:cliente_id, :numero, :data)
     end
 end

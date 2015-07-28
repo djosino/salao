@@ -13,20 +13,21 @@ class RelatoriosController < ApplicationController
       creditos = ContaCorrente.creditos.dia(params[:data])
       debitos  = ContaCorrente.debitos.dia(params[:data])
       @despesas  = debitos.where(forma_de_pagamento_id: [7,8,9]).order(:created_at)
-
+      #clientes = debitos.clientes.where("forma_de_pagamento_id = 5 and ordem_servico_id is not null").pluck(:valor).sum.to_f
+      #caixa = Caixa.where("created_at::date = ?", params[:data].to_date).pluck(:valor_abertura).sum.to_f
       @dados = {}
       @dados.merge!( creditos_00:  creditos.where(forma_de_pagamento_id: 10).pluck(:valor).sum )
-      @dados.merge!( creditos_01:  creditos.where(forma_de_pagamento_id: 1).pluck(:valor).sum )
-      @dados.merge!( creditos_02:  creditos.where(forma_de_pagamento_id: 2).pluck(:valor).sum )
-      @dados.merge!( creditos_03:  creditos.where(forma_de_pagamento_id: 3).pluck(:valor).sum )
-      @dados.merge!( creditos_04:  creditos.where(forma_de_pagamento_id: 4).pluck(:valor).sum )
+      @dados.merge!( creditos_01:  creditos.where(forma_de_pagamento_id: 1).pluck(:valor).sum  )
+      @dados.merge!( creditos_02:  creditos.where(forma_de_pagamento_id: 2).pluck(:valor).sum  )
+      @dados.merge!( creditos_03:  creditos.where(forma_de_pagamento_id: 3).pluck(:valor).sum  )
+      @dados.merge!( creditos_04:  creditos.where(forma_de_pagamento_id: 4).pluck(:valor).sum  )
       @dados.merge!( creditos_05:  creditos.where(forma_de_pagamento_id: 5).pluck(:valor).sum )
-      @dados.merge!( creditos_06:  creditos.where(forma_de_pagamento_id: 6).pluck(:valor).sum )
+      @dados.merge!( creditos_06:  creditos.where(forma_de_pagamento_id: 6).pluck(:valor).sum  )
       @dados.merge!( creditos_99:  creditos.where(forma_de_pagamento_id: [1,2,3,4,5,6,10]).pluck(:valor).sum )
-
-      @dados.merge!( debitos_07:   debitos.where(forma_de_pagamento_id: 7).pluck(:valor).sum )
-      @dados.merge!( debitos_08:   debitos.where(forma_de_pagamento_id: 8).pluck(:valor).sum )
-      @dados.merge!( debitos_09:   debitos.where(forma_de_pagamento_id: 9).pluck(:valor).sum )
+      
+      @dados.merge!( debitos_07:   debitos.where(forma_de_pagamento_id: 7).pluck(:valor).sum  )
+      @dados.merge!( debitos_08:   debitos.where(forma_de_pagamento_id: 8).pluck(:valor).sum  )
+      @dados.merge!( debitos_09:   debitos.where(forma_de_pagamento_id: 9).pluck(:valor).sum  )
       @dados.merge!( debitos_99:   @despesas.where(forma_de_pagamento_id: [7,8,9]).pluck(:valor).sum )
       render layout: 'print4'
     end
@@ -40,14 +41,14 @@ class RelatoriosController < ApplicationController
       @funcionarios.each do |func|
         valor      = comissao = adiantamento = conta_corrente = 0
         descontado = x        = []
-        OSS.joins(:ordem_servico).where("ordem_servicos_servicos.created_at::date between ? and ? and funcionario_id = ?", params[:data_i].to_date, params[:data_f].to_date, func.id).order(valor: :desc).each do |oss|
-          desconto      = (descontado.include?(oss.ordem_servico_id) ? 0 : 2)
+        OSS.joins(:ordem_servico).where("ordem_servicos.data::date between ? and ? and funcionario_id = ?", params[:data_i].to_date, params[:data_f].to_date, func.id).order(comissao: :desc, id: :asc).each do |oss|
+          desconto      = (descontado.include?(oss.ordem_servico_id) ? 0 : (oss.valor >= 20 ? 2 : 1))
           descontado   << oss.ordem_servico_id
           valor        += oss.valor
           comissao     += ((oss.valor - desconto) * (oss.comissao || func.comissao).to_f / 100)
           x << { func: func.id, desconto: desconto, valor: oss.valor, comissao: ((oss.valor - desconto) * (oss.comissao || func.comissao).to_f / 100) }
         end
-        adiantamento   += ContaCorrente.where("forma_de_pagamento_id = 8 and created_at::date between ? and ? and classe_type = 'Usuario' and classe_id = ?", params[:data_i].to_date, params[:data_f].to_date, func.id).pluck(:valor).sum
+        adiantamento   += ContaCorrente.where("forma_de_pagamento_id = 8 and data::date between ? and ? and classe_type = 'Usuario' and classe_id = ?", params[:data_i].to_date, params[:data_f].to_date, func.id).pluck(:valor).sum
         
         @dados << { func:         func.id, 
                     nome:         func.nome,
@@ -70,8 +71,8 @@ class RelatoriosController < ApplicationController
 
     #valor = comissao = adiantamento = conta_corrente = 0
     descontado = []
-    OSS.joins(:ordem_servico).where("ordem_servicos_servicos.created_at::date between ? and ? and funcionario_id = ?", params[:data_i].to_date, params[:data_f].to_date, @funcionario.id).order(valor: :desc).each do |oss|
-      desconto      = (descontado.include?(oss.ordem_servico_id) ? 0 : 2)
+    OSS.joins(:ordem_servico).where("ordem_servicos.data::date between ? and ? and funcionario_id = ?", params[:data_i].to_date, params[:data_f].to_date, @funcionario.id).order(comissao: :desc, id: :asc).each do |oss|
+      desconto      = (descontado.include?(oss.ordem_servico_id) ? 0 : (oss.valor >= 20 ? 2 : 1))
       descontado   << oss.ordem_servico_id
         
       valor        = oss.valor
@@ -81,19 +82,19 @@ class RelatoriosController < ApplicationController
                   numero:       oss.ordem_servico.numero,
                   cliente:      oss.ordem_servico.cliente.nome,
                   servico:      (oss.servico.tipo_servico.descricao.to_s + " - " + oss.servico.descricao.to_s),
-                  data:         oss.created_at,
+                  data:         oss.ordem_servico.created_at,
                   valor:        valor,
                   comissao:     comissao,
                   saldo:        comissao }
     end
-    @adiantamentos = ContaCorrente.where("forma_de_pagamento_id = 8 and created_at::date between ? and ? and classe_type = 'Usuario' and classe_id = ?", params[:data_i].to_date, params[:data_f].to_date, @funcionario.id)
+    @adiantamentos = ContaCorrente.where("forma_de_pagamento_id = 8 and data::date between ? and ? and classe_type = 'Usuario' and classe_id = ?", params[:data_i].to_date, params[:data_f].to_date, @funcionario.id)
   end
 
   def pagamento_funcionario
     if request.post?
       @funcionario = Usuario.find(params[:funcionario_id])
 
-      @lancamentos  = ContaCorrente.where("tipo_lancamento_id = 2 and created_at::date between ? and ? and classe_type = 'Usuario' and classe_id = ?", params[:data_ini].to_date, params[:data_fim].to_date, @funcionario.id).order(:id)
+      @lancamentos  = ContaCorrente.where("tipo_lancamento_id = 2 and data::date between ? and ? and classe_type = 'Usuario' and classe_id = ?", params[:data_ini].to_date, params[:data_fim].to_date, @funcionario.id).order(:id)
     end
     if params[:imprimir].present?
       render layout: 'print4'

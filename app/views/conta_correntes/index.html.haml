@@ -1,43 +1,36 @@
 - model_class = ContaCorrente
-- if params[:imprimir].blank?
-  .row-fluid
-    .span12
-      %h2.botton-border=t '.title', :default => model_class.model_name.human.pluralize.titleize, model: model_class.model_name.human.pluralize.titleize
-      = flash_message
+.row-fluid
+  .span12
+    %h2.botton-border=t '.title', :default => model_class.model_name.human.pluralize.titleize, model: model_class.model_name.human.pluralize.titleize
+    = flash_message
 
-  .row-fluid
-    .span6
-      .box
-        .header
-          %img{:height => "16", :src => img_header, :width => "16"}
-          %p=t '.header_search', :default => model_class.model_name.human.pluralize.titleize
-        .content-form
-          = form_tag conta_correntes_path, class: 'form-group no-margin', method: :get do
-            .container-fluid
-              .control-group.span6#datepicker.input-append
-                = label_tag :data_inicial, 'Data Inicial *', class: 'control-label'
-                .controls
-                  = text_field_tag :data_ini, params[:data_ini], class: 'span11', required: true
-                  %span.add-on
-                    %i{"data-date-icon" => "icon-calendar"}
-              .control-group.span6#datepicker2.input-append
-                = label_tag :data_final, 'Data Final *', class: 'control-label'
-                .controls
-                  = text_field_tag :data_final, params[:data_final] || l(Date.today), class: 'span11', required: true
-                  %span.add-on
-                    %i{"data-date-icon" => "icon-calendar"}
-            .form-actions
-              .right  
-                = submit_tag t('.confirm', :default => t("helpers.submit.confirm")),  class: 'btn btn-primary btn-small'
+.row-fluid
+  .span6
+    .box
+      .header
+        %img{:height => "16", :src => img_header, :width => "16"}
+        %p=t '.header_search', :default => model_class.model_name.human.pluralize.titleize
+      .content-form
+        = form_tag conta_correntes_path, class: 'form-group no-margin', method: :get do
+          .container-fluid
+            .control-group.span6#datepicker.input-append
+              = label_tag :data_inicial, 'Data Inicial *', class: 'control-label'
+              .controls
+                = text_field_tag :data_ini, params[:data_ini], class: 'span11', required: true
+                %span.add-on
+                  %i{"data-date-icon" => "icon-calendar"}
+            .control-group.span6#datepicker2.input-append
+              = label_tag :data_final, 'Data Final *', class: 'control-label'
+              .controls
+                = text_field_tag :data_final, params[:data_final] || l(Date.today), class: 'span11', required: true
+                %span.add-on
+                  %i{"data-date-icon" => "icon-calendar"}
+          .form-actions
+            .right  
+              = submit_tag t('.confirm', :default => t("helpers.submit.confirm")),  class: 'btn btn-primary btn-small'
 
-- else
-  %h3
-    %center RELATÓRIO DE CONTA CORRENTE DE CLIENTES
 
-  EMISSÃO: #{l(Date.today)}
-  %hr.hidden_print
-
-- if @carteiras
+- if @conta_correntes
   .row-fluid
     .box.span12
       .header.hidden_print
@@ -48,63 +41,30 @@
           %thead
             %tr
               %th= model_class.human_attribute_name(:id)         
-              %th= model_class.human_attribute_name(:cliente_id)         
-              %th= model_class.human_attribute_name(:created_at)         
-              %th= model_class.human_attribute_name(:telefone)         
-              %th= model_class.human_attribute_name(:telefone)         
-              %th= model_class.human_attribute_name(:saldo)         
+              %th= model_class.human_attribute_name(:cliente_id)
+              %th= model_class.human_attribute_name(:tipo_lancamento_id)
+              %th= model_class.human_attribute_name(:forma_de_pagamento_id)
+              %th= model_class.human_attribute_name(:valor)
+              %th= model_class.human_attribute_name(:data)
+              %th= model_class.human_attribute_name(:observacao)
+              %th= model_class.human_attribute_name(:ordem_servico)
+              %th= model_class.human_attribute_name(:acoes)
           %tbody
-            - @carteiras.each do |carteira|
+            - @conta_correntes.each do |cc|
               %tr
-                %td=  carteira.cliente.id
-                %td=  carteira.cliente.nome.upcase
-                %td=l carteira.cliente.created_at, format: :short
-                %td=  carteira.cliente.telefone
-                %td=  carteira.cliente.telefone2
+                %td=  cc.id.to_s.rjust(4,'0')
+                %td=  cc.classe.nome
+                %td=  cc.tipo_lancamento.descricao
+                %td=  cc.forma_de_pagamento.descricao
+                %td=  cc.valor.real.real_formatado
+                %td=l cc.data
+                %td=  cc.observacao
+                %td=  cc.ordem_servico.try(:numero)
                 %td
-                  .right
-                    =  carteira.valor.to_f.real_contabil
+                  - if can? :edit, cc
+                    = link_to t('helpers.links.edit'), edit_conta_corrente_path(cc), class: 'btn btn-mini'
           %tfoot
             %tr
               %td{colspan: 99, height: 29}
-                .right
-                  = @carteiras.pluck(:valor).sum.real_contabil
-                .left.hidden_print
-                  = link_to t('.print', :default => t("helpers.links.print")), conta_correntes_path(imprimir: true), class: 'btn btn-small'
-- else
-  .row-fluid
-    .box.span12
-      .header.hidden_print
-        %img{:height => "16", :src => img_header, :width => "16"}
-        %p=t '.header_list', :default => model_class.model_name.human.pluralize.titleize
-      .content
-        %table.table.table-striped.table-bordered
-          %thead
-            %tr
-              %th= model_class.human_attribute_name(:id)         
-              %th= model_class.human_attribute_name(:cliente_id)         
-              %th= model_class.human_attribute_name(:created_at)         
-              %th= model_class.human_attribute_name(:telefone)         
-              %th= model_class.human_attribute_name(:telefone)         
-              %th= model_class.human_attribute_name(:saldo)         
-          %tbody
-            - valor = 0
-            - @clientes.each do |cliente|
-              - saldo = cliente.saldo_periodo(params[:data_ini], params[:data_final])
-              - valor += saldo
-              %tr
-                %td=  cliente.id
-                %td=  cliente.nome.upcase
-                %td=l cliente.created_at, format: :short
-                %td=  cliente.telefone
-                %td=  cliente.telefone2
-                %td
-                  .right
-                    = saldo.to_f.real_contabil
-          %tfoot
-            %tr
-              %td{colspan: 99, height: 29}
-                .right
-                  = valor.real_contabil
-                .left
-                  = link_to t('.print', :default => t("helpers.links.print")), conta_correntes_path(params.merge!(imprimir: true)), class: 'btn btn-small'
+                %center
+                  = page_navigation_links @conta_correntes if will_paginate @conta_correntes

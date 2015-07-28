@@ -27,8 +27,8 @@ class CaixasController < ApplicationController
     @caixa = Caixa.new(caixa_params.merge!({status: 1, funcionario_id: current_usuario.id, aberto_em: Time.now}))
 
     respond_to do |format|
-      @caixa.lancamento_credito
       if @caixa.save
+        @caixa.lancamento_credito
         format.html { redirect_to caixas_path, notice: t(:created, name: 'Caixa') }
         format.json { render action: 'show', status: :created, location: @caixa }
       else

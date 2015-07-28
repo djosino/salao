@@ -28,14 +28,17 @@ class Ability
     can :fechar,         Caixa do |c|; c.status == 1; end
 
     caixa = Caixa.last
-    if caixa and caixa.funcionario_id = @user.id and caixa.status == 1
-      can :admin, [ContaCorrente, OrdemServico]
-      can [:adicionar_servico, :cancelar, :destroy], OrdemServico, status: 1
+    if caixa and caixa.funcionario_id = @user.id and caixa.status == 1 
+      # and caixa.created_at.to_date == Date.today
+      can :admin, ContaCorrente
       can :pagamento, OrdemServico, status: 2
-      
-      can [:finalizar, :cancelar], OrdemServico, status: 1
       can :lancar_pagamento, ContaCorrente
     end
+    can :admin, OrdemServico
+    can :finalizar, OrdemServico, status: 1
+    can [:adicionar_servico, :destroy_oss], OrdemServico
+    can :destroy, OrdemServico do |o|; o.valor.to_f < 1; end
+    #cannot [:edit, :update], ContaCorrente do |c|; c.ordem_servico_id ; end
 
     can [:new, :create], :registrations
     can [:editar_permissoes, :atualizar_permissoes], Usuario

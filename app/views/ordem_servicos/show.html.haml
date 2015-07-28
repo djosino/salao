@@ -46,7 +46,8 @@
                   = link_to t('.pagamento', :default => t("helpers.links.pagamento")), pagamento_ordem_servico_path(@ordem_servico), class: 'btn btn-small btn-primary'
 
 .row-fluid
-  - if @ordem_servico.status == 1
+  /- if @ordem_servico.status == 1
+  .tmp
     .box.span6
       .header
         %img{:height => "16", :src => img_header, :width => "16"}
@@ -61,7 +62,7 @@
             .control-group.span6
               = label_tag :funcionario_id, 'Funcionário', class: 'control-label'
               .controls
-                = select_tag :funcionario_id, options_for_select(funcionarios, params[:funcinarios]), required: true, include_blank: true, class: 'span12'
+                = select_tag :funcionario_id, options_for_select(funcionarios, @ordem_servico.try(:ordem_servicos_servicos).try(:last).try(:funcionario_id)), required: true, include_blank: true, class: 'span12'
 
           .container-fluid
             .control-group.span6
@@ -93,24 +94,24 @@
               %th= model_class.human_attribute_name(:valor)
               %th= model_class.human_attribute_name(:comissao)
               %th= model_class.human_attribute_name(:funcionario)
-              - if @ordem_servico.status == 1
-                %th{colspan: 4}=t '.actions', :default => t("helpers.actions")
+              /- if @ordem_servico.status == 1
+              %th{colspan: 4}=t '.actions', :default => t("helpers.actions")
           %tbody
             - total = 0
             - @ordem_servico.ordem_servicos_servicos.each do |oss|
               - total += oss.valor
               %tr
                 %td= oss.servico_id.to_s.rjust(6,'0')
-                %td= oss.servico.descricao
+                %td= oss.servico.tipo_servico.descricao  + ' - '+ oss.servico.descricao
                 %td= oss.valor.try(:real).try(:real_formatado)
                 %td
                   = oss.comissao.to_f > 0 ? oss.comissao.to_i : oss.funcionario.percentual.to_i 
                   & %
                 %td= oss.funcionario.try(:name)
-                - if @ordem_servico.status == 1
-                  %td
-                    - if can? :destroy, @ordem_servico
-                      = link_to t('.destroy', :default => t("helpers.links.destroy")), ordem_servico_path(oss.id), method: :delete, class: 'btn btn-mini btn-danger',  :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }
+                /- if @ordem_servico.status == 1
+                %td
+                  - if can? :destroy_oss, @ordem_servico
+                    = link_to t('.destroy', :default => t("helpers.links.destroy")), destroy_oss_ordem_servico_path(oss.id), method: :delete, class: 'btn btn-mini btn-danger',  :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }
           %tfoot
             %tr
               %th{colspan: 2} Total

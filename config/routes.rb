@@ -20,6 +20,7 @@ Salao::Application.routes.draw do
     member do
       post :adicionar_servico,    :pagamento
       get  :finalizar, :cancelar, :pagamento
+      delete :destroy_oss
     end
   end
 

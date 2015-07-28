@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150617194319) do
+ActiveRecord::Schema.define(version: 20150702134800) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,8 @@ ActiveRecord::Schema.define(version: 20150617194319) do
     t.string   "classe_type"
     t.integer  "ordem_servico_id"
     t.integer  "forma_de_pagamento_id"
+    t.boolean  "carteira"
+    t.date     "data"
   end
 
   add_index "conta_correntes", ["cliente_id"], name: "index_conta_correntes_on_cliente_id", using: :btree
@@ -85,6 +87,7 @@ ActiveRecord::Schema.define(version: 20150617194319) do
     t.integer  "usuario_id"
     t.float    "valor_comissao"
     t.string   "numero"
+    t.date     "data"
   end
 
   add_index "ordem_servicos", ["cliente_id"], name: "index_ordem_servicos_on_cliente_id", using: :btree

@@ -11,6 +11,7 @@ class OrdemServico < ActiveRecord::Base
   validates_presence_of :cliente
   before_save :set_status
 
+  #validates :numero, presence: true, uniqueness: true
 
   def descricao_status
     case self.status

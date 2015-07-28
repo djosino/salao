@@ -213,6 +213,7 @@ pt-BR:
   created:   "%{name} cadastrado(a) com sucesso."
   updated:   "%{name} atualizado(a) com sucesso."
   removed:   "%{name} removido(a) com sucesso."
+  destroy:   "%{name} removido(a) com sucesso."
   cannot_create: "%{name} não pode ser cadastrado(a)."
   cannot_remove: "%{name} não pode ser removido(a)."
   cannot_update:  "Não é possível atualizar %{name} deste %{obj}. %{obs}"
