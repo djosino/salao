@@ -69,7 +69,7 @@ class RelatoriosController < ApplicationController
 
   def extrato_cartoes
     if params[:data].present?
-      @contas = ContaCorrente.where(forma_de_pagamento_id: 4, data: params[:data].to_date).includes(:classe,:forma_de_pagamento,:ordem_servico)
+      @contas = ContaCorrente.where(forma_de_pagamento_id: 4, data: params[:data].to_date).includes(:classe,:forma_de_pagamento,:ordem_servico).order(:id)
     end
   end
 
