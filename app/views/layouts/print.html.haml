@@ -8,7 +8,7 @@
       = content_for?(:title) ? 'Digitalização - ' + yield(:title) : "Sistema de Digitalização"
     = csrf_meta_tags
     - if Rails.env.production?
-      = stylesheet_link_tag "print", media: "print"
+      = stylesheet_link_tag "print", media: "all"
     - else
       = stylesheet_link_tag "print", media: "all"
   %body

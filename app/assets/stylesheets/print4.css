@@ -1,9 +1,9 @@
-*, body, a { font-size: 13pt; width: 600px; font-family: 'Courier New', Courier, 'Lucida Sans Typewriter', 'Lucida Typewriter', monospace; }
+*, body, a { font-size: 15pt; width: 600px; font-family: 'Courier New', Courier, 'Lucida Sans Typewriter', 'Lucida Typewriter', monospace; }
 
 table { margin: 0px; }
 table, tr, td, th { text-align: left; }
-th, b { font-size: 8pt }
-td, a{ font-size: 7pt;  }
+th, b { font-size: 10pt }
+td, a{ font-size: 9pt;  }
 
 .dashed
 .span12 table { width: 800px; }
@@ -15,16 +15,17 @@ td.span8,   th.span8  { width: 70%; }
 td.span6,   th.span6  { width: 40%; }
 td.span5,   th.span5  { width: 35%; }
 td.span4,   th.span4  { width: 30%; }
+td.span3,   th.span3  { width: 25%; }
 td.span2,   th.span2  { width: 15%; }
 td.span1,   th.span1  { width: 5%; }
 
-#main_content.font_14 { font-size: 8pt }
+#main_content.font_14 { font-size: 10pt }
 .table_100 { width: 100% }
 .align-right { text-align: right; padding-right: 10px}
 p {margin: 4px 0px 4px 0px; border-bottom-style: dashed; border-bottom-width: 1.5px;}
 /* HIDDENS */
 button, img, .button-to, span.colored, .reports-hidden, .hidden_print, .options { display: none !important;}
-h5 { font-size: 8pt; margin: 0px;} 
-h3 { font-size: 8pt; margin: 0px;}
+h5 { font-size: 10pt; margin: 0px;} 
+h3 { font-size: 10pt; margin: 0px;}
 
-.vertical { font-size: 8pt; margin: 0px; width: 3px; vertical-align: middle; display: table-cell; }
+.vertical { font-size: 10pt; margin: 0px; width: 3px; vertical-align: middle; display: table-cell; }

@@ -10,8 +10,8 @@ class RelatoriosController < ApplicationController
 
   def movimento_de_caixa
     if request.post?
-      creditos = ContaCorrente.creditos.dia(params[:data])
-      debitos  = ContaCorrente.debitos.dia(params[:data])
+      creditos = ContaCorrente.creditos.dia(params[:data].to_date)
+      debitos  = ContaCorrente.debitos.dia(params[:data].to_date)
       @despesas  = debitos.where(forma_de_pagamento_id: [7,8,9]).order(:created_at)
       #clientes = debitos.clientes.where("forma_de_pagamento_id = 5 and ordem_servico_id is not null").pluck(:valor).sum.to_f
       #caixa = Caixa.where("created_at::date = ?", params[:data].to_date).pluck(:valor_abertura).sum.to_f

@@ -13,10 +13,10 @@ class OrdemServicosController < ApplicationController
         when '1' then "numero like '#{num}'"
         else { id: 0 }
       end
-      @ordem_servicos = OrdemServico.includes(:servicos, :cliente).where(cond).order(id: :desc).paginate(page: params[:page])
+      @ordem_servicos = OrdemServico.includes(:servicos, :cliente).where(cond).order(numero: :desc).paginate(page: params[:page])
       flash[:error] = t(:not_found, name: "Ordem de Serviços") if @ordem_servicos.blank?
     else
-      @ordem_servicos = OrdemServico.includes(:servicos, :cliente).order(id: :desc).paginate(page: params[:page])
+      @ordem_servicos = OrdemServico.includes(:servicos, :cliente).order(numero: :desc).paginate(page: params[:page])
     end
   end
 
@@ -133,7 +133,7 @@ class OrdemServicosController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_ordem_servico
-      @ordem_servico = OrdemServico.find(params[:id])
+      @ordem_servico = OrdemServico.where(id: params[:id]).includes(:ordem_servicos_servicos, :servicos).first
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -27,10 +27,10 @@
             %td= @ordem_servico.usuario.try(:nome)
             %td=l @ordem_servico.created_at, format: :short
             %td
-              = link_to '#', {:'data-toggle' => "tooltip", :'data-original-title' => "Carteira: "+@ordem_servico.cliente.carteira.valor.real_contabil, class: 'tooltip'} do 
+              = link_to @ordem_servico.cliente, {:'data-toggle' => "tooltip", :'data-original-title' => "Carteira: "+@ordem_servico.cliente.carteira.valor.real.real_formatado, class: 'tooltip'} do 
                 = cpf_cnpj_formatado(@ordem_servico.cliente.try(:cpf))
                 = ' - ' + @ordem_servico.cliente.try(:nome)
-            /%td= @ordem_servico.cliente.carteira.valor.real_contabil
+            /%td= @ordem_servico.cliente.carteira.valor.real.real_formatado
             %td= @ordem_servico.ordem_servicos_servicos.pluck(:valor).sum.to_f.real.real_formatado
         %tfoot
           %tr  

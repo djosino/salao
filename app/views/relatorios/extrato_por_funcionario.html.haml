@@ -19,7 +19,7 @@
         %th.span2 VL SERVIÇOS
         %th.span2 VL COMISSÃO
         %th.span2 ADIANTAMENTOS
-        %th.span2 SALDO
+        %th.span2.align-right SALDO
     %tbody
       - servicos = comissao = adiantamento = saldo = 0.0
       - @dados.each do |dado|
@@ -29,7 +29,7 @@
           %td= dado[:valor].to_f.real.real_formatado
           %td= dado[:comissao].to_f.real.real_formatado
           %td= dado[:adiantamento].to_f.real.real_formatado
-          %td= dado[:saldo].to_f.real.real_formatado
+          %td.align-right= dado[:saldo].to_f.real.real_formatado
           - servicos      += dado[:valor].to_f
           - comissao      += dado[:comissao].to_f
           - adiantamento  += dado[:adiantamento].to_f
@@ -40,7 +40,7 @@
         %th= servicos.to_f.real.real_formatado
         %th= comissao.to_f.real.real_formatado
         %th= adiantamento.to_f.real.real_formatado
-        %th= saldo.to_f.real.real_formatado
+        %th.align-right= saldo.to_f.real.real_formatado
         %th
 - elsif request.post? 
   .row-fluid

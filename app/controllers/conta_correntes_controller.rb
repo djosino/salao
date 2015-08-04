@@ -4,11 +4,13 @@ class ContaCorrentesController < ApplicationController
   # GET /conta_correntes
   # GET /conta_correntes.json
   def index
+    cond = "classe_type = 'Cliente' and not (ordem_servico_id is not null and carteira is true)"
+    inc  = [:ordem_servico, :classe,:tipo_lancamento,:forma_de_pagamento]
     if params[:data_ini].present? and params[:data_final].present?
-      @conta_correntes = ContaCorrente.where(["created_at::date between ? and ? and tipo_lancamento_id = 2", params[:data_ini].to_date, params[:data_final].to_date]).order(id: :desc).paginate(page: params[:page])
+      @conta_correntes = ContaCorrente.where(cond).where(["created_at::date between ? and ?", params[:data_ini].to_date, params[:data_final].to_date]).includes(inc).order(id: :desc).paginate(page: params[:page])
       flash[:error] = t(:not_found, name: "Conta Corrente") if @conta_correntes.blank?
     else
-      @conta_correntes = ContaCorrente.where("tipo_lancamento_id = 2").order(id: :desc).paginate(page: params[:page])
+      @conta_correntes = ContaCorrente.where(cond).includes(inc).order(id: :desc).paginate(page: params[:page])
     end
     #@conta_correntes = ContaCorrente.all
     #if params[:data_ini].present?
@@ -47,11 +49,6 @@ class ContaCorrentesController < ApplicationController
       else
         @conta_corrente.cliente     = nil
       end
-    end
-    if params[:carteira].present? and @conta_corrente.valor > @conta_corrente.cliente.saldo 
-      flash[:error] = "Valor inválido."
-      redirect_to :back
-      return
     end
     respond_to do |format|
       if @conta_corrente.save

@@ -1,7 +1,12 @@
 - model_class = ContaCorrente
 .row-fluid
   .span12
-    %h2.botton-border=t '.title', :default => model_class.model_name.human.pluralize.titleize, model: model_class.model_name.human.pluralize.titleize
+    %h2.botton-border
+      Lançamentos 
+    %h5
+      = link_to "Todos", {debitos: nil} 
+      & -
+      = link_to "Débitos", {debitos: true} 
     = flash_message
 
 .row-fluid
@@ -18,19 +23,15 @@
             %th= model_class.human_attribute_name(:tipo_lancamento)
             %th= model_class.human_attribute_name(:observacao)     
             %th= model_class.human_attribute_name(:valor)     
-            %th= model_class.human_attribute_name(:saldo)     
             %th{colspan: 4}=t '.actions', :default => t("helpers.actions")
         %tbody
-          - saldo = 0
           - conta_correntes.each do |conta|
-            - saldo += (conta.valor * (conta.tipo_lancamento_id == 1 ? 1 : -1))
             %tr
               %td=  conta.id
-              %td=  conta.data
+              %td= l conta.data
               %td=  conta.tipo_lancamento.descricao
               %td=  conta.observacao
-              %td=  conta.valor.real_contabil
-              %td=  saldo.real_contabil
+              %td=  conta.valor.real.real_formatado
               %td
                 - if can? :edit, ContaCorrente
                   = link_to t('.edit', :default => t("helpers.links.edit")), edit_conta_corrente_path(conta), class: 'btn btn-mini'

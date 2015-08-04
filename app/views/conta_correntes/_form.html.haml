@@ -4,7 +4,7 @@
     %img{:height => "16", :src => img_header, :width => "16"}
     %p=t '.header', :default => model_class.model_name.human.pluralize.titleize
   = form_for @conta_corrente, :html => { class: 'form-group' } do |f|
-    = f.hidden_field :carteira, value: true
+    /= f.hidden_field :carteira, value: true
     .content-form
       .container-fluid
         .control-group.span6

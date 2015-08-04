@@ -53,10 +53,10 @@
             - @conta_correntes.each do |cc|
               %tr
                 %td=  cc.id.to_s.rjust(4,'0')
-                %td=  cc.classe.nome
-                %td=  cc.tipo_lancamento.descricao
-                %td=  cc.forma_de_pagamento.descricao
-                %td=  cc.valor.real.real_formatado
+                %td=  cc.classe.try(:nome)
+                %td=  cc.tipo_lancamento.try(:descricao)
+                %td=  cc.forma_de_pagamento.try(:descricao)
+                %td=  cc.valor.try(:real).try(:real_formatado)
                 %td=l cc.data
                 %td=  cc.observacao
                 %td=  cc.ordem_servico.try(:numero)

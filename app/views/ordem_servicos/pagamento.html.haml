@@ -25,12 +25,12 @@
               %td= oss.servico_id.to_s.rjust(6,'0')
               %td= oss.servico.tipo_servico.descricao
               %td= oss.servico.descricao
-              %td= oss.valor.try(:real_contabil)
+              %td= oss.valor.try(:real.real_formatado)
               /%td= oss.comissao > 0 ? oss.comissao.to_s + ' %' : oss.servico.comissao.to_s + ' %'
         %tfoot
           %tr
             %th{colspan: 3} Total
-            %th= total.to_f.real_contabil
+            %th= total.to_f.real.real_formatado
           %tr
             %td{colspan: 99}= link_to t('helpers.links.back'), @ordem_servico, class: 'btn btn-small'
 
@@ -52,7 +52,7 @@
             %td= cliente.id
             %td= cpf_cnpj_formatado(cliente.cpf)
             %td= cliente.nome
-            %td= cliente.saldo.real_contabil
+            %td= cliente.saldo.real.real_formatado
 
 - if @ordem_servico.pagamentos.any?
   .row-fluid
@@ -75,12 +75,12 @@
                 %td=  pagamento.id.to_s.rjust(6,'0')
                 %td=  pagamento.cliente.nome
                 %td=l pagamento.created_at, format: :short
-                %td=  pagamento.valor.to_f.real_contabil
+                %td=  pagamento.valor.to_f.real.real_formatado
                 %td=  pagamento.forma_de_pagamento.descricao
           %tfoot
             %tr
               %th{colspan: 3} TOTAL
-              %th{colspan: 2}= @ordem_servico.pagamentos.pluck(:valor).sum.real_contabil
+              %th{colspan: 2}= @ordem_servico.pagamentos.pluck(:valor).sum.real.real_formatado
 - if @ordem_servico.pagamentos.blank? or  (@ordem_servico.pagamentos.pluck(:valor).sum < total)
   - model_class = ContaCorrente
   - valor_maximo  = (total <= cliente.saldo.to_f ? total.to_f.real : cliente.saldo.to_f.real)

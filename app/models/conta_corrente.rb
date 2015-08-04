@@ -17,13 +17,13 @@ class ContaCorrente < ActiveRecord::Base
   scope :debitos,      -> { where(tipo_lancamento_id: 2).where("carteira is not true") }
   scope :dia,          -> (data) { where("data::date = ?", data.to_date) }
 
-  before_save :criar_cc, on: :create
+  #before_save :criar_cc, on: :create
 
   def cliente_ou_funcionario
-    if self.cliente.nil? and self.funcionario.nil?
-      errors.add(:base, 'Informe um Cliente ou Funcionario') 
-      return false
-    end
+    #if self.cliente.nil? and self.funcionario.nil?
+    #  errors.add(:base, 'Informe um Cliente ou Funcionario') 
+    #  return false
+    #end
     self.classe = self.cliente      if self.cliente
     self.classe = self.funcionario  if self.funcionario
   end
@@ -39,13 +39,13 @@ class ContaCorrente < ActiveRecord::Base
     end
   end
   
-  def criar_cc
-    if self.carteira and self.ordem_servico_id
-      cc = ContaCorrente.new(self.attributes)
-      cc.id = nil
-      cc.carteira = nil
-      cc.tipo_lancamento_id = 1
-      cc.save!
-    end
-  end
+  #def criar_cc
+  #  if self.carteira and self.ordem_servico_id
+  #    cc = ContaCorrente.new(self.attributes)
+  #    cc.id = nil
+  #    cc.carteira = nil
+  #    cc.tipo_lancamento_id = 1
+  #    cc.save!
+  #  end
+  #end
 end

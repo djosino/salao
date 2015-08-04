@@ -64,6 +64,8 @@
                 = link_to t('.show', :default => t("helpers.links.show")), ordem_servico, class: 'btn btn-mini'
                 - if can? :destroy, ordem_servico
                   = link_to t('.destroy', :default => t("helpers.links.destroy")), ordem_servico_path(ordem_servico), method: :delete, class: 'btn btn-mini btn-danger',  :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }
+                - if can? :pagamento, ordem_servico
+                  = link_to t('.pagamento', :default => t("helpers.links.pagamento")), pagamento_ordem_servico_path(ordem_servico), class: 'btn btn-mini'
 
         %tfoot
           %tr  

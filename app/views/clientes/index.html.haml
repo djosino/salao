@@ -16,7 +16,7 @@
             .control-group
               = label_tag :type_search, t('helpers.label.type_search'), class: 'control-label'
               .controls
-                = select_tag :type_search, options_for_select(tipos_consulta_cliente, params[:type_search]), include_blanck: ' --- Selecione --- ', class: 'span12', required: true
+                = select_tag :type_search, options_for_select(tipos_consulta_cliente.reverse, params[:type_search]), include_blanck: ' --- Selecione --- ', class: 'span12', required: true
           .span8
             .control-group
               = label_tag :find_by, t('helpers.label.find_by'),  class: 'control-label'

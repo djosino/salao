@@ -31,7 +31,7 @@
   %table
     %tbody
       %td.span2{rowspan: 10}
-        .vertical
+        .vertical{style: 'font-size: 8pt'}
           E N T R A D A S
       - for i in 'creditos_00'..'creditos_06'
         - id_pesquisa = i == 'creditos_00' ? '10' :  i.gsub(/\D/, "")
@@ -45,8 +45,8 @@
   %table
     %tbody
       %td.span2{rowspan: 9}
-        .vertical
-          S A I D A S      
+        .vertical{style: 'font-size: 8pt'}
+          S A I D A S
       - for i in 'debitos_07'..'debitos_09'
         %tr
           %td.span8= i.gsub(/\D/, "")  + ' - ' + FormaDePagamento.find( i.gsub(/\D/, "") ).descricao

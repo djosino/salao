@@ -4,7 +4,7 @@ class CaixasController < ApplicationController
   # GET /caixas
   # GET /caixas.json
   def index
-    @caixas = Caixa.all.paginate(page: params[:page])
+    @caixas = Caixa.order(id: :desc).paginate(page: params[:page])
   end
 
   # GET /caixas/1
