@@ -80,7 +80,7 @@ class ContaCorrentesController < ApplicationController
   def destroy
     @conta_corrente.destroy
     respond_to do |format|
-      format.html { redirect_to conta_correntes_url }
+      format.html { redirect_to pagamento_ordem_servico_path(@conta_corrente.ordem_servico) }
       format.json { head :no_content }
     end
   end

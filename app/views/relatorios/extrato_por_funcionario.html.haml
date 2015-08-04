@@ -5,7 +5,7 @@
     %center * RELATÓRIO DE COMISSÕES *
   %p
   %h5 
-    RELATORIO DO DIA.....: #{params[:data]}
+    RELATÓRIO DO DIA.....: #{params[:data_i]} ~ #{params[:data_f]}
     %br
     DATA.................: #{l(Time.now).upcase}
     %br
@@ -18,7 +18,7 @@
         %th.span3 FUNCIONÁRIO
         %th.span2 VL SERVIÇOS
         %th.span2 VL COMISSÃO
-        %th.span2 ADIANTAMENTOS
+        %th.span2 ADIANTAMENTO
         %th.span2.align-right SALDO
     %tbody
       - servicos = comissao = adiantamento = saldo = 0.0
@@ -34,6 +34,7 @@
           - comissao      += dado[:comissao].to_f
           - adiantamento  += dado[:adiantamento].to_f
           - saldo         += dado[:saldo].to_f
+
     %tfoot
       %tr
         %th{colspan: 2} TOTAL
@@ -42,6 +43,9 @@
         %th= adiantamento.to_f.real.real_formatado
         %th.align-right= saldo.to_f.real.real_formatado
         %th
+      %tr
+        %th{colspan: 2} DESCONTOS COMISSÕES
+        %th{colspan: 99}= @desconto_total.to_f.real.real_formatado
 - elsif request.post? 
   .row-fluid
     .span12
@@ -89,6 +93,9 @@
                 %th= adiantamento.to_f.real.real_formatado
                 %th= saldo.to_f.real.real_formatado
                 %th{colspan: 2}
+              %tr
+                %th{colspan: 2} DESCONTOS COMISSÕES
+                %th{colspan: 99}= @desconto_total.to_f.real.real_formatado
               %tr
                 %td{colspan: 99, height: 29}
                   .left= link_to t('.print', :default => t("helpers.links.print")), extrato_por_funcionario_relatorios_path, class: 'btn btn-small'

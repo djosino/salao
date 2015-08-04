@@ -69,6 +69,7 @@ class OrdemServicosController < ApplicationController
   def destroy
     @ordem_servico.destroy
     @ordem_servico.ordem_servicos_servicos.destroy_all
+    @ordem_servico.pagamentos.destroy_all
     respond_to do |format|
       format.html { redirect_to ordem_servicos_path, notice: t(:destroy, name: 'Ordem de Serviço') }
       format.json { head :no_content }

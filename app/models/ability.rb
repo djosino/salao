@@ -34,6 +34,8 @@ class Ability
       can :pagamento, OrdemServico, status: 2
       can [:lancar_pagamento, :pagamento_debito], ContaCorrente
     end
+    can :destroy, ContaCorrente
+
     can :admin, OrdemServico
     can :finalizar, OrdemServico, status: 1
     can [:adicionar_servico, :destroy_oss], OrdemServico
