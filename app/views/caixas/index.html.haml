@@ -28,9 +28,9 @@
               %td= caixa.id
               %td= caixa.funcionario.try(:login)
               %td= descricao_status_caixa(caixa.status)
-              %td= caixa.valor_abertura.try(:real.real_formatado)
+              %td= caixa.valor_abertura.try(:real).try(:real_formatado)
               %td=l caixa.aberto_em, format: :short
-              %td= caixa.valor_fechamento.try(:real.real_formatado)
+              %td= caixa.valor_fechamento.try(:real).try(:real_formatado)
               %td=l caixa.fechado_em, format: :short
               %td
                 - if can? :fechar, caixa

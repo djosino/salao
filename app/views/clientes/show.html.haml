@@ -25,8 +25,8 @@
             %td= cpf_cnpj_formatado(@cliente.cpf)
             %td= @cliente.saldo.to_f.real.real_formatado
             %td
-              = link_to t('.show', :default => t("helpers.links.show")), @cliente, class: 'btn btn-mini'
-              = link_to t('.pagamento_debito', :default => t("helpers.links.pagamento_debito")), new_conta_corrente_path, class: 'btn btn-mini'
+              = link_to t('.show',             default: t("helpers.links.show")), @cliente, class: 'btn btn-mini'
+              = link_to t('.pagamento_debito', default: t("helpers.links.pagamento_debito")), pagamento_debitos_conta_correntes_path(cliente_id: @cliente.id), class: 'btn btn-mini'
         %tfoot
           %tr  
             %td{colspan: 99, height: 29}

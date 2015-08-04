@@ -4,33 +4,35 @@
     %img{:height => "16", :src => img_header, :width => "16"}
     %p=t '.header', :default => model_class.model_name.human.pluralize.titleize
   = form_for @conta_corrente, :html => { class: 'form-group' } do |f|
-    /= f.hidden_field :carteira, value: true
     .content-form
+      = f.hidden_field :tipo_lancamento_id, value: 2 #Débito
       .container-fluid
-        .control-group.span6
-          = label_tag :selecione, nil, class: 'control-label'
-          .controls
-            = select_tag :selecione, options_for_select([["Cliente", 'cliente'], ["Funcionário", 'funcionario']], @conta_corrente.classe_type.try(:downcase)),include_blank: true, class: 'span12'
-        .control-group.span6#cliente
-          - cliente    = (@conta_corrente.classe_type == 'Cliente' ? @conta_corrente.classe_id : 0)
-          - funcioario = (@conta_corrente.classe_type == 'Usuario' ? @conta_corrente.classe_id : 0)
-          = f.label :cliente_id, class: 'control-label'
-          .controls
-            = f.select :cliente_id, options_for_select(clientes, cliente), {include_blank: true}, class: 'span12'
+        /.control-group.span6
+        /  = label_tag :selecione, nil, class: 'control-label'
+        /  .controls
+        /    = select_tag :selecione, options_for_select([["Cliente", 'cliente'], ["Funcionário", 'funcionario']], @conta_corrente.classe_type.try(:downcase)),include_blank: true, class: 'span12'
+        /.control-group.span6#cliente
+        /  - cliente    = (@conta_corrente.classe_type == 'Cliente' ? @conta_corrente.classe_id : 0)
+        /  - funcioario = (@conta_corrente.classe_type == 'Usuario' ? @conta_corrente.classe_id : 0)
+        /  = f.label :cliente_id, class: 'control-label'
+        /  .controls
+        /    = f.select :cliente_id, options_for_select(clientes, cliente), {include_blank: true}, class: 'span12'
         .control-group.span6#funcionario
           = f.label :funcionario_id, class: 'control-label'
           .controls
             = f.select :funcionario_id, options_for_select(funcionarios), {include_blank: true}, class: 'span12'
 
-      .container-fluid
-        .control-group.span6
-          = f.label :tipo_lancamento_id, class: 'control-label'
-          .controls
-            = f.select :tipo_lancamento_id, options_for_select(TipoLancamento.order(:id).pluck(:descricao, :id), @conta_corrente.tipo_lancamento_id), {include_blank: true}, data: { dynamic_selectable_url: dynamic_select_forma_de_pagamentos_path(':tipo_lancamento_id'), dynamic_selectable_target: '#conta_corrente_forma_de_pagamento_id'}, class: 'span12', required: true
+        /.container-fluid
+        /.control-group.span6
+        /  = f.label :tipo_lancamento_id, class: 'control-label'
+        /  .controls
+        /    = f.select :tipo_lancamento_id, options_for_select(TipoLancamento.order(:id).pluck(:descricao, :id), @conta_corrente.tipo_lancamento_id), {include_blank: true}, data: { dynamic_selectable_url: dynamic_select_forma_de_pagamentos_path(':tipo_lancamento_id'), dynamic_selectable_target: '#conta_corrente_forma_de_pagamento_id'}, class: 'span12', required: true
         .control-group.span6
           = f.label :forma_de_pagamento_id, class: 'control-label'
           .controls
-            = f.select :forma_de_pagamento_id, options_for_select(@formas_de_pagamento ? @formas_de_pagamento.pluck(:descricao, :id) : [], @conta_corrente.forma_de_pagamento_id ), {include_blank: true}, class: 'span12', required: true
+            = f.select :forma_de_pagamento_id, options_for_select(formas_pagamento_credito), {include_blank: true}, class: 'span12'
+            /= f.select :forma_de_pagamento_id, options_for_select(@formas_de_pagamento ? @formas_de_pagamento.pluck(:descricao, :id) : [], @conta_corrente.forma_de_pagamento_id ), {include_blank: true}, class: 'span12', required: true
+
 
       .container-fluid
         .control-group.span6
@@ -45,7 +47,7 @@
               %i{"data-date-icon" => "icon-calendar"}
 
       .container-fluid
-        .control-group.span6
+        .control-group.span12
           = f.label :observacao, class: 'control-label'
           .controls
             = f.text_field :observacao, class: 'span12', required: true
@@ -55,7 +57,6 @@
 
 :javascript
   jQuery("#cliente").hide();
-  jQuery("#funcionario").hide();
 
   if (jQuery("#selecione").val() == 'cliente') {
     jQuery("#cliente").show();

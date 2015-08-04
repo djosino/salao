@@ -27,7 +27,7 @@
           %span.caret
         %ul.dropdown-menu
           = link_to "Relatório de CC",    conta_correntes_path,    class: "btn btn-small"
-          = link_to "Cadastrar Lançamento", new_conta_corrente_path, class: "btn btn-small"
+          = link_to "Lançar Débito",      new_conta_corrente_path, class: "btn btn-small"
 
     - if can? :index, OrdemServico
       .btn-group

@@ -8,7 +8,8 @@ Salao::Application.routes.draw do
 
   resources :conta_correntes do
     collection do 
-      post :lancar_pagamento
+      post :pagamento_debito, :lancar_pagamento
+      get  "pagamento_debito/:cliente_id" => "conta_correntes#pagamento_debito", as: :pagamento_debitos
     end
   end
 

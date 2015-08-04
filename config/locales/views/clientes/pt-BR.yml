@@ -13,3 +13,4 @@ pt-BR:
       title: Visualizar %{model}
       header: Dados do Cliente
       new_lancamento: Novo Lançamento
+      pagamento_debito: Pagamento de Débito

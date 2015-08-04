@@ -1,14 +1,14 @@
 pt-BR:
   conta_correntes:    
     form:
-      title: Dados da Contas Correntes
+      header: Dados do Lançamento
     edit:
       title: Editar Lançamento
     index:
       title: Listagem de %{model}
       header_search: Consulta
     new:
-      title: Cadastrar Lançamento
+      title: Cadastrar Lançamento de Débito
     show:
       title: Visualizar %{model}
       header: Dados da Conta Corrente
@@ -16,3 +16,6 @@ pt-BR:
       title: Contas Correntes
     detalhar_extrato: 
       title: Detalhar Extrato
+    pagamento_debito:
+      title: Cadastro de Pagamento de Débito
+      header: Dados do Lançamento

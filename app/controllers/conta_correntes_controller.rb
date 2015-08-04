@@ -110,6 +110,23 @@ class ContaCorrentesController < ApplicationController
     redirect_to extrato_por_funcionario_relatorios_path
   end
 
+  def pagamento_debito
+    @conta_corrente = ContaCorrente.new({cliente_id: params[:cliente_id], carteira: true, tipo_lancamento_id: 1})
+    if request.post?
+      @conta_corrente.assign_attributes(conta_corrente_params)
+      @conta_corrente.data ||= Date.today
+      respond_to do |format|
+        if @conta_corrente.save
+          format.html { redirect_to @conta_corrente.cliente, notice: t(:created, name: 'Pagamento') }
+          format.json { head :no_content }
+        else
+          format.html { redirect_to pagamento_debitos_conta_correntes_path(cliente_id: @conta_corrente.cliente_id), flash: { error: @conta_corrente.errors.full_messages } }
+          format.json { render json: @conta_corrente.errors, status: :unprocessable_entity }
+        end
+      end    
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_conta_corrente

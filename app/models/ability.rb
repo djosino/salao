@@ -32,7 +32,7 @@ class Ability
       # and caixa.created_at.to_date == Date.today
       can :admin, ContaCorrente
       can :pagamento, OrdemServico, status: 2
-      can :lancar_pagamento, ContaCorrente
+      can [:lancar_pagamento, :pagamento_debito], ContaCorrente
     end
     can :admin, OrdemServico
     can :finalizar, OrdemServico, status: 1

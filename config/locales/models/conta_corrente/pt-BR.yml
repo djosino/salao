@@ -1,4 +1,4 @@
-spt-BR:
+pt-BR:
   activerecord:
     models:
       conta_corrente: 
@@ -12,7 +12,8 @@ spt-BR:
         funcionario_id: Funcionário
         cliente_id: Cliente
         cliente: Cliente
-        tipo_lancamento: Tipo de Lançamento
+        tipo_lancamento_id: Tipo de Lançamento
+        forma_de_pagamento_id: Forma de Pagamento
         observacao: Observação
         created_at: "Data de Cadastro"
         updated_at: "Data de Atualização"
