@@ -34,8 +34,8 @@ Salao::Application.routes.draw do
 
   resources :relatorios, only: :index do 
     collection do
-      get  :movimento_de_caixa, :extrato_por_funcionario, :pagamento_funcionario, :detalhar_extrato
-      post :movimento_de_caixa, :extrato_por_funcionario, :pagamento_funcionario
+      get  :movimento_de_caixa, :extrato_por_funcionario, :pagamento_funcionario, :detalhar_extrato, :extrato_cartoes
+      post :movimento_de_caixa, :extrato_por_funcionario, :pagamento_funcionario, :extrato_cartoes
     end
   end
 

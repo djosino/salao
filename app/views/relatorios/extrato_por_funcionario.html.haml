@@ -94,6 +94,9 @@
                 %th= saldo.to_f.real.real_formatado
                 %th{colspan: 2}
               %tr
+                %th{colspan: 2} DESCONTOS COMISSÕES
+                %th{colspan: 99}= @desconto_total.to_f.real.real_formatado
+              %tr
                 %td{colspan: 99, height: 29}
                   .left= link_to t('.print', :default => t("helpers.links.print")), extrato_por_funcionario_relatorios_path, class: 'btn btn-small'
                   .right= submit_tag t('.confirm', :default => t("helpers.submit.confirm")),  class: 'btn btn-primary btn-small'

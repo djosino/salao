@@ -34,9 +34,14 @@
         .vertical{style: 'font-size: 8pt'}
           E N T R A D A S
       - for i in 'creditos_00'..'creditos_06'
-        - id_pesquisa = i == 'creditos_00' ? '10' :  i.gsub(/\D/, "")
+        - id_pesquisa = (i == 'creditos_00' ? '10' :  i.gsub(/\D/, ""))
         %tr
-          %td.span8= i.gsub(/\D/, "") + ' - ' + FormaDePagamento.find( id_pesquisa ).descricao
+          %td.span8
+            = i.gsub(/\D/, "") + ' - ' + FormaDePagamento.find( id_pesquisa ).descricao
+            - if id_pesquisa.to_i == 4
+              (
+              = link_to 'Detalhar', extrato_cartoes_relatorios_path(data: params[:data]), target: '_blank'
+              )
           %td= @dados[i.to_sym].real.real_formatado
       %tr
         %th.span2= "99 - TOTAL"

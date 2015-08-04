@@ -67,6 +67,12 @@ class RelatoriosController < ApplicationController
     end
   end
 
+  def extrato_cartoes
+    if params[:data].present?
+      @contas = ContaCorrente.where(forma_de_pagamento_id: 4, data: params[:data].to_date).includes(:classe,:forma_de_pagamento,:ordem_servico)
+    end
+  end
+
   def detalhar_extrato
     @funcionario = Usuario.where(id: params[:id]).first
     @dados = []
