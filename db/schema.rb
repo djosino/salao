@@ -61,8 +61,8 @@ ActiveRecord::Schema.define(version: 20150804115416) do
     t.datetime "updated_at"
     t.integer  "classe_id"
     t.string   "classe_type"
-    t.integer  "forma_de_pagamento_id"
     t.integer  "ordem_servico_id"
+    t.integer  "forma_de_pagamento_id"
     t.boolean  "carteira"
     t.date     "data"
   end
@@ -83,7 +83,7 @@ ActiveRecord::Schema.define(version: 20150804115416) do
     t.float    "valor"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "status"
+    t.integer  "status",         default: 1
     t.integer  "usuario_id"
     t.float    "valor_comissao"
     t.string   "numero"

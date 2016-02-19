@@ -41,7 +41,7 @@
           %tr
             %th= model_class.human_attribute_name(:id)         
             %th= model_class.human_attribute_name(:numero)
-            %th= model_class.human_attribute_name(:created_at)         
+            %th= model_class.human_attribute_name(:data) 
             %th= model_class.human_attribute_name(:status)         
             %th{colspan: 1}= model_class.human_attribute_name(:cliente)         
             %th= model_class.human_attribute_name(:valor)
@@ -53,7 +53,7 @@
             %tr
               %td= ordem_servico.id.to_s.rjust(6,'0')
               %td= ordem_servico.numero
-              %td=l ordem_servico.created_at, format: :short
+              %td=l ordem_servico.data
               %td= ordem_servico.descricao_status
               /%td= cpf_cnpj_formatado(ordem_servico.cliente.try(:cpf))
               %td= ordem_servico.cliente.try(:nome)

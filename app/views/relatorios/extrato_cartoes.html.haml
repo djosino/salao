@@ -28,7 +28,8 @@
                 %td=  cc.forma_de_pagamento.try(:descricao)
                 %td=  cc.valor.try(:real).try(:real_formatado)
                 %td=  cc.observacao
-                %td=  link_to cc.ordem_servico.try(:numero), pagamento_ordem_servico_path(cc.ordem_servico), target: '_blank'
+                %td
+                  /=  link_to cc.ordem_servico.try(:numero), pagamento_ordem_servico_path(cc.ordem_servico), target: '_blank'
           %tfoot
             %tr
               %th{colspan: 3}  TOTAL

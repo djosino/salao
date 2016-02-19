@@ -19,6 +19,7 @@
         %ul.dropdown-menu
           = link_to "Listar",    clientes_path,    class: "btn btn-small"
           = link_to "Cadastrar", new_cliente_path, class: "btn btn-small"
+          = link_to "Relatório", relatorio_clientes_path, class: "btn btn-small"
 
     - if can? :index, ContaCorrente
       .btn-group

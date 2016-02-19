@@ -13,10 +13,10 @@ class OrdemServicosController < ApplicationController
         when '1' then "numero like '#{num}'"
         else { id: 0 }
       end
-      @ordem_servicos = OrdemServico.includes(:servicos, :cliente).where(cond).order(numero: :desc).paginate(page: params[:page])
+      @ordem_servicos = OrdemServico.includes(:servicos, :cliente).where(cond).order(created_at: :desc).paginate(page: params[:page])
       flash[:error] = t(:not_found, name: "Ordem de Serviços") if @ordem_servicos.blank?
     else
-      @ordem_servicos = OrdemServico.includes(:servicos, :cliente).order(numero: :desc).paginate(page: params[:page])
+      @ordem_servicos = OrdemServico.includes(:servicos, :cliente).order(created_at: :desc).paginate(page: params[:page])
     end
   end
 

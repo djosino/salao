@@ -25,7 +25,11 @@ Salao::Application.routes.draw do
     end
   end
 
-  resources :clientes, except: :destroy
+  resources :clientes, except: :destroy do
+    collection do
+      get :relatorio
+    end
+  end
 
   resources :produtos, except: :destroy
 

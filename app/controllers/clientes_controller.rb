@@ -25,6 +25,11 @@ class ClientesController < ApplicationController
   def show
   end
 
+  def relatorio
+    @clientes = Cliente.order(:nome)
+    render layout: 'print4'
+  end
+
   # GET /clientes/new
   def new
     @cliente = Cliente.new

@@ -13,17 +13,18 @@ class RelatoriosController < ApplicationController
       creditos = ContaCorrente.creditos.dia(params[:data].to_date)
       debitos  = ContaCorrente.debitos.dia(params[:data].to_date)
       @despesas  = debitos.where(forma_de_pagamento_id: [7,8,9]).order(:created_at)
-      #clientes = debitos.clientes.where("forma_de_pagamento_id = 5 and ordem_servico_id is not null").pluck(:valor).sum.to_f
+      clientes = ContaCorrente.dia(params[:data].to_date).clientes.where("forma_de_pagamento_id = 5 and ordem_servico_id is not null and tipo_lancamento_id = 2 and carteira is true").pluck(:valor).sum.to_f
+      cred_cli  = ContaCorrente.dia(params[:data].to_date).clientes.where("tipo_lancamento_id = 1 and carteira is true")
       #caixa = Caixa.where("created_at::date = ?", params[:data].to_date).pluck(:valor_abertura).sum.to_f
       @dados = {}
-      @dados.merge!( creditos_00:  creditos.where(forma_de_pagamento_id: 10).pluck(:valor).sum )
-      @dados.merge!( creditos_01:  creditos.where(forma_de_pagamento_id: 1).pluck(:valor).sum  )
-      @dados.merge!( creditos_02:  creditos.where(forma_de_pagamento_id: 2).pluck(:valor).sum  )
-      @dados.merge!( creditos_03:  creditos.where(forma_de_pagamento_id: 3).pluck(:valor).sum  )
-      @dados.merge!( creditos_04:  creditos.where(forma_de_pagamento_id: 4).pluck(:valor).sum  )
-      @dados.merge!( creditos_05:  creditos.where(forma_de_pagamento_id: 5).pluck(:valor).sum )
-      @dados.merge!( creditos_06:  creditos.where(forma_de_pagamento_id: 6).pluck(:valor).sum  )
-      @dados.merge!( creditos_99:  creditos.where(forma_de_pagamento_id: [1,2,3,4,5,6,10]).pluck(:valor).sum )
+      @dados.merge!( creditos_00:  creditos.where(forma_de_pagamento_id: 10).pluck(:valor).sum + cred_cli.where(forma_de_pagamento_id: 10).pluck(:valor).sum )
+      @dados.merge!( creditos_01:  creditos.where(forma_de_pagamento_id: 1).pluck(:valor).sum + cred_cli.where(forma_de_pagamento_id: 1).pluck(:valor).sum )
+      @dados.merge!( creditos_02:  creditos.where(forma_de_pagamento_id: 2).pluck(:valor).sum + cred_cli.where(forma_de_pagamento_id: 2).pluck(:valor).sum )
+      @dados.merge!( creditos_03:  creditos.where(forma_de_pagamento_id: 3).pluck(:valor).sum + cred_cli.where(forma_de_pagamento_id: 3).pluck(:valor).sum )
+      @dados.merge!( creditos_04:  creditos.where(forma_de_pagamento_id: 4).pluck(:valor).sum + cred_cli.where(forma_de_pagamento_id: 4).pluck(:valor).sum )
+      @dados.merge!( creditos_05:  creditos.where(forma_de_pagamento_id: 5).pluck(:valor).sum + clientes)
+      @dados.merge!( creditos_06:  creditos.where(forma_de_pagamento_id: 6).pluck(:valor).sum + cred_cli.where(forma_de_pagamento_id: 6).pluck(:valor).sum )
+      @dados.merge!( creditos_99:  creditos.where(forma_de_pagamento_id: [1,2,3,4,5,6,10]).pluck(:valor).sum + clientes +  cred_cli.where(forma_de_pagamento_id: [1,2,3,4,10,6]).pluck(:valor).sum)
       
       @dados.merge!( debitos_07:   debitos.where(forma_de_pagamento_id: 7).pluck(:valor).sum  )
       @dados.merge!( debitos_08:   debitos.where(forma_de_pagamento_id: 8).pluck(:valor).sum  )
